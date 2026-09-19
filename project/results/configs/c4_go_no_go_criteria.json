@@ -1,0 +1,56 @@
+{
+  "status": "predeclared_before_c4_development_results",
+  "recorded_at_local": "2026-09-14T22:47:00+05:30",
+  "development_seeds": [19026, 19027, 19028, 19029, 19030],
+  "development_scenarios": [
+    "load_disturbance",
+    "combined_fault_load",
+    "sensor_bias_15",
+    "sensor_dropout",
+    "parameter_variation",
+    "step_reference",
+    "changing_reference"
+  ],
+  "controllers": [
+    "B_plain_MPC",
+    "C3_arbitration_MPC",
+    "C4_attribution_MPC"
+  ],
+  "criteria": {
+    "load_disturbance": {
+      "false_sensor_fault_entries_relative_reduction_min": 0.50,
+      "substitution_fraction_relative_reduction_min": 0.50,
+      "c3_tracking_penalty_toward_plain_fraction_removed_min": 0.50,
+      "definition_tracking_penalty": "max(0, mean_C3_fault_window_RMSE - mean_plain_fault_window_RMSE); C4 must remove at least the stated fraction of this penalty",
+      "per_seed_direction": "C4 should not create a new latched false sensor-fault entry on a seed where C3 had none"
+    },
+    "combined_fault_load": {
+      "mean_fault_window_rmse_relative_degradation_max": 0.10,
+      "detection_rate_must_not_drop": true,
+      "genuine_fault_suppression_allowed": false
+    },
+    "abrupt_sensor_faults": {
+      "scenarios": ["sensor_bias_15", "sensor_dropout"],
+      "mean_fault_window_rmse_relative_degradation_max": 0.10,
+      "detection_rate_must_not_drop": true,
+      "mean_detection_latency_increase_s_max": 0.05
+    },
+    "parameter_variation": {
+      "mean_fault_window_rmse_relative_degradation_vs_better_of_plain_or_c3_max": 0.10,
+      "no_new_auxiliary_misuse": true
+    },
+    "reference_transients": {
+      "scenarios": ["step_reference", "changing_reference"],
+      "reliability_latches_max_total": 0,
+      "mean_substitution_fraction_max": 0.01,
+      "mean_overall_rmse_relative_degradation_vs_c3_max": 0.02
+    },
+    "safety": {
+      "optimizer_failures": 0,
+      "voltage_violations": 0,
+      "slew_violations": 0,
+      "nonfinite_events": 0
+    },
+    "stage_gate": "GO only if every safety criterion passes, load_disturbance meets all three quantitative mechanism targets, combined_fault_load and both abrupt-fault scenarios stay within their degradation limits with no loss of detection, parameter_variation stays within tolerance, and both reference scenarios satisfy their latch/substitution/tracking limits. Otherwise STOP before final holdout and report C4 FAILED at development stage."
+  }
+}

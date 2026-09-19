@@ -1,0 +1,33 @@
+{
+  "status": "frozen_before_first_closed_loop_run",
+  "purpose": "Preregistered paired development evaluation for the single EKF comparator",
+  "ekf_config_sha256": "1eafff6cc1b7c89de837b679eeccf55451dc39530bea06850bfa538e771d3579",
+  "ekf_preregistration_sha256": "d5bcc94836878c4b174a47961bf81a5c32983bb07600c65a399abee8fcdc1d8a",
+  "frozen_evidence_manifest_sha256": "fe34da9e54a941cb51de95c0396d3fcb7124328236f5e419114a505f5516f812",
+  "closed_loop_evaluator_sha256_before_first_run": "0594556fe71c083038f30c173c41b258e249f22d40c8160e2fc81eac53330371",
+  "controllers": [
+    "B_plain_MPC",
+    "C1_sensor_MPC",
+    "C3_arbitration_MPC",
+    "E_EKF_virtual_MPC"
+  ],
+  "primary_scenarios": [
+    "sensor_bias_5",
+    "sensor_dropout",
+    "load_disturbance",
+    "combined_fault_load",
+    "parameter_variation"
+  ],
+  "development_seeds": [19026, 19027, 19028, 19029, 19030],
+  "reserved_unused_seeds": [39026, 39027, 39028, 39029, 39030],
+  "frozen_v3_matrix_sha256": "a919e0b16321765fb1be5f97c15dc61062ccea737cd4059aed887ca6aa647086",
+  "frozen_c4_development_matrix_sha256": "108f7875ec8af675a4aa2dce5bec833735ff499be6ead588d3accce32efe3a15",
+  "reuse_rule": "Reuse frozen B/C3 rows only after exact provenance checks; rerun all C1 rows and any missing B/C3 scenario-seed keys through the frozen V3 evaluator.",
+  "detector_rule": "Use the unchanged frozen V3 speed-sensor reliability monitor. EKF is excluded from detector entry logic and supplies feedback only after substitution is requested.",
+  "observer_rule": "Run the frozen EKF continuously from sample zero using applied voltage and measured armature current; keep nominal EKF motor parameters under parameter variation.",
+  "runtime_accounting": {
+    "per_sample_total_overhead": "ekf_update_ms + aux_inference_ms + reliability_update_ms",
+    "optimizer_timing": "slsqp_solve_ms recorded separately",
+    "distribution_statistics": ["mean", "median", "p95", "p99", "max"]
+  }
+}

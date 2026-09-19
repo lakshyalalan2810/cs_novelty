@@ -1,0 +1,39 @@
+{
+  "study": "v4_detector_ablation",
+  "status": "factorial flags only; base parameters come from each pair's frozen calibration at build time",
+  "constants": {
+    "CLAMP_K": 2.0,
+    "WARMUP_BLANK_SAMPLES": 150,
+    "WARMUP_SECONDS_AT_100HZ": 1.5,
+    "WITNESS_GATE_SENTINEL": "RESIDUAL_GATE"
+  },
+  "variants": {
+    "clamp_only": {
+      "cusum_clamp_multiple": 2.0
+    },
+    "gating_only": {
+      "warmup_blank_samples": 150,
+      "warmup_trust_sensor": true
+    },
+    "clamp_gating": {
+      "cusum_clamp_multiple": 2.0,
+      "warmup_blank_samples": 150,
+      "warmup_trust_sensor": true
+    },
+    "witness_only": {
+      "witness_residual_gate": "RESIDUAL_GATE"
+    },
+    "frozen_baseline": {},
+    "full": {
+      "cusum_clamp_multiple": 2.0,
+      "warmup_blank_samples": 150,
+      "warmup_trust_sensor": true,
+      "witness_residual_gate": "RESIDUAL_GATE"
+    }
+  },
+  "notes": [
+    "frozen_baseline reproduces SensorReliabilityMonitor bit-identically.",
+    "Witness residual is y_meas - y_witness (aux LSTM or EKF); the witness gate placeholder equals the pair residual gate until Phase 4 calibration provides a calibrated value.",
+    "recovery_boost stays 0.0 in every cell; clamp alone bounds discharge. Boost is available as a flag for the Phase 6 sweep."
+  ]
+}

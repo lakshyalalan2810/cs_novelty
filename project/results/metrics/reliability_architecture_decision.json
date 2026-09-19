@@ -1,0 +1,26 @@
+{
+  "original_failure": "The residual-output LSTM adds the last measured speed and consumes measured-speed history, so bias/dropout is absorbed after an onset spike; MC variance mainly reacts to noisy inputs and overlaps model-mismatch operation.",
+  "improved_sensor_signal": "Guarded predictor feedback plus residual EWMA and clean-calibrated two-sided CUSUM.",
+  "mc_dropout_retained": false,
+  "mc_dropout_model_auc_mean": 0.32559413404877247,
+  "multistep_model_auc_mean": 0.8006830252292223,
+  "final_architecture": "Provisional three-state monitor: NORMAL, SENSOR_SUSPECT (guarded EWMA/CUSUM), MODEL_MISMATCH (rolling H=15 delayed multi-step error), with sensor precedence; rejected for MPC because the readiness rule fails.",
+  "reliably_distinguished": [
+    "gaussian_noise",
+    "large_bias",
+    "temporary_dropout"
+  ],
+  "ambiguous_cases": [
+    "small_bias",
+    "gradual_drift",
+    "load_step",
+    "parameter_variation",
+    "combined_fault: sensor precedence hides concurrent model mismatch",
+    "temporary_dropout recovery: CUSUM remains elevated after the sensor returns"
+  ],
+  "clean_test_false_alarm_rate": 0.032740615297770254,
+  "mean_sensor_detection_rate": 0.6517270079067832,
+  "mean_model_detection_rate": 0.0210153974198918,
+  "ready_for_mpc": false,
+  "readiness_rule": "clean FAR <= 5%, mean sensor detection >= 80%, mean model detection >= 70%, and model-mismatch AUC >= 0.70"
+}

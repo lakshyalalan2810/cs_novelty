@@ -1,0 +1,38 @@
+{
+  "arbitrator": {
+    "agreement_threshold": 3.5,
+    "param_mismatch_threshold": 7.0,
+    "ewma_alpha": 0.05,
+    "startup_blanking_time": 1.0
+  },
+  "hierarchy": [
+    "1. Physical sensor if trusted",
+    "2. Main virtual model if |y_main - y_aux| <= 3.5 and not unlatched",
+    "3. Auxiliary virtual model if no param mismatch and bounds satisfied",
+    "4. Safe Fallback otherwise"
+  ],
+  "scenarios": [
+    "sensor_noise",
+    "sensor_bias_5",
+    "sensor_bias_15",
+    "sensor_dropout",
+    "sensor_drift",
+    "load_disturbance",
+    "parameter_variation",
+    "combined_fault_load"
+  ],
+  "canonical_seeds": [
+    12026,
+    12027,
+    12028,
+    12029,
+    12030
+  ],
+  "fresh_seeds": [
+    19026,
+    19027,
+    19028,
+    19029,
+    19030
+  ]
+}

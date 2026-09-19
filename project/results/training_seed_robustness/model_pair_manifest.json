@@ -1,0 +1,163 @@
+{
+  "algorithm_hashes": {
+    "runner": {
+      "path": "scripts/run_training_seed_models.py",
+      "sha256": "7b43c0d0f562c0ec3ea5a957d5266800d023bbbdf84b040d4f0805a91491dd74"
+    },
+    "sensor_calibration_source": {
+      "path": "notebooks/04c_reliability_finalization.ipynb",
+      "sha256": "82253ac4cb2a068fab42fc381015af1ac2bb4919babec36af790c0896ca2469e"
+    },
+    "v3_calibration_source": {
+      "path": "scripts/calibrate_v3_arbitration.py",
+      "sha256": "310f886193ca6bc1584f7e0985794efc32dd08535b1dfc4e1992a9dc88ba26c2"
+    }
+  },
+  "pairs": {
+    "P2026": {
+      "auxiliary": {
+        "config_path": "results/configs/v2_auxiliary_config.json",
+        "config_sha256": "04fd322ba365b394751e4f60163ebea4b2164ff6fe699d7d2c2cc052eaae8ad2",
+        "weights_path": "results/auxiliary_model_weights.pt",
+        "weights_sha256": "619f677ccc63c6a40c863858d8eee4175f72b1770dc6c8ba202e7b92c2768480"
+      },
+      "calibration_sample_counts": {
+        "sensor_residual": 7086,
+        "v3": {
+          "agreement": 7086,
+          "aux_recovery": 7086,
+          "ewma_after_startup_blanking": 6606
+        }
+      },
+      "main": {
+        "config_path": "results/configs/lstm_model_config.json",
+        "config_sha256": "9254bbd088b0c9f7bd7ba71ee75c09fe4501ce28eb8e26efab7fb7d5130ce4cc",
+        "weights_path": "results/lstm_model_weights.pt",
+        "weights_sha256": "d1f4178199f682560f164ccac1d56816aae341eb05fbed6ac7ad73a4e2056297"
+      },
+      "pair_config": {
+        "path": "results/training_seed_robustness/configs/v3_seed2026_config.json",
+        "sha256": "4aebc19efb29250fbcbadb1138cae0edd3f2c6eaf10a91d083f7dd7d9323ea8d"
+      },
+      "pair_id": "P2026",
+      "sensor_calibration": {
+        "path": "results/training_seed_robustness/configs/sensor_seed2026_calibration.json",
+        "sha256": "81e64239ec99af8c8a3908b45cee979e617e82cacdfeddeadcadf4561f202f46"
+      },
+      "training_seed": 2026,
+      "v3_calibration": {
+        "path": "results/training_seed_robustness/configs/v3_seed2026_calibration.json",
+        "sha256": "7467f0be3489ab4bf7ac9f35c160ee94e19eafb0ed456596d12eca762b09d718"
+      },
+      "validation_run_ids": [
+        3,
+        9,
+        11,
+        16,
+        19,
+        23
+      ]
+    },
+    "P2027": {
+      "auxiliary": {
+        "config_path": "results/training_seed_robustness/configs/aux_seed2027_config.json",
+        "config_sha256": "e1e651b5aca612b93df60e191244a767c2e1c2d37d4f257bd2ac6b953e54a5c0",
+        "weights_path": "models/training_seed_robustness/aux_seed_2027.pt",
+        "weights_sha256": "561f5529020c3b7d3b658f62c400e1b4ccedbce478c7f4e1d43e4dc1d2610fd6"
+      },
+      "calibration_sample_counts": {
+        "sensor_residual": 7086,
+        "v3": {
+          "agreement": 7086,
+          "aux_recovery": 7086,
+          "ewma_after_startup_blanking": 6606
+        }
+      },
+      "main": {
+        "config_path": "results/training_seed_robustness/configs/main_seed2027_config.json",
+        "config_sha256": "af02115f4d62f8c4c2b0733067b437dfb4c0bd7f982bb8fcc45b2cf7f025dc5a",
+        "weights_path": "models/training_seed_robustness/main_seed_2027.pt",
+        "weights_sha256": "934fe3b3a1672532d68fb94ff7605b59a32f6ad4d8291b968b0a1a1ca17008f1"
+      },
+      "pair_config": {
+        "path": "results/training_seed_robustness/configs/v3_seed2027_config.json",
+        "sha256": "a0357c3f2919d1cd160335850b065c16442ae6c649f2611c2a458cde5a4edfb2"
+      },
+      "pair_id": "P2027",
+      "sensor_calibration": {
+        "path": "results/training_seed_robustness/configs/sensor_seed2027_calibration.json",
+        "sha256": "3909dd3cf343cf0aec25b33607cf5a0815879a760710f2ded52a15b1b7127ad4"
+      },
+      "training_seed": 2027,
+      "v3_calibration": {
+        "path": "results/training_seed_robustness/configs/v3_seed2027_calibration.json",
+        "sha256": "adba638df2a6b177e1e70b5bc4d597433a1907dc92e33efd4adc222d3dc95955"
+      },
+      "validation_run_ids": [
+        3,
+        9,
+        11,
+        16,
+        19,
+        23
+      ]
+    },
+    "P2028": {
+      "auxiliary": {
+        "config_path": "results/training_seed_robustness/configs/aux_seed2028_config.json",
+        "config_sha256": "3fc89a4dbfb84c58770707d0f98be4afb5cb8223f754c3843697919e0f7eddad",
+        "weights_path": "models/training_seed_robustness/aux_seed_2028.pt",
+        "weights_sha256": "9739d68ca44fd76eb997f23f52a13efde666b9120b090861a04fab0f52e64f7f"
+      },
+      "calibration_sample_counts": {
+        "sensor_residual": 7086,
+        "v3": {
+          "agreement": 7086,
+          "aux_recovery": 7086,
+          "ewma_after_startup_blanking": 6606
+        }
+      },
+      "main": {
+        "config_path": "results/training_seed_robustness/configs/main_seed2028_config.json",
+        "config_sha256": "c0330dc7af509e80d4f257fe7aa452e5633d34eb6e4322a2da35b2a5feebc0ee",
+        "weights_path": "models/training_seed_robustness/main_seed_2028.pt",
+        "weights_sha256": "8c57a90ecbcc46bce14ffce41566365d871967aa090a0e39f98bbc71a7def024"
+      },
+      "pair_config": {
+        "path": "results/training_seed_robustness/configs/v3_seed2028_config.json",
+        "sha256": "9aa43116030f881158b9d8b1ac4446fdfd7cbeeed4058817d2a8d2cbfaca6302"
+      },
+      "pair_id": "P2028",
+      "sensor_calibration": {
+        "path": "results/training_seed_robustness/configs/sensor_seed2028_calibration.json",
+        "sha256": "e19df77cd05faf70ed73b8811d55298239e5c8bcafe5164c5151877abf721e40"
+      },
+      "training_seed": 2028,
+      "v3_calibration": {
+        "path": "results/training_seed_robustness/configs/v3_seed2028_calibration.json",
+        "sha256": "f7e875e89772bde559ca9a7f17d065def1eea478ef82cee9884133090f3a5e74"
+      },
+      "validation_run_ids": [
+        3,
+        9,
+        11,
+        16,
+        19,
+        23
+      ]
+    }
+  },
+  "protocol_manifest": {
+    "path": "results/training_seed_robustness/configs/training_protocol_manifest.json",
+    "sha256": "8df38e0cbc4d7f950677872744fb2aa19cfb5cf3ebd0c8398b74c32ed067dfa5"
+  },
+  "study": "training_seed_robustness",
+  "validation_run_ids": [
+    3,
+    9,
+    11,
+    16,
+    19,
+    23
+  ]
+}

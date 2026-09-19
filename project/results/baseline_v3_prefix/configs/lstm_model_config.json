@@ -1,0 +1,42 @@
+{
+  "model": {
+    "input_size": 2,
+    "hidden_size": 64,
+    "num_layers": 2,
+    "dropout": 0.2,
+    "output_size": 1,
+    "residual": true
+  },
+  "training": {
+    "batch_size": 512,
+    "learning_rate": 0.001,
+    "max_epochs": 60,
+    "patience": 8,
+    "min_delta": 1e-06,
+    "seed": 2026,
+    "best_epoch": 60
+  },
+  "dataset": "data/processed/dc_motor_lstm_dataset.npz",
+  "window_length": 20,
+  "features": [
+    "voltage",
+    "y_measured"
+  ],
+  "target": "y_true",
+  "normalization": {
+    "input_mean": [
+      5.966879126899837,
+      29.690350880700816
+    ],
+    "input_std": [
+      3.72307536458447,
+      13.635946197889163
+    ],
+    "target_mean": [
+      30.00111412449199
+    ],
+    "target_std": [
+      13.384715185057468
+    ]
+  }
+}

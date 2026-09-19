@@ -1,0 +1,270 @@
+PASS: c4_v3_frozen_hashes.json contains a JSON object
+PASS: V3 freeze record predates C4 implementation
+PASS: V3 freeze record lists frozen artifacts
+PASS: V3 freeze entry main_model is structured
+PASS: V3 freeze entry main_model records a path
+PASS: V3 freeze entry main_model records a SHA256
+PASS: required file exists: results\lstm_model_weights.pt
+PASS: frozen V3 artifact unchanged: main_model
+PASS: V3 freeze entry auxiliary_model is structured
+PASS: V3 freeze entry auxiliary_model records a path
+PASS: V3 freeze entry auxiliary_model records a SHA256
+PASS: required file exists: results\auxiliary_model_weights.pt
+PASS: frozen V3 artifact unchanged: auxiliary_model
+PASS: V3 freeze entry v3_calibration is structured
+PASS: V3 freeze entry v3_calibration records a path
+PASS: V3 freeze entry v3_calibration records a SHA256
+PASS: required file exists: results\configs\v3_arbitration_calibration.json
+PASS: frozen V3 artifact unchanged: v3_calibration
+PASS: V3 freeze entry v3_arbitration_config is structured
+PASS: V3 freeze entry v3_arbitration_config records a path
+PASS: V3 freeze entry v3_arbitration_config records a SHA256
+PASS: required file exists: results\configs\v3_arbitration_config.json
+PASS: frozen V3 artifact unchanged: v3_arbitration_config
+PASS: V3 freeze entry v3_final_275_run_matrix is structured
+PASS: V3 freeze entry v3_final_275_run_matrix records a path
+PASS: V3 freeze entry v3_final_275_run_matrix records a SHA256
+PASS: required file exists: results\metrics\v3_final_11scenario_runs.csv
+PASS: frozen V3 artifact unchanged: v3_final_275_run_matrix
+PASS: V3 freeze record includes the 275-run matrix
+PASS: frozen V3 primary matrix still contains exactly 275 rows
+PASS: V3 freeze record includes both frozen reliability class source hashes
+PASS: frozen V3 reliability/arbitration class sources are unchanged
+PASS: resolved frozen C4 development config: results\configs\c4_development_config.json
+PASS: resolved C4 calibration: results\configs\c4_attribution_calibration.json
+PASS: resolved predeclared C4 go/no-go criteria: results\configs\c4_go_no_go_criteria.json
+PASS: resolved C4 development primary run matrix: results\metrics\c4_development_runs.csv
+PASS: resolved C4 development summary: results\metrics\c4_development_summary.json
+PASS: resolved C4 development attribution events: results\metrics\c4_development_attribution_events.csv
+PASS: resolved C4 development timing evidence: results\metrics\c4_development_timing.csv
+PASS: resolved C4 development stage-gate record: results\metrics\c4_development_stage_gate.json
+PASS: c4_attribution_calibration.json contains a JSON object
+PASS: C4 calibration uses only the frozen clean-validation trajectory IDs
+PASS: C4 calibration explicitly identifies the clean-validation population
+PASS: C4 calibration records exclusion of development and V3-final seed families
+PASS: C4 calibration provenance excludes closed-loop scenario/fault-label evidence
+PASS: C4 calibration records provenance
+PASS: required file exists: data\processed\dc_motor_lstm_dataset.npz
+PASS: C4 calibration dataset hash reproduces exactly
+PASS: C4 calibration model hashes match the pre-C4 V3 freeze record
+PASS: required file exists: results\configs\c4_v3_frozen_hashes.json
+PASS: C4 calibration binds the exact frozen V3 config/calibration/275-run matrix and pre-C4 hash record
+PASS: C4 calibration records the exact historical generator path/version/SHA256
+PASS: C4 calibration contains computed threshold values
+PASS: C4 calibrated classification statistic is raw pairwise absolute disagreement
+PASS: C4 online classification has no temporal filter
+PASS: C4 diagnostic EWMA is explicitly excluded from classification and veto
+PASS: C4 calibrated agreement/disagreement bands are finite and ordered
+PASS: c4_development_config.json contains a JSON object
+PASS: C4 development config has the expected pre-evidence freeze status
+PASS: C4 development config contains development_design
+PASS: C4 development config records the locked development seeds
+PASS: C4 development config records the locked scenario order
+PASS: C4 development config records the locked controllers
+PASS: C4 development config records the 105-run design
+PASS: C4 development config references the canonical predeclared criteria
+PASS: C4 development config contains frozen artifact hashes
+PASS: required file exists: results\configs\c4_attribution_calibration.json
+PASS: C4 development config frozen hash reproduces for c4_attribution_calibration_json
+PASS: required file exists: scripts\calibrate_c4_attribution.py
+PASS: C4 development config frozen hash reproduces for c4_calibration_script
+PASS: required file exists: results\configs\c4_go_no_go_criteria.json
+PASS: C4 development config frozen hash reproduces for c4_go_no_go_criteria_json
+PASS: required file exists: scripts\evaluate_c4_closed_loop.py
+PASS: C4 development config frozen hash reproduces for c4_evaluator_script
+PASS: required file exists: src\reliability.py
+PASS: C4 development config frozen hash reproduces for reliability_py
+PASS: required file exists: results\lstm_model_weights.pt
+PASS: C4 development config frozen hash reproduces for v3_main_model
+PASS: required file exists: results\auxiliary_model_weights.pt
+PASS: C4 development config frozen hash reproduces for v3_auxiliary_model
+PASS: required file exists: results\configs\v3_arbitration_calibration.json
+PASS: C4 development config frozen hash reproduces for v3_arbitration_calibration
+PASS: required file exists: results\configs\v3_arbitration_config.json
+PASS: C4 development config frozen hash reproduces for v3_arbitration_config
+PASS: required file exists: results\metrics\v3_final_11scenario_runs.csv
+PASS: C4 development config frozen hash reproduces for v3_final_275_run_matrix
+PASS: C4 development config preserves the exact historical verifier hash recorded before development evidence
+PASS: C4 development config contains a frozen attributor block
+PASS: C4 development config attributor parameters exactly match calibration
+PASS: required file exists: results\configs\c4_development_config.json
+PASS: required file exists: results\configs\c4_attribution_calibration.json
+PASS: required file exists: results\configs\c4_go_no_go_criteria.json
+PASS: required file exists: scripts\evaluate_c4_closed_loop.py
+PASS: C4 attributor update signature has no oracle inputs ([])
+PASS: C4 attributor update implementation has no oracle identifiers ([])
+PASS: C4 evaluator source exists for static no-oracle verification
+PASS: C4 evaluator contains an identifiable attributor update callsite
+PASS: C4 evaluator attributor call arguments contain no oracle identifiers ([])
+PASS: C4 evaluator attributor call arguments contain no oracle identifiers ([])
+PASS: C4 evaluator entry authorization/suppression expression has no oracle identifiers ([])
+PASS: C4 evaluator entry authorization/suppression expression has no oracle identifiers ([])
+PASS: C4 evaluator entry authorization/suppression expression has no oracle identifiers ([])
+PASS: C4 evaluator entry authorization/suppression expression has no oracle identifiers ([])
+PASS: C4 evaluator entry authorization/suppression expression has no oracle identifiers ([])
+PASS: C4 evaluator exposes entry authorization/suppression logic to static inspection
+PASS: c4_go_no_go_criteria.json contains a JSON object
+PASS: c4_development_summary.json contains a JSON object
+PASS: C4 development summary is explicitly development evidence
+PASS: C4 development summary is not mislabeled as final evidence
+PASS: development summary records the declared missing-latency policy
+PASS: development summary contains a dedicated hash block
+PASS: development summary binds exact current c4_development_config
+PASS: development summary binds exact current c4_attribution_calibration
+PASS: development summary binds exact current c4_go_no_go_criteria
+PASS: development summary binds exact current c4_evaluator_script
+PASS: development summary binds exact current c4_verifier_script
+PASS: required file exists: results\configs\c4_attribution_calibration.json
+PASS: development summary cryptographically binds the exact C4 calibration
+PASS: development evidence uses exactly the seven predeclared scenarios
+PASS: development evidence uses exactly B, C3, and C4
+PASS: development evidence uses exactly seeds 19026-19030
+PASS: C4 development run matrix contains required columns (missing=[])
+PASS: C4 development matrix seeds are numeric and finite
+PASS: C4 development matrix seeds are exact integers
+PASS: C4 development matrix contains exactly 105 paired rows
+PASS: C4 development controller/scenario/seed sets match the predeclared design
+PASS: C4 development matrix has no duplicate or missing paired keys
+PASS: development summary run_count matches the 105-row matrix
+PASS: development summary records the exact development seeds
+PASS: C4 controller contributes exactly 35 evidence rows
+PASS: false_entries is numeric and non-missing
+PASS: false_entries is finite
+PASS: C4 false_entries values are nonnegative integer counts
+PASS: suppressed_false is numeric and non-missing
+PASS: suppressed_false is finite
+PASS: C4 suppressed_false values are nonnegative integer counts
+PASS: genuine_permitted is numeric and non-missing
+PASS: genuine_permitted is finite
+PASS: C4 genuine_permitted values are nonnegative integer counts
+PASS: genuine_suppressed is numeric and non-missing
+PASS: genuine_suppressed is finite
+PASS: C4 genuine_suppressed values are nonnegative integer counts
+PASS: attribution_switches is numeric and non-missing
+PASS: attribution_switches is finite
+PASS: C4 attribution_switches values are nonnegative integer counts
+PASS: mean attribution dwell time is numeric and non-missing
+PASS: mean attribution dwell time is finite
+PASS: C4 mean attribution dwell times are nonnegative
+PASS: attr_frac_normal is numeric and non-missing
+PASS: attr_frac_normal is finite
+PASS: attr_frac_likely_sensor_fault is numeric and non-missing
+PASS: attr_frac_likely_sensor_fault is finite
+PASS: attr_frac_likely_plant_or_main_mismatch is numeric and non-missing
+PASS: attr_frac_likely_plant_or_main_mismatch is finite
+PASS: attr_frac_likely_aux_mismatch is numeric and non-missing
+PASS: attr_frac_likely_aux_mismatch is finite
+PASS: attr_frac_ambiguous is numeric and non-missing
+PASS: attr_frac_ambiguous is finite
+PASS: C4 attribution-state fractions lie in [0, 1]
+PASS: C4 attribution-state fractions sum to one per run
+PASS: C4 attribution events contains required columns (missing=[])
+PASS: C4 attribution event seeds are numeric and finite
+PASS: C4 attribution event seeds are exact integers
+PASS: attribution event artifact contains the requested evidence
+PASS: attribution event evidence covers every requested scenario
+PASS: attribution event evidence covers every requested seed
+PASS: attribution events use only declared states: ['AMBIGUOUS', 'LIKELY_AUX_MISMATCH', 'LIKELY_SENSOR_FAULT', 'NORMAL']
+PASS: attribution event duration is numeric and non-missing
+PASS: attribution event duration is finite
+PASS: attribution event durations are nonnegative
+PASS: event d_sm is numeric and non-missing
+PASS: event d_sm is finite
+PASS: event d_sm values are nonnegative
+PASS: event d_sa is numeric and non-missing
+PASS: event d_sa is finite
+PASS: event d_sa values are nonnegative
+PASS: event d_ma is numeric and non-missing
+PASS: event d_ma is finite
+PASS: event d_ma values are nonnegative
+PASS: event filtered_d_sm contains only numeric values or missing diagnostics
+PASS: present event filtered_d_sm values are finite
+PASS: present event filtered_d_sm values are nonnegative
+PASS: event filtered_d_sa contains only numeric values or missing diagnostics
+PASS: present event filtered_d_sa values are finite
+PASS: present event filtered_d_sa values are nonnegative
+PASS: event filtered_d_ma contains only numeric values or missing diagnostics
+PASS: present event filtered_d_ma values are finite
+PASS: present event filtered_d_ma values are nonnegative
+PASS: filtered event diagnostics are either fully present or jointly missing
+PASS: jointly missing filtered diagnostics retain finite auxiliary-trust evidence
+PASS: jointly missing filtered diagnostics occur only with zero trusted-auxiliary fraction
+PASS: jointly missing filtered diagnostics occur only in forced AMBIGUOUS attribution
+PASS: jointly missing filtered diagnostics have an explicit unavailable-auxiliary reason
+PASS: C4 attribution runtime samples is numeric and non-missing
+PASS: C4 attribution runtime samples is finite
+PASS: C4 attribution runtime evidence contains nonnegative samples
+PASS: C4 runtime seeds are numeric and finite
+PASS: C4 runtime seeds are exact integers
+PASS: runtime evidence covers every requested C4 seed
+PASS: attribution runtime samples are scoped to C4 attribution
+PASS: summary records separate C4 attribution runtime evidence
+PASS: summary records canonical raw attribution runtime mean/median/p95/p99
+PASS: summary attribution runtime headline values are finite and nonnegative
+PASS: summary mean_ms attribution runtime reproduces from raw timing samples
+PASS: summary median_ms attribution runtime reproduces from raw timing samples
+PASS: summary p95_ms attribution runtime reproduces from raw timing samples
+PASS: summary p99_ms attribution runtime reproduces from raw timing samples
+PASS: summary attribution runtime sample count matches raw timing samples
+PASS: five finite false_sensor_fault_entries values exist for C3_arbitration_MPC/load_disturbance
+PASS: five finite false_sensor_fault_entries values exist for C4_attribution_MPC/load_disturbance
+PASS: five finite sub_fraction values exist for C3_arbitration_MPC/load_disturbance
+PASS: five finite sub_fraction values exist for C4_attribution_MPC/load_disturbance
+PASS: five finite fault_window_rmse values exist for B_plain_MPC/load_disturbance
+PASS: five finite fault_window_rmse values exist for C3_arbitration_MPC/load_disturbance
+PASS: five finite fault_window_rmse values exist for C4_attribution_MPC/load_disturbance
+PASS: five finite fault_window_rmse values exist for C3_arbitration_MPC/combined_fault_load
+PASS: five finite fault_window_rmse values exist for C4_attribution_MPC/combined_fault_load
+PASS: five paired rows exist for detection-rate check C4_attribution_MPC/combined_fault_load
+PASS: sensor_fault_detected contains boolean values
+PASS: five paired rows exist for detection-rate check C3_arbitration_MPC/combined_fault_load
+PASS: sensor_fault_detected contains boolean values
+PASS: five finite fault_window_rmse values exist for C3_arbitration_MPC/sensor_bias_15
+PASS: five finite fault_window_rmse values exist for C4_attribution_MPC/sensor_bias_15
+PASS: five paired rows exist for detection-rate check C4_attribution_MPC/sensor_bias_15
+PASS: sensor_fault_detected contains boolean values
+PASS: five paired rows exist for detection-rate check C3_arbitration_MPC/sensor_bias_15
+PASS: sensor_fault_detected contains boolean values
+PASS: five finite fault_window_rmse values exist for C3_arbitration_MPC/sensor_dropout
+PASS: five finite fault_window_rmse values exist for C4_attribution_MPC/sensor_dropout
+PASS: five paired rows exist for detection-rate check C4_attribution_MPC/sensor_dropout
+PASS: sensor_fault_detected contains boolean values
+PASS: five paired rows exist for detection-rate check C3_arbitration_MPC/sensor_dropout
+PASS: sensor_fault_detected contains boolean values
+PASS: five finite fault_window_rmse values exist for B_plain_MPC/parameter_variation
+PASS: five finite fault_window_rmse values exist for C3_arbitration_MPC/parameter_variation
+PASS: five finite fault_window_rmse values exist for C4_attribution_MPC/parameter_variation
+PASS: five finite overall_rmse values exist for C3_arbitration_MPC/step_reference
+PASS: five finite overall_rmse values exist for C4_attribution_MPC/step_reference
+PASS: five finite overall_rmse values exist for C3_arbitration_MPC/changing_reference
+PASS: five finite overall_rmse values exist for C4_attribution_MPC/changing_reference
+PASS: development optimizer_failures is numeric and non-missing
+PASS: development optimizer_failures is finite
+PASS: development optimizer_failures are valid counts
+PASS: development voltage_violations is numeric and non-missing
+PASS: development voltage_violations is finite
+PASS: development voltage_violations are valid counts
+PASS: development slew_violations is numeric and non-missing
+PASS: development slew_violations is finite
+PASS: development slew_violations are valid counts
+PASS: development nonfinite_events is numeric and non-missing
+PASS: development nonfinite_events is finite
+PASS: development nonfinite_events are valid counts
+PASS: independently recomputed development stage-gate decision = NO_GO
+INFO: development gate failed criteria: ['changing_reference_latches', 'changing_reference_substitution', 'load_false_entry', 'load_substitution', 'load_tracking', 'parameter_rmse', 'step_reference_latches', 'step_reference_substitution']
+PASS: c4_development_stage_gate.json contains a JSON object
+PASS: saved development stage gate has a valid decision
+PASS: saved development stage gate records the declared missing-latency policy
+PASS: saved development stage gate contains binding hashes
+PASS: saved development stage gate binds exact current c4_development_config
+PASS: saved development stage gate binds exact current c4_attribution_calibration
+PASS: saved development stage gate binds exact current c4_go_no_go_criteria
+PASS: saved development stage gate binds exact current c4_evaluator_script
+PASS: saved development stage gate binds exact current c4_verifier_script
+PASS: saved development stage-gate decision matches independent verifier recomputation
+PASS: development summary contains its saved stage-gate record
+PASS: development summary stage-gate decision matches independent recomputation
+
+C4 calibration SHA256: cd58cb26d10e920b6449b4efaf14504c46db70a03727fdb4462052a77566e397
+C4 development stage gate: NO_GO
+C4 DEVELOPMENT VERIFIER RESULT: PASS

@@ -1,0 +1,6 @@
+component,milliseconds_per_step
+basic_lstm_prediction,0.401519666669022
+mc_dropout_n10,0.7856899999933376
+temporal_residual_cusum,0.001511030482641658
+multistep_h15,5.9766359999957785
+final_combined,6.379666697147442

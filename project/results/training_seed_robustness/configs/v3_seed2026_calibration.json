@@ -1,0 +1,73 @@
+{
+  "algorithm": {
+    "source_path": "scripts/calibrate_v3_arbitration.py",
+    "source_sha256": "310f886193ca6bc1584f7e0985794efc32dd08535b1dfc4e1992a9dc88ba26c2"
+  },
+  "calibration_population": "clean validation trajectories only; no closed-loop holdout scenarios",
+  "clean_validation_false_alarm_statistics": {
+    "agreement_exceedance_rate_at_p90": 0.1000564493367203,
+    "aux_recovery_exceedance_rate_at_p99_9": 0.0011289867344058708,
+    "mismatch_ewma_exceedance_rate_at_p99_9": 0.001059642749016046
+  },
+  "computed_values": {
+    "agreement_threshold": 4.341867446899414,
+    "aux_recovery_gate": 9.047692775726327,
+    "aux_speed_bounds": [
+      0.0,
+      100.0
+    ],
+    "ewma_alpha": 0.05,
+    "param_mismatch_recovery_count": 50,
+    "param_mismatch_recovery_threshold": 5.048635494619628,
+    "param_mismatch_threshold": 8.70095886233045,
+    "startup_blanking_time": 1.0
+  },
+  "dataset_seed": 2026,
+  "dataset_sha256": "5f77f76468908656b35dabbc48e8aa20cc0583eae3724cc989278d94fe2bab26",
+  "metric_definition": {
+    "agreement": "absolute difference between main and auxiliary one-step speed predictions",
+    "aux_recovery": "absolute measured-minus-auxiliary residual",
+    "parameter_mismatch": "EWMA(alpha=0.05) of absolute measured-minus-auxiliary residual while the physical sensor is trusted"
+  },
+  "model_sha256": {
+    "auxiliary": "619f677ccc63c6a40c863858d8eee4175f72b1770dc6c8ba202e7b92c2768480",
+    "auxiliary_config": "04fd322ba365b394751e4f60163ebea4b2164ff6fe699d7d2c2cc052eaae8ad2",
+    "main": "d1f4178199f682560f164ccac1d56816aae341eb05fbed6ac7ad73a4e2056297",
+    "main_config": "9254bbd088b0c9f7bd7ba71ee75c09fe4501ce28eb8e26efab7fb7d5130ce4cc"
+  },
+  "no_fault_data_statement": "Calibration uses only the frozen clean, fault-free validation trajectories; no test trajectories, fault scenarios, closed-loop results, or simulation-seed results are used.",
+  "pair_id": "P2026",
+  "sample_counts": {
+    "agreement": 7086,
+    "aux_recovery": 7086,
+    "ewma_after_startup_blanking": 6606
+  },
+  "statistics": {
+    "agreement_p90": 4.341867446899414,
+    "agreement_p95": 5.2738037109375,
+    "agreement_p99": 8.260217475891112,
+    "aux_prediction_max": 53.494422912597656,
+    "aux_prediction_min": 0.4846363067626953,
+    "aux_residual_p99_9": 9.047692775726327,
+    "ewma_p95": 5.048635494619628,
+    "ewma_p99_9": 8.70095886233045
+  },
+  "study": "training_seed_robustness",
+  "threshold_derivation": {
+    "agreement_threshold": "p90 of clean-validation agreement",
+    "aux_recovery_gate": "p99.9 of clean-validation auxiliary residual",
+    "aux_speed_bounds": "fixed application/simulation operating envelope in rad/s, not a fitted percentile",
+    "param_mismatch_recovery_count": "50 samples = 0.5 s at the fixed 0.01 s simulation step",
+    "param_mismatch_recovery_threshold": "p95 of clean-validation EWMA (lower hysteresis threshold)",
+    "param_mismatch_threshold": "p99.9 of clean-validation EWMA"
+  },
+  "training_seed": 2026,
+  "validation_run_ids": [
+    3,
+    9,
+    11,
+    16,
+    19,
+    23
+  ]
+}

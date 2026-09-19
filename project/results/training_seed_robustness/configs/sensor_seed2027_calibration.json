@@ -1,0 +1,96 @@
+{
+  "algorithm": {
+    "allowance_sigma": 0.5,
+    "cusum_percentile_grid": [
+      90.0,
+      95.0,
+      97.5,
+      99.0,
+      99.5,
+      99.9
+    ],
+    "enter_count": 3,
+    "exit_count": 5,
+    "instant_percentile": 99.9,
+    "reliability_source_sha256": "909fd117453e66a6a034c230a8de47ee63f6d8623836e642c3788fe675931f26",
+    "rolling_window": 20,
+    "signed_ewma_alpha": 0.1,
+    "source_path": "notebooks/04c_reliability_finalization.ipynb",
+    "source_sha256": "82253ac4cb2a068fab42fc381015af1ac2bb4919babec36af790c0896ca2469e",
+    "target_validation_false_alarm_rate": 0.001
+  },
+  "calibration_grid": [
+    {
+      "cusum_threshold": 0.46567207928197424,
+      "instant_gate": 1.1294573402404842,
+      "percentile": 90.0,
+      "validation_false_alarm_rate": 0.8379904036127576
+    },
+    {
+      "cusum_threshold": 0.5710759794284586,
+      "instant_gate": 1.1294573402404842,
+      "percentile": 95.0,
+      "validation_false_alarm_rate": 0.6021732994637313
+    },
+    {
+      "cusum_threshold": 0.6872916245175523,
+      "instant_gate": 1.1294573402404842,
+      "percentile": 97.5,
+      "validation_false_alarm_rate": 0.4980242732147897
+    },
+    {
+      "cusum_threshold": 0.8312772535992768,
+      "instant_gate": 1.1294573402404842,
+      "percentile": 99.0,
+      "validation_false_alarm_rate": 0.2504939316963026
+    },
+    {
+      "cusum_threshold": 0.9926224190190746,
+      "instant_gate": 1.1294573402404842,
+      "percentile": 99.5,
+      "validation_false_alarm_rate": 0.24823595822749084
+    },
+    {
+      "cusum_threshold": 1.3873226188948429,
+      "instant_gate": 1.1294573402404842,
+      "percentile": 99.9,
+      "validation_false_alarm_rate": 0.24259102455546147
+    }
+  ],
+  "calibration_population": "clean validation trajectories only",
+  "clean_validation_false_alarm_statistics": {
+    "immediate_substitution_rate": 0.24343776460626587,
+    "instantaneous_residual_exceedance_rate": 0.0011289867344058708,
+    "selected_debounced_sensor_alarm_rate": 0.24259102455546147
+  },
+  "computed_values": {
+    "absolute_ewma_threshold": 0.48209373153912666,
+    "allowance": 0.1737781739519911,
+    "center": 0.0065898895263671875,
+    "cusum_percentile": 99.9,
+    "enter_count": 3,
+    "exit_count": 5,
+    "instant_threshold": 1.1294573402404842,
+    "residual_center": 0.0065898895263671875,
+    "signed_ewma_threshold": 0.30101288230081225,
+    "threshold": 1.3873226188948429
+  },
+  "dataset_sha256": "5f77f76468908656b35dabbc48e8aa20cc0583eae3724cc989278d94fe2bab26",
+  "model_sha256": {
+    "main": "934fe3b3a1672532d68fb94ff7605b59a32f6ad4d8291b968b0a1a1ca17008f1",
+    "main_config": "af02115f4d62f8c4c2b0733067b437dfb4c0bd7f982bb8fcc45b2cf7f025dc5a"
+  },
+  "no_fault_data_statement": "Calibration uses only the frozen clean, fault-free validation trajectories; no test trajectories, fault scenarios, closed-loop results, or simulation-seed results are used.",
+  "pair_id": "P2027",
+  "sample_count": 7086,
+  "study": "training_seed_robustness",
+  "training_seed": 2027,
+  "validation_run_ids": [
+    3,
+    9,
+    11,
+    16,
+    19,
+    23
+  ]
+}

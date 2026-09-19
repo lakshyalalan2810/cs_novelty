@@ -1,0 +1,31 @@
+{
+  "study": "training_seed_robustness",
+  "frozen_before_closed_loop": true,
+  "selected_simulation_seeds": [
+    49026,
+    49027,
+    49028,
+    49029,
+    49030
+  ],
+  "preferred_candidate_accepted": true,
+  "scan_completed_at": "2026-09-16T20:25:44.8227738+05:30",
+  "reserved_seeds_untouched": [
+    39026,
+    39027,
+    39028,
+    39029,
+    39030
+  ],
+  "provenance_scan": {
+    "strict_text_search": "rg -a -uu with numeric token boundaries across project, excluding only the new training-seed-robustness namespace",
+    "strict_text_matches": [],
+    "filename_matches": [],
+    "csv_seed_column_files_scanned": 37,
+    "csv_seed_matches": [],
+    "npy_npz_payloads_scanned": 15,
+    "npy_npz_seed_matches": [],
+    "conclusion": "No pre-study use of any selected seed was found."
+  },
+  "basis": "Candidate block was checked before any closed-loop robustness evaluation. The first broad substring scan produced unrelated decimal/subsequence hits; the strict integer-token scan returned no matches."
+}

@@ -1,0 +1,6 @@
+scenario,point_estimate_mean_of_training_seed_means,ci95_low,ci95_high,analysis_seed,bootstrap_replicates,training_seed_clusters,simulation_seeds_per_cluster
+sensor_bias_5,-1.640732,-2.181868,-1.023271,20260916,20000,3,5
+sensor_dropout,-19.221775,-19.969597,-18.540608,20260916,20000,3,5
+load_disturbance,2.062685,0.951591,3.204731,20260916,20000,3,5
+combined_fault_load,-0.568571,-1.528067,0.303891,20260916,20000,3,5
+parameter_variation,2.690691,0.919036,4.49097,20260916,20000,3,5

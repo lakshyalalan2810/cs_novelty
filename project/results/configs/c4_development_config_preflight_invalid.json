@@ -1,0 +1,84 @@
+{
+  "status": "frozen_before_first_c4_development_result",
+  "recorded_at_local": "2026-09-14T23:02:00+05:30",
+  "scientific_role": "development-stage configuration; this file binds the exact C4 logic used for the predeclared 105-run stage gate",
+  "development_design": {
+    "seeds": [19026, 19027, 19028, 19029, 19030],
+    "scenarios": [
+      "load_disturbance",
+      "combined_fault_load",
+      "sensor_bias_15",
+      "sensor_dropout",
+      "parameter_variation",
+      "step_reference",
+      "changing_reference"
+    ],
+    "controllers": [
+      "B_plain_MPC",
+      "C3_arbitration_MPC",
+      "C4_attribution_MPC"
+    ],
+    "expected_run_count": 105
+  },
+  "attributor": {
+    "classification_statistic": "raw pairwise absolute disagreement",
+    "pair_order": ["d_sm", "d_sa", "d_ma"],
+    "agreement_thresholds": [
+      0.3253856905837935,
+      2.8549346394934565,
+      2.873426682225933
+    ],
+    "disagreement_thresholds": [
+      0.9372106695189718,
+      9.04768356381269,
+      8.938118845734813
+    ],
+    "ewma_alpha": 0.05,
+    "ewma_role": "diagnostic only; excluded from attribution classification and entry-veto decisions",
+    "enter_count": 3,
+    "exit_count": 5,
+    "veto_state": "LIKELY_PLANT_OR_MAIN_MISMATCH",
+    "veto_requires_current_raw_state_match": true,
+    "ambiguous_preserves_c3": true,
+    "untrusted_auxiliary_preserves_c3": true
+  },
+  "auxiliary_witness_rule": {
+    "startup_blanking_time_s": 1.0,
+    "finite_required": true,
+    "speed_bounds_rad_s": [0.0, 100.0],
+    "auxiliary_parameter_mismatch_must_be_false": true,
+    "prior_trusted_consistency_samples_required": 50,
+    "trusted_auxiliary_ewma_recovery_threshold_rad_s": 5.0486354952328725,
+    "current_raw_d_sa_must_satisfy_attribution_agreement_band": true,
+    "purpose": "The auxiliary estimator may certify physical-sensor consistency only after independent V3-style health evidence is available. This is stricter than ordinary C3 auxiliary usability."
+  },
+  "suppression_evidence_policy": {
+    "scope": "new C3 entry/substitution candidates only; already-accepted C3 latches are never cleared by C4",
+    "first_confirmed_veto": "RESET positive/negative CUSUM and abnormal entry evidence once, keep active false, continue physical feedback",
+    "continued_affirmative_veto": "FREEZE entry evidence at zero while current raw plant/main-mismatch evidence remains affirmative",
+    "veto_exit": "resume the unchanged C3 detector from clean zero entry evidence immediately; skipped residuals are not replayed",
+    "justification": "prevents stale disturbance-driven CUSUM from causing one-sample-later false entry without repeatedly erasing evidence after the affirmative mismatch pattern disappears"
+  },
+  "hashes": {
+    "c4_attribution_calibration_json": "9b069204790d8fa82c8e363cfba72193ab386243ad124747f1037563160af95e",
+    "c4_calibration_script": "bdb5ecf2c6032a548d667360bdb7272a169c975b4f97ff4f109a631aa76d19ba",
+    "c4_go_no_go_criteria_json": "751ffa4ef89f5b5cdeac41f6ad95ef52b8ca2c61a32baef0fe54e9b02218f7ba",
+    "c4_evaluator_script": "edd472ec5dc3bfd367e4ddc8490cbe22fb57bcb9f42dcd8630b15a8517b56cdb",
+    "reliability_py": "2b0d1f407771a3d50db0df2e394da871877a3b7339781df0f8fb70df53526f4a",
+    "ThreeWayConsistencyAttributor_source": "ddc5b98faa95612ccd0fa90aba53d7f2576b14399467c793a4af355719bdde38",
+    "SuppressionEvidencePolicy_source": "9f6df27e9065b3c762d970759fe142c49332bdb8405c5da4b36bc9a28d8fa852",
+    "v3_main_model": "d1f4178199f682560f164ccac1d56816aae341eb05fbed6ac7ad73a4e2056297",
+    "v3_auxiliary_model": "619f677ccc63c6a40c863858d8eee4175f72b1770dc6c8ba202e7b92c2768480",
+    "v3_arbitration_calibration": "1dfcedf45110971e776c9c9ec6639b556b2c058d3a0535d9a69f5e23be99b1c8",
+    "v3_arbitration_config": "7b4f86934ece8d426148ff968b0152a5fac6cfa321615b229bfd35c63a179b35",
+    "v3_final_275_run_matrix": "a919e0b16321765fb1be5f97c15dc61062ccea737cd4059aed887ca6aa647086",
+    "SensorReliabilityMonitor_source": "5e9be01c8092a25a952a6664c2ce5e2851c69059f5e27c6da6098ed00b3eaae0",
+    "DualVirtualSensorArbitrator_source": "e2374391ba3b62a47f1ca27f7628ecb7f200807bbb4f7c4d7472f7c80ae53e51"
+  },
+  "final_holdout_status": {
+    "candidate_seeds": [39026, 39027, 39028, 39029, 39030],
+    "selected": false,
+    "selection_condition": "select/freeze only if the predeclared development stage gate returns GO",
+    "candidate_seed_audit": "results/configs/c4_candidate_seed_audit.json"
+  }
+}

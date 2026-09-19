@@ -1,0 +1,222 @@
+{
+  "auxiliary_model": {
+    "architecture": {
+      "dropout": 0.0,
+      "hidden_size": 32,
+      "input_size": 2,
+      "num_layers": 1,
+      "output_size": 1
+    },
+    "features": [
+      "voltage",
+      "current"
+    ],
+    "loss": "torch.nn.MSELoss",
+    "normalization": "fit feature/target Z-score statistics on frozen auxiliary training trajectories only",
+    "optimizer": "torch.optim.Adam with frozen default options except learning_rate=1e-3",
+    "rng_sources": {
+      "dropout": "0.0 with one LSTM layer",
+      "numpy": "np.random.seed(training_seed)",
+      "torch_global": "torch.manual_seed(training_seed) before DataLoader/model; governs model initialization and shuffled sampler exactly as frozen script",
+      "train_dataloader": "shuffle=True with no explicit generator, matching frozen auxiliary trainer"
+    },
+    "target": "y_true",
+    "training": {
+      "batch_size": 512,
+      "learning_rate": 0.001,
+      "max_epochs": 100,
+      "min_delta": 1e-06,
+      "patience": 10
+    }
+  },
+  "calibration_data_policy": "Calibration uses only the frozen clean, fault-free validation trajectories; no test trajectories, fault scenarios, closed-loop results, or simulation-seed results are used.",
+  "canonical_model_hashes": {
+    "aux_config": "04fd322ba365b394751e4f60163ebea4b2164ff6fe699d7d2c2cc052eaae8ad2",
+    "aux_weights": "619f677ccc63c6a40c863858d8eee4175f72b1770dc6c8ba202e7b92c2768480",
+    "main_config": "9254bbd088b0c9f7bd7ba71ee75c09fe4501ce28eb8e26efab7fb7d5130ce4cc",
+    "main_weights": "d1f4178199f682560f164ccac1d56816aae341eb05fbed6ac7ad73a4e2056297",
+    "sensor_config": "a093f5a436f0a4737a7d7f4092383e64ca0a9f64e54adc4f0f41473da4a8e71b",
+    "v3_calibration": "1dfcedf45110971e776c9c9ec6639b556b2c058d3a0535d9a69f5e23be99b1c8"
+  },
+  "canonical_seed_2026_action": "reuse frozen canonical weights; do not retrain",
+  "dataset": {
+    "dataset_seed": 2026,
+    "main_arrays_are_pre_normalized": true,
+    "path": "data/processed/dc_motor_lstm_dataset.npz",
+    "sample_counts": {
+      "test": 7086,
+      "train": 21258,
+      "validation": 7086
+    },
+    "sha256": "5f77f76468908656b35dabbc48e8aa20cc0583eae3724cc989278d94fe2bab26",
+    "split_run_ids": {
+      "test": [
+        8,
+        15,
+        17,
+        22,
+        25,
+        28
+      ],
+      "train": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        10,
+        12,
+        13,
+        14,
+        18,
+        20,
+        21,
+        24,
+        26,
+        27,
+        29
+      ],
+      "validation": [
+        3,
+        9,
+        11,
+        16,
+        19,
+        23
+      ]
+    },
+    "window_length": 20
+  },
+  "frozen_source_hashes": {
+    "aux_training_script": {
+      "path": "scripts/train_auxiliary_model.py",
+      "sha256": "699f7668b2dc76aae0065226fa998f1031f9a01392a9620f9fb5d0a4a548921e"
+    },
+    "auxiliary_model_source": {
+      "path": "src/auxiliary_sensor_model.py",
+      "sha256": "e2a1cdba68fe97630b882c2a36dd8b21077d64705b5f5d3db56bb1efa5387bae"
+    },
+    "data_utils_source": {
+      "path": "src/data_utils.py",
+      "sha256": "a09203dacf6c30ca67460cc81d8f8311c83ace79a3f0bf810ce3dac4eaaf7d15"
+    },
+    "lstm_model_source": {
+      "path": "src/lstm_model.py",
+      "sha256": "88f1a38c885572414b7f3077e6137285941f635df835e059b0c61f4dfdcd4ec2"
+    },
+    "main_training_notebook": {
+      "path": "notebooks/03_lstm_training.ipynb",
+      "sha256": "cb732e2944819bb3f68fe2e698871869720a21590ef2d26c9cca9f18649aa121"
+    },
+    "reliability_source": {
+      "path": "src/reliability.py",
+      "sha256": "909fd117453e66a6a034c230a8de47ee63f6d8623836e642c3788fe675931f26"
+    },
+    "sensor_calibration_notebook": {
+      "path": "notebooks/04c_reliability_finalization.ipynb",
+      "sha256": "82253ac4cb2a068fab42fc381015af1ac2bb4919babec36af790c0896ca2469e"
+    },
+    "v3_calibration_script": {
+      "path": "scripts/calibrate_v3_arbitration.py",
+      "sha256": "310f886193ca6bc1584f7e0985794efc32dd08535b1dfc4e1992a9dc88ba26c2"
+    }
+  },
+  "main_model": {
+    "architecture": {
+      "dropout": 0.2,
+      "hidden_size": 64,
+      "input_size": 2,
+      "num_layers": 2,
+      "output_size": 1,
+      "residual": true
+    },
+    "features": [
+      "voltage",
+      "y_measured"
+    ],
+    "loss": "torch.nn.MSELoss",
+    "normalization": "consume frozen train-only-normalized X/y arrays and saved normalization statistics from dataset archive",
+    "optimizer": "torch.optim.Adam with frozen default options except learning_rate=1e-3",
+    "rng_sources": {
+      "determinism": "torch.use_deterministic_algorithms(True); CPU; notebook-compatible thread cap <=4",
+      "numpy": "np.random.seed(training_seed), matching notebook setup",
+      "torch_global": "torch.manual_seed(training_seed): weight initialization and inter-layer LSTM dropout",
+      "train_dataloader": "dedicated torch.Generator().manual_seed(training_seed) for shuffle order"
+    },
+    "target": "y_true",
+    "training": {
+      "batch_size": 512,
+      "learning_rate": 0.001,
+      "max_epochs": 60,
+      "min_delta": 1e-06,
+      "patience": 8
+    }
+  },
+  "new_training_seeds": [
+    2027,
+    2028
+  ],
+  "reproduction_tolerance": {
+    "atol": 2e-06,
+    "reason": "permits only final float32 CPU inference/reduction ULP-scale differences; rejects scientifically material threshold drift",
+    "rtol": 2e-06
+  },
+  "sensor_calibration": {
+    "cusum_allowance_sigma": 0.5,
+    "cusum_percentile_grid": [
+      90.0,
+      95.0,
+      97.5,
+      99.0,
+      99.5,
+      99.9
+    ],
+    "enter_count": 3,
+    "exit_count": 5,
+    "instant_gate": "p99.9 absolute raw measured-minus-main residual",
+    "population": "frozen validation trajectories only",
+    "selection": "first percentile with debounced validation FAR <= 0.001; otherwise final grid percentile",
+    "signed_ewma_alpha": 0.1,
+    "signed_ewma_percentile": 99.9,
+    "torch_threads": "min(4, current thread count), matching notebook 04c setup",
+    "validation_run_ids": [
+      3,
+      9,
+      11,
+      16,
+      19,
+      23
+    ]
+  },
+  "study": "training_seed_robustness",
+  "training_pairs": [
+    "P2026",
+    "P2027",
+    "P2028"
+  ],
+  "v3_arbitration_calibration": {
+    "agreement_percentile": 90.0,
+    "aux_recovery_percentile": 99.9,
+    "aux_speed_bounds": [
+      0.0,
+      100.0
+    ],
+    "ewma_alpha": 0.05,
+    "mismatch_ewma_percentile": 99.9,
+    "population": "frozen validation trajectories only",
+    "recovery_count": 50,
+    "recovery_ewma_percentile": 95.0,
+    "startup_blanking_time": 1.0,
+    "torch_threads": 1,
+    "validation_run_ids": [
+      3,
+      9,
+      11,
+      16,
+      19,
+      23
+    ]
+  }
+}

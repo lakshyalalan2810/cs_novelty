@@ -1,0 +1,55 @@
+{
+  "study": "final_robustness_hardening",
+  "status": "frozen_before_any_part_b_scientific_run",
+  "selected_simulation_seeds": [
+    59026,
+    59027,
+    59028,
+    59029,
+    59030
+  ],
+  "preferred_candidate_accepted": true,
+  "reserved_and_prior_seed_blocks": {
+    "ekf_or_earlier_development": [
+      19026,
+      19027,
+      19028,
+      19029,
+      19030
+    ],
+    "v3_final_holdout": [
+      29026,
+      29027,
+      29028,
+      29029,
+      29030
+    ],
+    "c4_reserved_or_development": [
+      39026,
+      39027,
+      39028,
+      39029,
+      39030
+    ],
+    "training_seed_robustness": [
+      49026,
+      49027,
+      49028,
+      49029,
+      49030
+    ]
+  },
+  "frozen_at_utc": "2026-09-16T16:25:49.917010+00:00",
+  "provenance_scan": {
+    "strict_text_search_command": "rg --pcre2 -a -uu -n -g '!results/final_robustness/**' -g '!**/__pycache__/**' -g '!**/.git/**' '(?<![0-9])(59026|59027|59028|59029|59030)(?![0-9])' .",
+    "strict_text_matches": [],
+    "filename_files_scanned": 378,
+    "filename_matches": [],
+    "csv_files_scanned": 116,
+    "csv_numeric_matches": [],
+    "npy_npz_files_scanned": 19,
+    "npy_npz_numeric_matches": [],
+    "conclusion": "No pre-study use of any selected simulation seed was found outside the new final_robustness namespace."
+  },
+  "note": "This file was created before any Part B severity/current-sensor scientific run."
+}

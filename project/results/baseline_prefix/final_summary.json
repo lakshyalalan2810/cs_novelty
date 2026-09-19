@@ -1,0 +1,358 @@
+{
+  "selected_configuration": {
+    "seed_repetitions": [
+      12026,
+      12027,
+      12028,
+      12029,
+      12030
+    ],
+    "evaluation_role": "untouched_final_holdout",
+    "plant_timestep_s": 0.01,
+    "control_interval_s": 0.05,
+    "control_interval_steps": 5,
+    "mpc": {
+      "horizon": 20,
+      "tracking_weight": 1.0,
+      "move_weight": 0.5,
+      "voltage_limits": [
+        0.0,
+        12.0
+      ],
+      "max_voltage_step": 2.0,
+      "max_iterations": 8,
+      "tolerance": 0.05,
+      "control_horizon": null,
+      "move_blocks": [
+        5,
+        15
+      ],
+      "control_interval_steps": 5,
+      "warm_start": true
+    },
+    "selected_strategy": "fixed_multirate_blocks",
+    "selection_basis": "Prior development control-performance choice H=20/Nc=2; blocking corrected to (5,15) and frozen before final holdout evaluation",
+    "model_quality": {
+      "source": "clean validation only; first five forecast ages match the 50 ms held command",
+      "scale_median_rms": 0.26939404010772705,
+      "medium_threshold_p75": 1.2603336572647095,
+      "high_threshold_p95": 1.7249999046325684,
+      "regions": {
+        "LOW": {
+          "horizon": 20,
+          "control_horizon": null,
+          "move_blocks": [
+            5,
+            15
+          ],
+          "move_weight": 0.5,
+          "max_voltage_step": 2.0
+        },
+        "MEDIUM": {
+          "horizon": 20,
+          "control_horizon": null,
+          "move_blocks": [
+            5,
+            15
+          ],
+          "move_weight": 0.75,
+          "max_voltage_step": 1.5
+        },
+        "HIGH": {
+          "horizon": 15,
+          "control_horizon": null,
+          "move_blocks": [
+            5,
+            10
+          ],
+          "move_weight": 1.0,
+          "max_voltage_step": 1.0
+        }
+      }
+    }
+  },
+  "headline_metrics": {
+    "plain_sensor_rmse": 7.584044450304804,
+    "reliable_sensor_rmse": 1.3750620047183464,
+    "sensor_improvement_percent": 81.86901443248948,
+    "plain_disturbance_rmse": 1.9328055599225784,
+    "adaptive_disturbance_rmse": 1.7570758694269375,
+    "adaptive_degradation_percent": -9.091948726734831
+  },
+  "profile": [
+    {
+      "study": "profile",
+      "component": "compute_control",
+      "calls": 1,
+      "own_ms": 0.1602,
+      "cumulative_ms": 177.1663
+    },
+    {
+      "study": "profile",
+      "component": "_minimize_slsqp",
+      "calls": 1,
+      "own_ms": 0.1271,
+      "cumulative_ms": 174.1294
+    },
+    {
+      "study": "profile",
+      "component": "objective",
+      "calls": 10,
+      "own_ms": 0.7892000000000001,
+      "cumulative_ms": 171.94320000000002
+    },
+    {
+      "study": "profile",
+      "component": "_rollout",
+      "calls": 5,
+      "own_ms": 6.9531,
+      "cumulative_ms": 87.7869
+    },
+    {
+      "study": "profile",
+      "component": "_engine_run_backward",
+      "calls": 5,
+      "own_ms": 0.07400000000000001,
+      "cumulative_ms": 82.16420000000001
+    }
+  ],
+  "horizon_control_study": [
+    {
+      "horizon": 5,
+      "control_horizon": 1,
+      "RMSE": 29.08056421442632,
+      "ISE": 5114.605281721889,
+      "tail_oscillation": 0.9930110990498259,
+      "control_effort_sum_u2": 16923.999999999927,
+      "control_variation_sum_du2": 23.999999999999748,
+      "average_solve_ms": 9.239896418615443,
+      "p95_solve_ms": 14.25293333401593,
+      "max_solve_ms": 28.408899997884873,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    },
+    {
+      "horizon": 10,
+      "control_horizon": 1,
+      "RMSE": 10.271995454502205,
+      "ISE": 644.6132798195652,
+      "tail_oscillation": 9.826847146751053,
+      "control_effort_sum_u2": 8878.12778626288,
+      "control_variation_sum_du2": 172.92139582918026,
+      "average_solve_ms": 23.886796143450344,
+      "p95_solve_ms": 41.81353333357644,
+      "max_solve_ms": 62.547200002882164,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    },
+    {
+      "horizon": 10,
+      "control_horizon": 2,
+      "RMSE": 10.304669898679725,
+      "ISE": 648.652984270455,
+      "tail_oscillation": 10.19754571996919,
+      "control_effort_sum_u2": 8943.117996222672,
+      "control_variation_sum_du2": 170.95290592341792,
+      "average_solve_ms": 38.67762424231756,
+      "p95_solve_ms": 84.69969999957054,
+      "max_solve_ms": 126.21409999701427,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    },
+    {
+      "horizon": 15,
+      "control_horizon": 1,
+      "RMSE": 9.77231673186762,
+      "ISE": 584.0222147377652,
+      "tail_oscillation": 3.5766212661893704,
+      "control_effort_sum_u2": 8463.837829907648,
+      "control_variation_sum_du2": 252.25163781797528,
+      "average_solve_ms": 38.91784517912607,
+      "p95_solve_ms": 64.01450000218271,
+      "max_solve_ms": 82.57669999875361,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    },
+    {
+      "horizon": 15,
+      "control_horizon": 2,
+      "RMSE": 9.775593745539823,
+      "ISE": 584.4203938748348,
+      "tail_oscillation": 3.688748793750785,
+      "control_effort_sum_u2": 8483.695683717822,
+      "control_variation_sum_du2": 253.24121508241612,
+      "average_solve_ms": 52.56922644633655,
+      "p95_solve_ms": 99.46990000025835,
+      "max_solve_ms": 131.13190000149189,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    },
+    {
+      "horizon": 15,
+      "control_horizon": 3,
+      "RMSE": 9.785996413694557,
+      "ISE": 585.6051616481255,
+      "tail_oscillation": 3.8765119702535933,
+      "control_effort_sum_u2": 8559.770784085742,
+      "control_variation_sum_du2": 249.66316253534922,
+      "average_solve_ms": 60.56373636366558,
+      "p95_solve_ms": 114.412766667859,
+      "max_solve_ms": 166.70439999870723,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    },
+    {
+      "horizon": 20,
+      "control_horizon": 1,
+      "RMSE": 9.56490526658162,
+      "ISE": 563.917319290385,
+      "tail_oscillation": 0.4091307360790755,
+      "control_effort_sum_u2": 7320.234547882326,
+      "control_variation_sum_du2": 178.02783687798868,
+      "average_solve_ms": 60.44453994474264,
+      "p95_solve_ms": 101.31133333440327,
+      "max_solve_ms": 128.74420000298414,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    },
+    {
+      "horizon": 20,
+      "control_horizon": 2,
+      "RMSE": 9.566216005085627,
+      "ISE": 564.0696755356519,
+      "tail_oscillation": 0.46808406763999716,
+      "control_effort_sum_u2": 7338.254952969089,
+      "control_variation_sum_du2": 170.70535868132006,
+      "average_solve_ms": 77.31866473834349,
+      "p95_solve_ms": 133.51063333296528,
+      "max_solve_ms": 186.33409999893047,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    },
+    {
+      "horizon": 20,
+      "control_horizon": 3,
+      "RMSE": 9.566452565732618,
+      "ISE": 564.0942337429501,
+      "tail_oscillation": 0.44120433771759576,
+      "control_effort_sum_u2": 7336.956458532858,
+      "control_variation_sum_du2": 167.60888469133815,
+      "average_solve_ms": 83.94078622589683,
+      "p95_solve_ms": 153.92553333125156,
+      "max_solve_ms": 220.37840000120923,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    },
+    {
+      "horizon": 20,
+      "control_horizon": 4,
+      "RMSE": 9.566392524342836,
+      "ISE": 564.1098359330255,
+      "tail_oscillation": 0.44796228400785293,
+      "control_effort_sum_u2": 7340.6146082763435,
+      "control_variation_sum_du2": 167.33370869815556,
+      "average_solve_ms": 100.84411983448626,
+      "p95_solve_ms": 197.90563333178093,
+      "max_solve_ms": 258.80949999555014,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    }
+  ],
+  "warm_start_study": [
+    {
+      "warm_start": false,
+      "RMSE": 9.564905266463743,
+      "tail_oscillation": 0.4091307360816903,
+      "average_solve_ms": 62.26754022026406,
+      "p95_solve_ms": 102.25126666773576,
+      "optimizer_failures": 0
+    },
+    {
+      "warm_start": true,
+      "RMSE": 9.56490526658162,
+      "tail_oscillation": 0.4091307360790755,
+      "average_solve_ms": 60.9395870523466,
+      "p95_solve_ms": 97.83523333317135,
+      "optimizer_failures": 0
+    }
+  ],
+  "move_blocking_study": [
+    {
+      "strategy": "control_interval_blocks",
+      "RMSE": 9.566392524342836,
+      "tail_oscillation": 0.44796228400785293,
+      "average_solve_ms": 96.20329256189302,
+      "p95_solve_ms": 186.45993333484512,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    },
+    {
+      "strategy": "selected_multirate_control_horizon",
+      "RMSE": 9.56490526658162,
+      "tail_oscillation": 0.4091307360790755,
+      "average_solve_ms": 58.12312892567832,
+      "p95_solve_ms": 101.09910000028322,
+      "optimizer_failures": 0,
+      "constraint_violations": 0
+    }
+  ],
+  "iteration_study": [
+    {
+      "max_iterations": 8,
+      "RMSE": 9.56490526658162,
+      "tail_oscillation": 0.4091307360790755,
+      "average_solve_ms": 56.70875950408401,
+      "p95_solve_ms": 93.1231666666766,
+      "optimizer_failures": 0
+    },
+    {
+      "max_iterations": 12,
+      "RMSE": 9.56490526658162,
+      "tail_oscillation": 0.4091307360790755,
+      "average_solve_ms": 58.03269862253703,
+      "p95_solve_ms": 98.98373333271593,
+      "optimizer_failures": 0
+    },
+    {
+      "max_iterations": 25,
+      "RMSE": 9.56490526658162,
+      "tail_oscillation": 0.4091307360790755,
+      "average_solve_ms": 58.10331460086487,
+      "p95_solve_ms": 97.15116666726924,
+      "optimizer_failures": 0
+    }
+  ],
+  "runtime": {
+    "measurement": "MPC solver/control-computation time",
+    "sample_count": 19965,
+    "mean_ms": 72.76021402451497,
+    "median_ms": 67.90410000394331,
+    "p95_ms": 147.41448000131638,
+    "max_ms": 373.7998999931733,
+    "final_average_ms": 72.76021402451497,
+    "final_median_ms": 67.90410000394331,
+    "final_p95_ms": 147.41448000131638,
+    "final_max_ms": 373.7998999931733,
+    "control_interval_ms": 50.0,
+    "real_time_20_hz": false
+  },
+  "safety": {
+    "optimizer_failures": 0,
+    "voltage_violations": 0,
+    "rate_violations": 0,
+    "nonfinite_events": 0
+  },
+  "statistical_repetitions": 5,
+  "answers": {
+    "1_lstm_accuracy": "Yes for one-step representation: held-out RMSE is 0.141 rad/s with R\u00b2=0.999906. Recursive RMSE grows with horizon (0.488 rad/s at H=15), so the model is accurate but not uncertainty-free.",
+    "2_lstm_mpc_vs_pi": "Across the three nominal/reference scenarios, plain LSTM-MPC RMSE was 8.363 versus 9.348 rad/s for PI (improved by 10.5%). Scenario rows in final_controller_comparison.csv show where that aggregate result changes.",
+    "3_sensor_fault_tolerance": "Across five sensor-fault scenarios, reliability-aware MPC fault-interval RMSE was 1.375 versus 7.584 rad/s for plain MPC (improved by 81.9%).",
+    "4_disturbance_robustness": "Across load, parameter-variation and combined cases, adaptive MPC fault/recovery RMSE was 1.757 versus 1.933 rad/s for plain MPC (improved by 9.1%).",
+    "5_nominal_adaptation_tradeoff": "Adaptive nominal RMSE was 8.372 versus 8.363 rad/s. When worse, the evidence is consistent with larger move penalties and tighter slew limits delaying corrective voltage; those restrictions target degraded-condition smoothness and safety, not nominal tracking.",
+    "6_selected_horizons": "The frozen final configuration uses H=20, Nc=2, blocks=(5, 15), and max_iterations=8.",
+    "7_runtime_measurement": "All 19965 final MPC compute-control samples are persisted; mean/median/p95/max were 72.8/67.9/147.4/373.8 ms.",
+    "8_real_time_feasibility": "Final solver timing was mean=72.8 ms, median=67.9 ms, overall p95=147.4 ms, max=373.8 ms against a 50 ms interval. The current implementation remains simulation-oriented; reliable 20 Hz deployment needs further solver/model optimization or a slower interval.",
+    "9_limitations": "Simultaneous sensor corruption and plant disturbance is the main weak case; adaptive control does not consistently improve it. The learned plant is open-loop trained; recursive error grows with horizon; the reliability residual can react to plant mismatch; timings are CPU- and load-dependent; and all evidence is simulation-only.",
+    "10_contribution": "The defensible contribution is an evaluation of reliability-aware virtual feedback for constrained LSTM-MPC under faulty sensor measurements. Plant-mismatch adaptation is secondary and is not claimed to be universally superior; plain MPC remains the benchmark where it performs better."
+  }
+}

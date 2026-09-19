@@ -1,0 +1,22 @@
+======================================================================
+  V2 AUXILIARY-RECOVERY RELIABILITY EVALUATION
+======================================================================
+
+1. Loading models...
+   Main LSTM loaded (50753 params)
+   Auxiliary LSTM loaded (4641 params)
+   Sensor gate: 0.9372
+   CUSUM threshold: 1.5697
+   Aux recovery gate: 9.0477
+   Enter/exit counts: 3/5
+
+2. Loading dataset...
+   Test trajectory IDs: [np.int32(8), np.int32(15), np.int32(17), np.int32(22), np.int32(25), np.int32(28)]
+
+3. Running V1 vs V2 on dataset test trajectories...
+
+   Scenario: sensor_bias_5
+     V1: RMSE=5.4190, FaultRMSE=3.9265, FalseRec=0.0
+     V2: RMSE=5.4190, FaultRMSE=3.9265, FalseRec=0.0
+
+   Scenario: sensor_bias_15

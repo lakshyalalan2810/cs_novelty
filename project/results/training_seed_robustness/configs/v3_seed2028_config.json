@@ -1,0 +1,56 @@
+{
+  "arbitrator": {
+    "agreement_threshold": 4.138243675231934,
+    "aux_recovery_gate": 9.106845359802284,
+    "aux_speed_bounds": [
+      0.0,
+      100.0
+    ],
+    "ewma_alpha": 0.05,
+    "param_mismatch_recovery_count": 50,
+    "param_mismatch_recovery_threshold": 4.794184195646824,
+    "param_mismatch_threshold": 8.742745230116128,
+    "startup_blanking_time": 1.0
+  },
+  "auxiliary_model": {
+    "config_path": "results/training_seed_robustness/configs/aux_seed2028_config.json",
+    "config_sha256": "3fc89a4dbfb84c58770707d0f98be4afb5cb8223f754c3843697919e0f7eddad",
+    "weights_path": "models/training_seed_robustness/aux_seed_2028.pt",
+    "weights_sha256": "9739d68ca44fd76eb997f23f52a13efde666b9120b090861a04fab0f52e64f7f"
+  },
+  "main_model": {
+    "config_path": "results/training_seed_robustness/configs/main_seed2028_config.json",
+    "config_sha256": "c0330dc7af509e80d4f257fe7aa452e5633d34eb6e4322a2da35b2a5feebc0ee",
+    "weights_path": "models/training_seed_robustness/main_seed_2028.pt",
+    "weights_sha256": "8c57a90ecbcc46bce14ffce41566365d871967aa090a0e39f98bbc71a7def024"
+  },
+  "no_fault_data_statement": "Calibration uses only the frozen clean, fault-free validation trajectories; no test trajectories, fault scenarios, closed-loop results, or simulation-seed results are used.",
+  "pair_id": "P2028",
+  "sensor_calibration_file": "results/training_seed_robustness/configs/sensor_seed2028_calibration.json",
+  "sensor_calibration_sha256": "e19df77cd05faf70ed73b8811d55298239e5c8bcafe5164c5151877abf721e40",
+  "sensor_monitor": {
+    "absolute_ewma_threshold": 0.3769474360360253,
+    "allowance": 0.137604983620895,
+    "center": -0.011078834533691406,
+    "cusum_percentile": 99.9,
+    "enter_count": 3,
+    "exit_count": 5,
+    "instant_threshold": 0.9238751220703142,
+    "residual_center": -0.011078834533691406,
+    "signed_ewma_threshold": 0.27926951140678796,
+    "threshold": 2.26138744532655
+  },
+  "status": "calibrated_before_training_seed_closed_loop",
+  "study": "training_seed_robustness",
+  "training_seed": 2028,
+  "v3_calibration_file": "results/training_seed_robustness/configs/v3_seed2028_calibration.json",
+  "v3_calibration_sha256": "f7e875e89772bde559ca9a7f17d065def1eea478ef82cee9884133090f3a5e74",
+  "validation_run_ids": [
+    3,
+    9,
+    11,
+    16,
+    19,
+    23
+  ]
+}

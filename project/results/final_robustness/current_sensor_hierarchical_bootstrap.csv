@@ -1,0 +1,7 @@
+current_case,endpoint,point_estimate_mean_of_training_seed_means,ci95_low,ci95_high,bootstrap_probability_effect_lt_zero,analysis_seed,bootstrap_replicates,training_seed_clusters,simulation_seeds_per_cluster
+current_bias_5,c3_minus_b_fault_window_rmse,1.4814756525910628,-0.008704108329674281,3.580640522583839,0.07555,20260918,20000,3,5
+current_bias_5,ekf_minus_b_fault_window_rmse,0.4933197983409035,-0.014802818359490676,1.27269983467439,0.1648,20260918,20000,3,5
+current_dropout_2s,c3_minus_b_fault_window_rmse,2.4723872689845456,0.36453833323849233,5.5054976646902976,0.00235,20260918,20000,3,5
+current_dropout_2s,ekf_minus_b_fault_window_rmse,2.1981646092400995,-0.004074106400045558,5.638666075774744,0.0309,20260918,20000,3,5
+speed_bias_5_plus_current_bias_5,c3_minus_b_fault_window_rmse,1.6991144857815996,1.4250817463857088,2.016816685894162,0.0,20260918,20000,3,5
+speed_bias_5_plus_current_bias_5,ekf_minus_b_fault_window_rmse,1.3157917473946041,1.1489336426871202,1.4845241325041791,0.0,20260918,20000,3,5

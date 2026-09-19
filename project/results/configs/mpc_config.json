@@ -1,0 +1,67 @@
+{
+  "seed": 2026,
+  "plant_timestep": 0.01,
+  "controller_interval": 0.05,
+  "mpc": {
+    "horizon": 20,
+    "tracking_weight": 1.0,
+    "move_weight": 0.5,
+    "voltage_limits": [
+      0.0,
+      12.0
+    ],
+    "max_voltage_step": 2.0,
+    "max_iterations": 25,
+    "tolerance": 0.05,
+    "control_horizon": null,
+    "move_blocks": null,
+    "warm_start": true
+  },
+  "pi": {
+    "proportional_gain": 0.35,
+    "integral_gain": 0.8,
+    "voltage_limits": [
+      0.0,
+      12.0
+    ],
+    "max_voltage_step": 2.0
+  },
+  "sensor": {
+    "instant_percentile": 99.9,
+    "instant_threshold": 0.937210063934329,
+    "cusum_percentile": 99.9,
+    "center": -0.009416818618774414,
+    "allowance": 0.14038589929835443,
+    "threshold": 1.5696827323213676,
+    "signed_ewma_alpha": 0.1,
+    "signed_ewma_threshold": 0.2001306189371716,
+    "enter_count": 3,
+    "exit_count": 5,
+    "feedback": "predicted on instantaneous guard; debounced SENSOR_SUSPECT state"
+  },
+  "model_quality": {
+    "source": "clean validation only",
+    "horizon": 20,
+    "rolling_window": 20,
+    "scale": 0.3509087562561035,
+    "medium_threshold_p75": 1.387520432472229,
+    "high_threshold_p95": 2.1743764877319336,
+    "regions": {
+      "LOW": {
+        "horizon": 20,
+        "move_weight": 0.5,
+        "max_voltage_step": 2.0
+      },
+      "MEDIUM": {
+        "horizon": 15,
+        "move_weight": 1.0,
+        "max_voltage_step": 1.0
+      },
+      "HIGH": {
+        "horizon": 10,
+        "move_weight": 2.0,
+        "max_voltage_step": 0.5
+      }
+    }
+  }
+}

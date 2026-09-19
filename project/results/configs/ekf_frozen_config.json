@@ -1,0 +1,261 @@
+{
+  "status": "frozen after preregistered train/validation-only calibration",
+  "state_order": [
+    "current",
+    "omega",
+    "load_torque"
+  ],
+  "online_inputs": [
+    "voltage",
+    "current"
+  ],
+  "current_measurement_noise_injected": false,
+  "dt_s": 0.01,
+  "nominal_motor_params": {
+    "resistance": 2.0,
+    "inductance": 0.5,
+    "back_emf_constant": 0.1,
+    "torque_constant": 0.1,
+    "inertia": 0.01,
+    "viscous_friction": 0.002,
+    "coulomb_friction": 0.02,
+    "friction_smoothing_speed": 0.1
+  },
+  "training_only_state_std": {
+    "current_A": 1.2882957159387873,
+    "speed_rad_s": 13.809543186445573,
+    "load_torque_Nm": 0.03447668029383983
+  },
+  "P0": [
+    [
+      1.6597058517062326,
+      0.0,
+      0.0
+    ],
+    [
+      0.0,
+      190.70348301830535,
+      0.0
+    ],
+    [
+      0.0,
+      0.0,
+      0.0011886414840836437
+    ]
+  ],
+  "grid": {
+    "q_dyn": [
+      1e-08,
+      1e-06,
+      0.0001
+    ],
+    "m_T": [
+      0.01,
+      0.1,
+      1.0
+    ],
+    "r": [
+      1e-08,
+      1e-06,
+      0.0001
+    ],
+    "candidate_count": 27
+  },
+  "selection_rule": "reject unstable; find minimum validation RMSE; among stable candidates within 1% of that RMSE choose lower MAE, then lower absolute bias, then deterministic candidate id",
+  "selected_candidate": {
+    "candidate_id": "EKF_25",
+    "q_dyn": 0.0001,
+    "m_T": 1.0,
+    "r": 1e-08,
+    "Q": [
+      [
+        0.00016597058517062326,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        0.019070348301830537,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        1.1886414840836437e-07
+      ]
+    ],
+    "R": 1.6597058517062327e-08,
+    "P0": [
+      [
+        1.6597058517062326,
+        0.0,
+        0.0
+      ],
+      [
+        0.0,
+        190.70348301830535,
+        0.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.0011886414840836437
+      ]
+    ],
+    "validation_rmse": 2.9835886979855024,
+    "validation_mae": 2.261758269529501,
+    "validation_bias": 0.14493654937177503,
+    "validation_abs_bias": 0.14493654937177503,
+    "validation_sample_count": 7206,
+    "numerical_failure_count": 0,
+    "nonfinite_estimate_count": 0,
+    "failure_run_count": 0,
+    "innovation_mean": 0.0003184260795371517,
+    "innovation_std": 0.0032634950116291776,
+    "nis_mean": 0.06319110526422557,
+    "nis_median": 0.025786114113659945,
+    "load_estimate_min": -0.07221493680468677,
+    "load_estimate_max": 0.0741932448151255,
+    "load_estimate_abs_p99": 0.07282234246182558,
+    "provenance": {
+      "dataset_path": "data/processed/dc_motor_lstm_dataset.npz",
+      "dataset_sha256": "5f77f76468908656b35dabbc48e8aa20cc0583eae3724cc989278d94fe2bab26",
+      "preregistration_path": "EKF_OBSERVER_PREREGISTRATION.md",
+      "preregistration_sha256": "d5bcc94836878c4b174a47961bf81a5c32983bb07600c65a399abee8fcdc1d8a",
+      "observer_source_path": "src/ekf_observer.py",
+      "observer_source_sha256": "96fab32c29972f8a8a4b434dbcb2c7ca234a22e76859329ef9cf09a77cbc8717",
+      "motor_model_source_path": "src/motor_model.py",
+      "motor_model_source_sha256": "3c7b4d955fa0db79dced95e222aa3533206ccc843c9d07235a4eb43ce5c119e8",
+      "calibration_script_path": "scripts/calibrate_ekf_observer.py",
+      "calibration_script_sha256": "fbc4390dc06a79ab2f72c77a0c9744cc94e9af1dab1001329cbcdbb632af1bf9",
+      "observability_summary_sha256": "852ff1a7f7cdc17d9d06fdbc0d83191b81fe8cf99645c7885836a111ef537b42",
+      "main_lstm_weights_path": "results/lstm_model_weights.pt",
+      "main_lstm_weights_sha256": "d1f4178199f682560f164ccac1d56816aae341eb05fbed6ac7ad73a4e2056297",
+      "main_lstm_config_path": "results/configs/lstm_model_config.json",
+      "main_lstm_config_sha256": "9254bbd088b0c9f7bd7ba71ee75c09fe4501ce28eb8e26efab7fb7d5130ce4cc",
+      "auxiliary_lstm_weights_path": "results/auxiliary_model_weights.pt",
+      "auxiliary_lstm_weights_sha256": "619f677ccc63c6a40c863858d8eee4175f72b1770dc6c8ba202e7b92c2768480",
+      "auxiliary_lstm_config_path": "results/configs/v2_auxiliary_config.json",
+      "auxiliary_lstm_config_sha256": "04fd322ba365b394751e4f60163ebea4b2164ff6fe699d7d2c2cc052eaae8ad2",
+      "candidate_table_path": "results/metrics/ekf_calibration_candidates.csv",
+      "candidate_table_sha256": "bcd73f42c015e6145daeb553fd017365c24c0b18d7b08a032589f3b159ebd2cf",
+      "selected_validation_trace_path": "results/metrics/ekf_calibration_selected_trace.csv",
+      "selected_validation_trace_sha256": "ce81451b30667f9b9acadbddff0046045887d7411b6f990c860b8079ca0fadee",
+      "train_run_ids": [
+        0,
+        1,
+        2,
+        4,
+        5,
+        6,
+        7,
+        10,
+        12,
+        13,
+        14,
+        18,
+        20,
+        21,
+        24,
+        26,
+        27,
+        29
+      ],
+      "validation_run_ids": [
+        3,
+        9,
+        11,
+        16,
+        19,
+        23
+      ],
+      "excluded_test_run_ids": [
+        8,
+        15,
+        17,
+        22,
+        25,
+        28
+      ],
+      "selection_population": "saved validation trajectories only",
+      "P0_population": "saved training trajectories only",
+      "forbidden_selection_inputs": [
+        "test trajectories",
+        "fault scenarios",
+        "V3 final holdout",
+        "C4 development/final outcomes",
+        "future EKF closed-loop outcomes"
+      ]
+    }
+  },
+  "provenance": {
+    "dataset_path": "data/processed/dc_motor_lstm_dataset.npz",
+    "dataset_sha256": "5f77f76468908656b35dabbc48e8aa20cc0583eae3724cc989278d94fe2bab26",
+    "preregistration_path": "EKF_OBSERVER_PREREGISTRATION.md",
+    "preregistration_sha256": "d5bcc94836878c4b174a47961bf81a5c32983bb07600c65a399abee8fcdc1d8a",
+    "observer_source_path": "src/ekf_observer.py",
+    "observer_source_sha256": "96fab32c29972f8a8a4b434dbcb2c7ca234a22e76859329ef9cf09a77cbc8717",
+    "motor_model_source_path": "src/motor_model.py",
+    "motor_model_source_sha256": "3c7b4d955fa0db79dced95e222aa3533206ccc843c9d07235a4eb43ce5c119e8",
+    "calibration_script_path": "scripts/calibrate_ekf_observer.py",
+    "calibration_script_sha256": "fbc4390dc06a79ab2f72c77a0c9744cc94e9af1dab1001329cbcdbb632af1bf9",
+    "observability_summary_sha256": "852ff1a7f7cdc17d9d06fdbc0d83191b81fe8cf99645c7885836a111ef537b42",
+    "main_lstm_weights_path": "results/lstm_model_weights.pt",
+    "main_lstm_weights_sha256": "d1f4178199f682560f164ccac1d56816aae341eb05fbed6ac7ad73a4e2056297",
+    "main_lstm_config_path": "results/configs/lstm_model_config.json",
+    "main_lstm_config_sha256": "9254bbd088b0c9f7bd7ba71ee75c09fe4501ce28eb8e26efab7fb7d5130ce4cc",
+    "auxiliary_lstm_weights_path": "results/auxiliary_model_weights.pt",
+    "auxiliary_lstm_weights_sha256": "619f677ccc63c6a40c863858d8eee4175f72b1770dc6c8ba202e7b92c2768480",
+    "auxiliary_lstm_config_path": "results/configs/v2_auxiliary_config.json",
+    "auxiliary_lstm_config_sha256": "04fd322ba365b394751e4f60163ebea4b2164ff6fe699d7d2c2cc052eaae8ad2",
+    "candidate_table_path": "results/metrics/ekf_calibration_candidates.csv",
+    "candidate_table_sha256": "bcd73f42c015e6145daeb553fd017365c24c0b18d7b08a032589f3b159ebd2cf",
+    "selected_validation_trace_path": "results/metrics/ekf_calibration_selected_trace.csv",
+    "selected_validation_trace_sha256": "ce81451b30667f9b9acadbddff0046045887d7411b6f990c860b8079ca0fadee",
+    "train_run_ids": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      6,
+      7,
+      10,
+      12,
+      13,
+      14,
+      18,
+      20,
+      21,
+      24,
+      26,
+      27,
+      29
+    ],
+    "validation_run_ids": [
+      3,
+      9,
+      11,
+      16,
+      19,
+      23
+    ],
+    "excluded_test_run_ids": [
+      8,
+      15,
+      17,
+      22,
+      25,
+      28
+    ],
+    "selection_population": "saved validation trajectories only",
+    "P0_population": "saved training trajectories only",
+    "forbidden_selection_inputs": [
+      "test trajectories",
+      "fault scenarios",
+      "V3 final holdout",
+      "C4 development/final outcomes",
+      "future EKF closed-loop outcomes"
+    ]
+  }
+}

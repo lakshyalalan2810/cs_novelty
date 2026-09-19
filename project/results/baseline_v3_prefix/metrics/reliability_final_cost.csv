@@ -1,0 +1,6 @@
+component,milliseconds_per_step
+basic_guarded_prediction,0.34551966666488926
+temporal_sensor_and_state,0.0015778154106706201
+multistep_h10,3.984971999998379
+final_combined,4.332069482073939
+MC_dropout_n10_ablation,1.0323819999939587

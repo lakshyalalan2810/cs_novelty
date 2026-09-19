@@ -1,0 +1,9 @@
+scenario,seed,step,time_s,reference,reliability_active,source_code
+changing_reference,29028,154,1.54,20.0,False,1
+changing_reference,29029,72,0.72,20.0,False,1
+nominal_tracking,29028,154,1.54,35.0,False,1
+nominal_tracking,29029,72,0.72,35.0,False,1
+nominal_tracking,29030,336,3.36,35.0,False,1
+step_reference,29028,154,1.54,40.0,False,1
+step_reference,29029,72,0.72,20.0,False,1
+step_reference,29030,336,3.36,40.0,False,1

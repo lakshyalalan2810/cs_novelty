@@ -1,0 +1,95 @@
+{
+  "test_rmse": 3.437615490589571,
+  "test_mae": 2.5763724231232117,
+  "test_r2": 0.9441482670491327,
+  "test_samples": 7086,
+  "per_trajectory_test": [
+    {
+      "run_id": 8,
+      "rmse": 5.668191599837733,
+      "mae": 4.747309483841321,
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869
+    },
+    {
+      "run_id": 15,
+      "rmse": 1.2582538403278498,
+      "mae": 0.9866103177822955,
+      "has_load_change": true,
+      "load_torque_range": 0.06000000238418579
+    },
+    {
+      "run_id": 17,
+      "rmse": 3.733063709991034,
+      "mae": 3.323719094141223,
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869
+    },
+    {
+      "run_id": 22,
+      "rmse": 2.86031336108817,
+      "mae": 2.3102590113779495,
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869
+    },
+    {
+      "run_id": 25,
+      "rmse": 1.1707948073347518,
+      "mae": 1.0205973552253438,
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869
+    },
+    {
+      "run_id": 28,
+      "rmse": 3.7018488840475223,
+      "mae": 3.069739276371139,
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869
+    }
+  ],
+  "per_trajectory_val": [
+    {
+      "run_id": 3,
+      "rmse": 4.535790585848194,
+      "mae": 3.863945427332687,
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869
+    },
+    {
+      "run_id": 9,
+      "rmse": 1.9941983769680498,
+      "mae": 1.6645383393353503,
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869
+    },
+    {
+      "run_id": 11,
+      "rmse": 2.648736496935456,
+      "mae": 2.368220039582014,
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869
+    },
+    {
+      "run_id": 16,
+      "rmse": 2.709552372944071,
+      "mae": 2.1974548203570867,
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869
+    },
+    {
+      "run_id": 19,
+      "rmse": 1.6334973315690358,
+      "mae": 1.366697393401518,
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869
+    },
+    {
+      "run_id": 23,
+      "rmse": 1.4623827257544804,
+      "mae": 1.1523263766915077,
+      "has_load_change": true,
+      "load_torque_range": 0.05999999865889549
+    }
+  ],
+  "model_params": 4641
+}

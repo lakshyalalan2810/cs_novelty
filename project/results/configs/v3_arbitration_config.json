@@ -1,0 +1,52 @@
+{
+  "status": "frozen_before_final_holdout",
+  "arbitrator": {
+    "agreement_threshold": 4.341867446899414,
+    "param_mismatch_threshold": 8.700958862330452,
+    "param_mismatch_recovery_threshold": 5.0486354952328725,
+    "aux_recovery_gate": 9.047693252563477,
+    "ewma_alpha": 0.05,
+    "startup_blanking_time": 1.0,
+    "param_mismatch_recovery_count": 50,
+    "aux_speed_bounds": [
+      0.0,
+      100.0
+    ]
+  },
+  "feedback_fallback": "bounded hold of last finite trusted physical speed",
+  "control_fallback": "rate-limited PI voltage only when MPC optimization fails",
+  "aux_speed_bounds_meaning": "fixed application/simulation operating envelope in rad/s, not a fitted percentile",
+  "calibration_file": "results/configs/v3_arbitration_calibration.json",
+  "calibration_sha256": "1dfcedf45110971e776c9c9ec6639b556b2c058d3a0535d9a69f5e23be99b1c8",
+  "development_extension_seeds": [
+    19026,
+    19027,
+    19028,
+    19029,
+    19030
+  ],
+  "final_holdout_seeds": [
+    29026,
+    29027,
+    29028,
+    29029,
+    29030
+  ],
+  "scenarios": [
+    "sensor_noise",
+    "sensor_bias_5",
+    "sensor_bias_15",
+    "sensor_dropout",
+    "sensor_drift",
+    "load_disturbance",
+    "parameter_variation",
+    "combined_fault_load"
+  ],
+  "controllers": [
+    "A_PI",
+    "B_plain_MPC",
+    "C1_sensor_MPC",
+    "C2_aux_recovery_MPC",
+    "C3_arbitration_MPC"
+  ]
+}

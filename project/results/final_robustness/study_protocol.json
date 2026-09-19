@@ -1,0 +1,219 @@
+{
+  "study": "final_robustness_hardening",
+  "status": "frozen_before_any_part_b_scientific_run",
+  "frozen_at_utc": "2026-09-16T16:26:39.018927+00:00",
+  "training_seeds": [
+    2026,
+    2027,
+    2028
+  ],
+  "simulation_seed_freeze": {
+    "path": "results/final_robustness/simulation_seed_freeze.json",
+    "sha256": "a77953c351d92e2c0ec91bc13fce814b27d63e6b44c1bf2419f1f239ae6a96e5",
+    "seeds": [
+      59026,
+      59027,
+      59028,
+      59029,
+      59030
+    ]
+  },
+  "prestudy_frozen_hash_manifest": {
+    "path": "results/final_robustness/prestudy_frozen_hash_manifest.json",
+    "sha256": "523b54342fb1be8427498f35ab5ef5c1be9d32faceaf282c6ab96af5842c7508"
+  },
+  "model_pair_manifest": {
+    "path": "results/training_seed_robustness/model_pair_manifest.json",
+    "sha256": "b1c4ac1db684249d4eccd46691fd1b8ad30c36bb3be56cc19a50a7581c189d5e"
+  },
+  "frozen_runtime": {
+    "dt_s": 0.01,
+    "duration_s": 6.0,
+    "control_stride": 5,
+    "speed_full_scale_rad_s": 65.234375,
+    "speed_noise_std_rad_s": 0.25,
+    "reference_rad_s": 35.0,
+    "load_baseline_Nm": 0.03,
+    "bias_window_s": [
+      2.0,
+      4.0
+    ],
+    "dropout_onset_s": 2.0,
+    "drift_onset_s": 2.0,
+    "drift_ramp_duration_s": 4.0,
+    "load_step_time_s": 3.0,
+    "combined_event_time_s": 3.0,
+    "mpc": "unchanged frozen V3 LSTM-MPC configuration"
+  },
+  "primary_controllers": [
+    "B_plain_MPC",
+    "C3_arbitration_MPC"
+  ],
+  "primary_sweeps": {
+    "bias": {
+      "levels_percent": [
+        2.5,
+        5.0,
+        10.0,
+        15.0
+      ],
+      "onset_s": 2.0,
+      "end_s": 4.0,
+      "injection": "measured speed += level/100 * 65.234375 rad/s"
+    },
+    "dropout": {
+      "durations_s": [
+        0.1,
+        0.5,
+        1.0,
+        2.0
+      ],
+      "onset_s": 2.0,
+      "injection": "measured speed = 0 during [onset,onset+duration)"
+    },
+    "drift": {
+      "final_percent": [
+        2.5,
+        5.0,
+        10.0,
+        15.0
+      ],
+      "onset_s": 2.0,
+      "ramp_duration_s": 4.0,
+      "injection": "measured speed += final/100 * 65.234375 * min(1,(t-2)/4)"
+    },
+    "load": {
+      "post_step_load_Nm": [
+        0.06,
+        0.1,
+        0.15,
+        0.2
+      ],
+      "baseline_Nm": 0.03,
+      "step_time_s": 3.0,
+      "speed_sensor_fault": false
+    },
+    "combined_bias_load": {
+      "bias_percent": [
+        5.0,
+        15.0
+      ],
+      "post_step_load_Nm": [
+        0.1,
+        0.15
+      ],
+      "event_time_s": 3.0,
+      "grid_expansion_forbidden": true
+    }
+  },
+  "current_sensor_boundary": {
+    "controllers": [
+      "B_plain_MPC",
+      "C3_arbitration_MPC",
+      "E_EKF_virtual_MPC"
+    ],
+    "current_reference_scale_A": 5.122337818145752,
+    "reference_scale_definition": "maximum absolute armature current in frozen data/processed/dc_motor_lstm_dataset.npz current array",
+    "frozen_dataset_current_range_A": [
+      -1.9959914684295654,
+      5.122337818145752
+    ],
+    "frozen_dataset_current_abs_p99_A": 4.29852222919464,
+    "frozen_ekf_closed_loop_trace_current_range_A": [
+      -1.136903331148719,
+      4.978424367264816
+    ],
+    "bias_percent_of_reference_scale": 5.0,
+    "bias_A": 0.2561168909072876,
+    "window_s": [
+      2.0,
+      4.0
+    ],
+    "cases": [
+      {
+        "name": "current_bias_5",
+        "speed_corruption": "none",
+        "current_corruption": "current_measured += 0.2561168909072876 A during 2<=t<4"
+      },
+      {
+        "name": "current_dropout_2s",
+        "speed_corruption": "none",
+        "current_corruption": "current_measured = 0 A during 2<=t<4"
+      },
+      {
+        "name": "speed_bias_5_plus_current_bias_5",
+        "speed_corruption": "measured speed += 0.05*65.234375 rad/s during 2<=t<4",
+        "current_corruption": "current_measured += 0.2561168909072876 A during 2<=t<4"
+      }
+    ],
+    "equivalence_requirement": "the same corrupted current sample at each time step is fed to the C3 auxiliary-LSTM current channel and the EKF current measurement; all other measurements remain unchanged",
+    "claim_boundary": "quantifies dependence on the current channel; no current-sensor fault-tolerance claim is permitted"
+  },
+  "primary_endpoints": [
+    "bias detection probability vs severity",
+    "dropout detection probability vs duration",
+    "bias fault-window C3-B effect",
+    "dropout fault-window C3-B effect",
+    "load false-entry probability vs load magnitude",
+    "combined-fault C3-B effect vs severity",
+    "current-sensor corruption degradation"
+  ],
+  "statistics": {
+    "paired_controller_comparison": true,
+    "hierarchical_bootstrap_order": [
+      "training_seed",
+      "simulation_seed"
+    ],
+    "part_a_bootstrap_rng_seed": 20260917,
+    "part_b_bootstrap_rng_seed": 20260918,
+    "bootstrap_replicates": 20000,
+    "bootstrap_ci_percent": [
+      2.5,
+      97.5
+    ],
+    "detection_interval": "Wilson 95%",
+    "time_samples_independent": false,
+    "p_value_claims": "none planned; descriptive uncertainty only with three training seeds"
+  },
+  "operating_envelope_rules": {
+    "applicable_families": [
+      "bias",
+      "dropout",
+      "drift",
+      "combined_bias_load"
+    ],
+    "SUPPORTED": {
+      "per_training_seed_detection_probability_min": 0.8,
+      "per_training_seed_mean_paired_delta_C3_minus_B": "< 0 for all 3 training seeds",
+      "favorable_paired_sign_count_min_of_15": 12,
+      "safety_numerical_incomplete_failures": 0
+    },
+    "LIMITED": {
+      "only_if_not_SUPPORTED": true,
+      "pooled_detection_probability_min": 0.5,
+      "pooled_mean_paired_delta_C3_minus_B": "< 0",
+      "training_seeds_with_favorable_mean_min_of_3": 2,
+      "safety_numerical_incomplete_failures": 0
+    },
+    "UNSUPPORTED": "all other cases",
+    "load_disturbance": "do not classify SUPPORTED/LIMITED/UNSUPPORTED; report false-entry risk, substitution, tracking penalty and uncertainty",
+    "current_sensor_boundary": "outside the V3 single-fault support claim; report degradation/safety and do not claim current-sensor fault tolerance"
+  },
+  "expected_matrix": {
+    "primary_runs": 600,
+    "primary_formula": "5 sweep families x 4 conditions x 3 training seeds x 5 simulation seeds x 2 controllers",
+    "current_runs": 135,
+    "current_formula": "3 current cases x 3 training seeds x 5 simulation seeds x 3 controllers",
+    "maximum_total_runs": 735,
+    "duplicate_cell_reruns_forbidden": true
+  },
+  "constraints": [
+    "no architecture/controller/observer/MPC/calibration logic changes",
+    "no retraining beyond 2026/2027/2028",
+    "no threshold retuning by severity",
+    "no seed selection or model ensembling",
+    "no use of 39026-39030",
+    "no grid expansion after results",
+    "no real-time feasibility claim"
+  ]
+}

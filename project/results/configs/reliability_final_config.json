@@ -1,0 +1,43 @@
+{
+  "seed": 2026,
+  "window_length": 20,
+  "sensor": {
+    "instant_percentile": 99.9,
+    "instant_threshold": 0.937210063934329,
+    "cusum_percentile": 99.9,
+    "center": -0.009416818618774414,
+    "allowance": 0.14038589929835443,
+    "threshold": 1.5696827323213676,
+    "signed_ewma_alpha": 0.1,
+    "signed_ewma_threshold": 0.2001306189371716,
+    "enter_count": 3,
+    "exit_count": 5,
+    "health_residual": "raw_y_measured - y_hat",
+    "recovery_conditions": "finite residual within instant_threshold and CUSUM score within threshold for exit_count consecutive samples",
+    "cusum_reset": "after complete persistent recovery only",
+    "feedback": "predicted on instantaneous guard; debounced SENSOR_SUSPECT state"
+  },
+  "model": {
+    "horizon": 10,
+    "rolling_window": 20,
+    "metric": "normalized rolling RMS positive CUSUM",
+    "scale": 0.3084186315536499,
+    "center": 1.0,
+    "allowance": 0.020038609206676484,
+    "percentile": 100.0,
+    "threshold": 109.83979568481446,
+    "held_out_safety_margin": 1.05,
+    "enter_count": 3,
+    "exit_count": 5,
+    "sensor_cooldown_samples": 30
+  },
+  "state_codes": {
+    "NORMAL": 0,
+    "SENSOR_SUSPECT": 1,
+    "MODEL_MISMATCH": 2
+  },
+  "sensor_precedence": true,
+  "mc_dropout_retained": false,
+  "validation_sensor_false_alarm_rate": 0.0007056167090036692,
+  "validation_model_false_alarm_rate": 0.0
+}

@@ -1,0 +1,64 @@
+{
+  "purpose": "Pre-EKF lock of frozen scientific evidence and comparator provenance",
+  "forbidden_unused_seed_family": [39026, 39027, 39028, 39029, 39030],
+  "frozen_scientific_artifacts": {
+    "main_lstm_weights": {
+      "path": "results/lstm_model_weights.pt",
+      "sha256": "d1f4178199f682560f164ccac1d56816aae341eb05fbed6ac7ad73a4e2056297"
+    },
+    "auxiliary_lstm_weights": {
+      "path": "results/auxiliary_model_weights.pt",
+      "sha256": "619f677ccc63c6a40c863858d8eee4175f72b1770dc6c8ba202e7b92c2768480"
+    },
+    "v3_arbitration_calibration": {
+      "path": "results/configs/v3_arbitration_calibration.json",
+      "sha256": "1dfcedf45110971e776c9c9ec6639b556b2c058d3a0535d9a69f5e23be99b1c8"
+    },
+    "v3_arbitration_config": {
+      "path": "results/configs/v3_arbitration_config.json",
+      "sha256": "7b4f86934ece8d426148ff968b0152a5fac6cfa321615b229bfd35c63a179b35"
+    },
+    "v3_275_run_matrix": {
+      "path": "results/metrics/v3_final_11scenario_runs.csv",
+      "sha256": "a919e0b16321765fb1be5f97c15dc61062ccea737cd4059aed887ca6aa647086"
+    },
+    "c4_development_matrix": {
+      "path": "results/metrics/c4_development_runs.csv",
+      "sha256": "108f7875ec8af675a4aa2dce5bec833735ff499be6ead588d3accce32efe3a15"
+    },
+    "c4_attribution_calibration": {
+      "path": "results/configs/c4_attribution_calibration.json",
+      "sha256": "cd58cb26d10e920b6449b4efaf14504c46db70a03727fdb4462052a77566e397"
+    },
+    "c4_go_no_go_criteria": {
+      "path": "results/configs/c4_go_no_go_criteria.json",
+      "sha256": "751ffa4ef89f5b5cdeac41f6ad95ef52b8ca2c61a32baef0fe54e9b02218f7ba"
+    },
+    "ekf_preregistration": {
+      "path": "EKF_OBSERVER_PREREGISTRATION.md",
+      "sha256": "d5bcc94836878c4b174a47961bf81a5c32983bb07600c65a399abee8fcdc1d8a"
+    }
+  },
+  "supporting_provenance": {
+    "dataset": {
+      "path": "data/processed/dc_motor_lstm_dataset.npz",
+      "sha256": "5f77f76468908656b35dabbc48e8aa20cc0583eae3724cc989278d94fe2bab26"
+    },
+    "motor_model": {
+      "path": "src/motor_model.py",
+      "sha256": "3c7b4d955fa0db79dced95e222aa3533206ccc843c9d07235a4eb43ce5c119e8"
+    },
+    "mpc": {
+      "path": "src/mpc.py",
+      "sha256": "9c11a8e18c65c5dbd66bde6150cbb0904fcdf9468a6c9097b6c0922482fe0786"
+    },
+    "reliability": {
+      "path": "src/reliability.py",
+      "sha256": "909fd117453e66a6a034c230a8de47ee63f6d8623836e642c3788fe675931f26"
+    },
+    "v3_evaluator": {
+      "path": "scripts/evaluate_v3_closed_loop.py",
+      "sha256": "edaeae1d87889014a63727c46820ad96925eb694e5c21f6212ba833d357bd431"
+    }
+  }
+}

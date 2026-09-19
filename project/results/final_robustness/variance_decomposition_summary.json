@@ -1,0 +1,578 @@
+{
+  "study": "final_robustness_hardening_part_a",
+  "analysis_role": "retrospective_descriptive_training_simulation_variance_attribution",
+  "source": {
+    "path": "results/training_seed_robustness/training_seed_runs.csv",
+    "sha256": "8d9cb9dc8a01c2aab4df5f140e69b32e44cad4fbc49e5d7d1651a269fbaa0842",
+    "prestudy_manifest": "results/final_robustness/prestudy_frozen_hash_manifest.json",
+    "prestudy_manifest_sha256": "523b54342fb1be8427498f35ab5ef5c1be9d32faceaf282c6ab96af5842c7508"
+  },
+  "design": {
+    "training_seeds": [
+      2026,
+      2027,
+      2028
+    ],
+    "simulation_seeds": [
+      49026,
+      49027,
+      49028,
+      49029,
+      49030
+    ],
+    "controllers": [
+      "B_plain_MPC",
+      "C3_arbitration_MPC"
+    ],
+    "scenarios": [
+      "combined_fault_load",
+      "sensor_bias_5",
+      "sensor_dropout",
+      "load_disturbance",
+      "parameter_variation"
+    ],
+    "source_run_count": 150,
+    "paired_delta_count_total": 75,
+    "paired_delta_count_per_scenario": 15,
+    "no_missing_combinations": true,
+    "no_duplicate_combinations": true,
+    "exact_b_c3_pairing_verified": true,
+    "pair_binding_columns_verified": [
+      "main_model_sha256",
+      "main_config_sha256",
+      "aux_model_sha256",
+      "aux_config_sha256",
+      "sensor_calibration_sha256",
+      "v3_calibration_sha256",
+      "pair_config_sha256"
+    ]
+  },
+  "delta_definition": "fault_window_RMSE(C3_arbitration_MPC) - fault_window_RMSE(B_plain_MPC); negative favors C3",
+  "decomposition": {
+    "model": "Delta[t,s] = mu + alpha_training[t] + beta_simulation[s] + residual[t,s]",
+    "training_effect": "training-seed mean minus grand mean",
+    "simulation_effect": "simulation-seed mean minus grand mean",
+    "ss_training": "n_simulation * sum(alpha_training^2)",
+    "ss_simulation": "n_training * sum(beta_simulation^2)",
+    "ss_residual": "sum((Delta - mu - alpha_training - beta_simulation)^2)",
+    "interpretation": "descriptive balanced two-way variance attribution; with one observation per cell, residual contains interaction/nonadditivity and unexplained variation and is not a separately identified pure error term",
+    "scenario_results": [
+      {
+        "scenario": "combined_fault_load",
+        "grand_mean_delta": -0.5685713039945433,
+        "training_seed_means": {
+          "2026": 0.3107121294680472,
+          "2027": -1.5553995925086739,
+          "2028": -0.461026448943003
+        },
+        "simulation_seed_means": {
+          "49026": -0.5729306709414801,
+          "49027": -0.15762384036600516,
+          "49028": -0.9828939009462148,
+          "49029": -0.29584571271691634,
+          "49030": -0.8335623950020999
+        },
+        "training_seed_effects": {
+          "2026": 0.8792834334625905,
+          "2027": -0.9868282885141306,
+          "2028": 0.10754485505154027
+        },
+        "simulation_seed_effects": {
+          "49026": -0.004359366946936838,
+          "49027": 0.41094746362853807,
+          "49028": -0.4143225969516715,
+          "49029": 0.2727255912776269,
+          "49030": -0.2649910910075567
+        },
+        "sum_of_squares": {
+          "total_centered": 11.894224223287859,
+          "training_seed": 8.792676616107736,
+          "simulation_seed": 1.455478688216371,
+          "residual_interaction_unexplained": 1.6460689189637534
+        },
+        "proportion_of_total_centered_variation": {
+          "training_seed": 0.7392391845861152,
+          "simulation_seed": 0.12236852617648405,
+          "residual_interaction_unexplained": 0.1383922892374009
+        },
+        "effect_ranges": {
+          "training_seed": 1.8661117219767211,
+          "simulation_seed": 0.8252700605802096,
+          "residual": 1.2687470232303326
+        },
+        "delta_sign_counts": {
+          "negative_favorable": 11,
+          "positive_unfavorable": 4,
+          "zero_tie": 0
+        },
+        "per_training_seed_favorable_simulation_count": {
+          "2026": 2,
+          "2027": 5,
+          "2028": 4
+        },
+        "per_simulation_seed_favorable_training_count": {
+          "49026": 2,
+          "49027": 1,
+          "49028": 3,
+          "49029": 2,
+          "49030": 3
+        },
+        "delta_matrix": {
+          "2026": {
+            "49026": 0.059540105260249554,
+            "49027": 1.3212639863116982,
+            "49028": -0.41028336803847143,
+            "49029": 0.9016982441678394,
+            "49030": -0.31865832036107955
+          },
+          "2027": {
+            "49026": -1.3883199360854959,
+            "49027": -1.8135947588953556,
+            "49028": -1.9174763257587104,
+            "49029": -1.338936278196496,
+            "49030": -1.3186706636073122
+          },
+          "2028": {
+            "49026": -0.39001218199919396,
+            "49027": 0.019459251485641982,
+            "49028": -0.6209220090414624,
+            "49029": -0.4502991041220925,
+            "49030": -0.863358201037908
+          }
+        }
+      },
+      {
+        "scenario": "sensor_bias_5",
+        "grand_mean_delta": -1.6407318307923997,
+        "training_seed_means": {
+          "2026": -1.4446326904230422,
+          "2027": -2.1268542411848648,
+          "2028": -1.3507085607692917
+        },
+        "simulation_seed_means": {
+          "49026": -2.309117931741107,
+          "49027": -0.7153093723727917,
+          "49028": -2.0531754650555487,
+          "49029": -0.8764374931456612,
+          "49030": -2.249618891646889
+        },
+        "training_seed_effects": {
+          "2026": 0.1960991403693575,
+          "2027": -0.48612241039246507,
+          "2028": 0.290023270023108
+        },
+        "simulation_seed_effects": {
+          "49026": -0.6683861009487073,
+          "49027": 0.925422458419608,
+          "49028": -0.412443634263149,
+          "49029": 0.7642943376467385,
+          "49030": -0.6088870608544894
+        },
+        "sum_of_squares": {
+          "total_centered": 13.134253866697545,
+          "training_seed": 1.794416839471389,
+          "simulation_seed": 7.284437236103659,
+          "residual_interaction_unexplained": 4.055399791122493
+        },
+        "proportion_of_total_centered_variation": {
+          "training_seed": 0.13662114785379692,
+          "simulation_seed": 0.554613707792999,
+          "residual_interaction_unexplained": 0.30876514435320385
+        },
+        "effect_ranges": {
+          "training_seed": 0.7761456804155731,
+          "simulation_seed": 1.5938085593683153,
+          "residual": 1.8824306146896463
+        },
+        "delta_sign_counts": {
+          "negative_favorable": 13,
+          "positive_unfavorable": 2,
+          "zero_tie": 0
+        },
+        "per_training_seed_favorable_simulation_count": {
+          "2026": 3,
+          "2027": 5,
+          "2028": 5
+        },
+        "per_simulation_seed_favorable_training_count": {
+          "49026": 3,
+          "49027": 2,
+          "49028": 3,
+          "49029": 2,
+          "49030": 3
+        },
+        "delta_matrix": {
+          "2026": {
+            "49026": -2.36280403387991,
+            "49027": 0.047035327819946904,
+            "49028": -2.5476723480556314,
+            "49029": 0.14194947009881131,
+            "49030": -2.501671868098427
+          },
+          "2027": {
+            "49026": -2.5720648956578382,
+            "49027": -1.687251599266873,
+            "49028": -1.6743934414001331,
+            "49029": -2.380086084179892,
+            "49030": -2.32047518541959
+          },
+          "2028": {
+            "49026": -1.992484865685573,
+            "49027": -0.5057118456714491,
+            "49028": -1.9374606057108819,
+            "49029": -0.391175865355903,
+            "49030": -1.9267096214226511
+          }
+        }
+      },
+      {
+        "scenario": "sensor_dropout",
+        "grand_mean_delta": -19.221775324780346,
+        "training_seed_means": {
+          "2026": -19.357156497930287,
+          "2027": -18.635857356448785,
+          "2028": -19.672312119961962
+        },
+        "simulation_seed_means": {
+          "49026": -20.0722200647278,
+          "49027": -18.042839469367603,
+          "49028": -19.778306899737576,
+          "49029": -18.32582975239399,
+          "49030": -19.889680437674752
+        },
+        "training_seed_effects": {
+          "2026": -0.13538117314994125,
+          "2027": 0.585917968331561,
+          "2028": -0.45053679518161616
+        },
+        "simulation_seed_effects": {
+          "49026": -0.8504447399474557,
+          "49027": 1.1789358554127425,
+          "49028": -0.5565315749572299,
+          "49029": 0.8959455723863563,
+          "49030": -0.667905112894406
+        },
+        "sum_of_squares": {
+          "total_centered": 19.232620424579313,
+          "training_seed": 2.8230566573488005,
+          "simulation_seed": 11.01506732794695,
+          "residual_interaction_unexplained": 5.39449643928355
+        },
+        "proportion_of_total_centered_variation": {
+          "training_seed": 0.1467848163706767,
+          "simulation_seed": 0.5727283690302378,
+          "residual_interaction_unexplained": 0.28048681459908487
+        },
+        "effect_ranges": {
+          "training_seed": 1.0364547635131771,
+          "simulation_seed": 2.029380595360198,
+          "residual": 1.901209953761306
+        },
+        "delta_sign_counts": {
+          "negative_favorable": 15,
+          "positive_unfavorable": 0,
+          "zero_tie": 0
+        },
+        "per_training_seed_favorable_simulation_count": {
+          "2026": 5,
+          "2027": 5,
+          "2028": 5
+        },
+        "per_simulation_seed_favorable_training_count": {
+          "49026": 3,
+          "49027": 3,
+          "49028": 3,
+          "49029": 3,
+          "49030": 3
+        },
+        "delta_matrix": {
+          "2026": {
+            "49026": -20.80797722639008,
+            "49027": -17.358249918969825,
+            "49028": -20.745892368600632,
+            "49029": -17.53190041803773,
+            "49030": -20.341762557653166
+          },
+          "2027": {
+            "49026": -19.15274199007822,
+            "49027": -18.19564375597126,
+            "49028": -18.227272912131703,
+            "49029": -18.676005718549423,
+            "49030": -18.927622405513315
+          },
+          "2028": {
+            "49026": -20.255940977715106,
+            "49027": -18.57462473316172,
+            "49028": -20.3617554184804,
+            "49029": -18.769583120594813,
+            "49030": -20.399656349857768
+          }
+        }
+      },
+      {
+        "scenario": "load_disturbance",
+        "grand_mean_delta": 2.062684940812149,
+        "training_seed_means": {
+          "2026": 2.9399227445490785,
+          "2027": 0.934489510494859,
+          "2028": 2.313642567392509
+        },
+        "simulation_seed_means": {
+          "49026": 0.0,
+          "49027": 2.882761927741703,
+          "49028": 2.2495615636438466,
+          "49029": 2.8967229843576727,
+          "49030": 2.284378228317523
+        },
+        "training_seed_effects": {
+          "2026": 0.8772378037369295,
+          "2027": -1.12819543031729,
+          "2028": 0.25095762658036014
+        },
+        "simulation_seed_effects": {
+          "49026": -2.062684940812149,
+          "49027": 0.8200769869295539,
+          "49028": 0.1868766228316976,
+          "49029": 0.8340380435455237,
+          "49030": 0.22169328750537387
+        },
+        "sum_of_squares": {
+          "total_centered": 31.513493568136276,
+          "training_seed": 10.526754118164272,
+          "simulation_seed": 17.12065702053552,
+          "residual_interaction_unexplained": 3.866082429436486
+        },
+        "proportion_of_total_centered_variation": {
+          "training_seed": 0.3340395788046812,
+          "simulation_seed": 0.5432801978466282,
+          "residual_interaction_unexplained": 0.12268022334869069
+        },
+        "effect_ranges": {
+          "training_seed": 2.0054332340542196,
+          "simulation_seed": 2.8967229843576727,
+          "residual": 2.0054332340542196
+        },
+        "delta_sign_counts": {
+          "negative_favorable": 0,
+          "positive_unfavorable": 12,
+          "zero_tie": 3
+        },
+        "per_training_seed_favorable_simulation_count": {
+          "2026": 0,
+          "2027": 0,
+          "2028": 0
+        },
+        "per_simulation_seed_favorable_training_count": {
+          "49026": 0,
+          "49027": 0,
+          "49028": 0,
+          "49029": 0,
+          "49030": 0
+        },
+        "delta_matrix": {
+          "2026": {
+            "49026": 0.0,
+            "49027": 4.380789020993868,
+            "49028": 3.0831265787803748,
+            "49029": 4.357369797928579,
+            "49030": 2.8783283250425713
+          },
+          "2027": {
+            "49026": 0.0,
+            "49027": 1.0768040869519706,
+            "49028": 0.9641373305195602,
+            "49029": 1.1848325131321615,
+            "49030": 1.4466736218706024
+          },
+          "2028": {
+            "49026": 0.0,
+            "49027": 3.19069267527927,
+            "49028": 2.7014207816316054,
+            "49029": 3.1479666420122774,
+            "49030": 2.5281327380393943
+          }
+        }
+      },
+      {
+        "scenario": "parameter_variation",
+        "grand_mean_delta": 2.6906906348008404,
+        "training_seed_means": {
+          "2026": 2.6802444607087077,
+          "2027": 2.5618416293365054,
+          "2028": 2.82998581435731
+        },
+        "simulation_seed_means": {
+          "49026": 0.0,
+          "49027": 6.817915513097373,
+          "49028": 2.1925930107026645,
+          "49029": 4.588628963749128,
+          "49030": -0.14568431354496217
+        },
+        "training_seed_effects": {
+          "2026": -0.010446174092132665,
+          "2027": -0.12884900546433498,
+          "2028": 0.13929517955646942
+        },
+        "simulation_seed_effects": {
+          "49026": -2.6906906348008404,
+          "49027": 4.127224878296532,
+          "49028": -0.4980976240981758,
+          "49029": 1.897938328948288,
+          "49030": -2.8363749483458025
+        },
+        "sum_of_squares": {
+          "total_centered": 169.20916109926412,
+          "training_seed": 0.18057167904990212,
+          "simulation_seed": 108.5072858383851,
+          "residual_interaction_unexplained": 60.521303581829116
+        },
+        "proportion_of_total_centered_variation": {
+          "training_seed": 0.001067150725627511,
+          "simulation_seed": 0.6412612953900934,
+          "residual_interaction_unexplained": 0.3576715538842791
+        },
+        "effect_ranges": {
+          "training_seed": 0.2681441850208044,
+          "simulation_seed": 6.963599826642335,
+          "residual": 8.97179339366678
+        },
+        "delta_sign_counts": {
+          "negative_favorable": 1,
+          "positive_unfavorable": 8,
+          "zero_tie": 6
+        },
+        "per_training_seed_favorable_simulation_count": {
+          "2026": 0,
+          "2027": 1,
+          "2028": 0
+        },
+        "per_simulation_seed_favorable_training_count": {
+          "49026": 0,
+          "49027": 0,
+          "49028": 0,
+          "49029": 0,
+          "49030": 1
+        },
+        "delta_matrix": {
+          "2026": {
+            "49026": 0.0,
+            "49027": 6.704779302026836,
+            "49028": 0.0014446647043399041,
+            "49029": 6.694998336812361,
+            "49030": 0.0
+          },
+          "2027": {
+            "49026": 0.0,
+            "49027": 6.670503646697097,
+            "49028": 6.575757440620317,
+            "49029": 0.0,
+            "49030": -0.43705294063488653
+          },
+          "2028": {
+            "49026": 0.0,
+            "49027": 7.078463590568187,
+            "49028": 0.000576926783336762,
+            "49029": 7.070888554435024,
+            "49030": 0.0
+          }
+        }
+      }
+    ]
+  },
+  "hierarchical_bootstrap": {
+    "analysis_rng_seed": 20260917,
+    "bootstrap_replicates": 20000,
+    "scenario_order": [
+      "combined_fault_load",
+      "sensor_bias_5",
+      "sensor_dropout",
+      "load_disturbance",
+      "parameter_variation"
+    ],
+    "method": "For each scenario and replicate, sample 3 training-seed clusters with replacement; within each selected cluster sample 5 paired simulation-seed Delta values with replacement; average within sampled clusters and then across the 3 sampled clusters.",
+    "interval": "descriptive percentile 95% CI",
+    "probability": "empirical proportion of bootstrap replicate mean Delta values < 0",
+    "training_level_limitation": "Only three training seeds are observed, so training-level uncertainty is poorly estimated; the bootstrap is descriptive conditional on these observed model realizations.",
+    "results": [
+      {
+        "scenario": "combined_fault_load",
+        "point_estimate_mean_delta": -0.5685713039945433,
+        "bootstrap_mean_delta": -0.5644094204792025,
+        "bootstrap_sd_delta": 0.4559564927831039,
+        "ci95_low": -1.5177761220387767,
+        "ci95_high": 0.28611647545508617,
+        "prob_mean_delta_lt_zero": 0.88315,
+        "analysis_rng_seed": 20260917,
+        "bootstrap_replicates": 20000,
+        "training_seed_clusters": 3,
+        "simulation_seeds_per_cluster": 5
+      },
+      {
+        "scenario": "sensor_bias_5",
+        "point_estimate_mean_delta": -1.6407318307923997,
+        "bootstrap_mean_delta": -1.6404745860790841,
+        "bootstrap_sd_delta": 0.3031683512635591,
+        "ci95_low": -2.1916983471745284,
+        "ci95_high": -1.011004883268382,
+        "prob_mean_delta_lt_zero": 1.0,
+        "analysis_rng_seed": 20260917,
+        "bootstrap_replicates": 20000,
+        "training_seed_clusters": 3,
+        "simulation_seeds_per_cluster": 5
+      },
+      {
+        "scenario": "sensor_dropout",
+        "point_estimate_mean_delta": -19.221775324780346,
+        "bootstrap_mean_delta": -19.220036441114942,
+        "bootstrap_sd_delta": 0.3692186448427162,
+        "ci95_low": -19.957548480119918,
+        "ci95_high": -18.53274747483879,
+        "prob_mean_delta_lt_zero": 1.0,
+        "analysis_rng_seed": 20260917,
+        "bootstrap_replicates": 20000,
+        "training_seed_clusters": 3,
+        "simulation_seeds_per_cluster": 5
+      },
+      {
+        "scenario": "load_disturbance",
+        "point_estimate_mean_delta": 2.062684940812149,
+        "bootstrap_mean_delta": 2.057500659974722,
+        "bootstrap_sd_delta": 0.5751807108376649,
+        "ci95_low": 0.951945584410755,
+        "ci95_high": 3.2015463490415903,
+        "prob_mean_delta_lt_zero": 0.0,
+        "analysis_rng_seed": 20260917,
+        "bootstrap_replicates": 20000,
+        "training_seed_clusters": 3,
+        "simulation_seeds_per_cluster": 5
+      },
+      {
+        "scenario": "parameter_variation",
+        "point_estimate_mean_delta": 2.6906906348008404,
+        "bootstrap_mean_delta": 2.6940669649170297,
+        "bootstrap_sd_delta": 0.8703159881216621,
+        "ci95_low": 0.9429569289128691,
+        "ci95_high": 4.485359847794225,
+        "prob_mean_delta_lt_zero": 0.00045,
+        "analysis_rng_seed": 20260917,
+        "bootstrap_replicates": 20000,
+        "training_seed_clusters": 3,
+        "simulation_seeds_per_cluster": 5
+      }
+    ]
+  },
+  "outputs": {
+    "variance_decomposition_csv": {
+      "path": "results/final_robustness/variance_decomposition.csv",
+      "sha256": "8bd6fc17816ba971c7ef728173ff6f8c815771fb874cd0c45bce800c8c6c8820"
+    },
+    "variance_bootstrap_csv": {
+      "path": "results/final_robustness/variance_bootstrap.csv",
+      "sha256": "c08a725a0450b5fc595891793b48f76c71c15456c6e2853223c35194d29f74fd"
+    },
+    "markdown_report": {
+      "path": "TRAINING_SIMULATION_VARIANCE_ANALYSIS.md",
+      "sha256": "f688cf1cb2dd6490abf12fd373e93cbc525aaf2d046b0c45e3319acc49fdf198"
+    }
+  }
+}

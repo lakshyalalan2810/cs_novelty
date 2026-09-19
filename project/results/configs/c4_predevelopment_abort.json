@@ -1,0 +1,27 @@
+{
+  "status": "ABORTED_BEFORE_COMPLETED_DEVELOPMENT_EVIDENCE",
+  "attempted_at_local": "2026-09-14T23:04:00+05:30",
+  "command": "python scripts/evaluate_c4_closed_loop.py --mode development --workers 8",
+  "termination": "manual Ctrl+C after an independent read-only preflight review identified a correctness defect while the process was still in memory",
+  "completed_development_artifacts_written": false,
+  "accepted_as_scientific_evidence": false,
+  "superseded_development_config": {
+    "path": "results/configs/c4_development_config_preflight_invalid.json",
+    "sha256": "e8566b4e0054f7eeae71b617e9ec31ddbf9c694bd9c156745ead60aa4760b6ff"
+  },
+  "superseded_evaluator": {
+    "path": "scripts/evaluate_c4_closed_loop.py",
+    "sha256_at_abort": "edd472ec5dc3bfd367e4ddc8490cbe22fb57bcb9f42dcd8630b15a8517b56cdb"
+  },
+  "defects": [
+    {
+      "type": "mechanism_reachability",
+      "description": "The auxiliary witness history was reset on the first unsuppressed C3 instantaneous substitution candidate. Because a raw C4 PLANT/MAIN candidate necessarily crosses the slightly lower frozen C3 instantaneous gate, witness readiness was lost after the first of the three persistence samples, making the intended three-sample veto effectively unreachable."
+    },
+    {
+      "type": "verifier_schema",
+      "description": "The evaluator and development verifier used different attribution-runtime summary key names."
+    }
+  ],
+  "scientific_handling": "These are implementation/preflight defects, not observed C4 development outcomes. Fixes may restore the already-declared mechanism and evidence schema, but attribution thresholds, persistence counts, go/no-go criteria, and V3 behavior remain frozen. The corrected evaluator must receive a new hash and a new pre-development config before the first completed 105-run matrix."
+}

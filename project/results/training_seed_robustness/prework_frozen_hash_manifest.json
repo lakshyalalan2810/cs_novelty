@@ -1,0 +1,98 @@
+{
+  "study": "training_seed_robustness",
+  "recorded_at": "2026-09-16T20:23:13.8564844+05:30",
+  "namespace": {
+    "results": "results/training_seed_robustness",
+    "models": "models/training_seed_robustness"
+  },
+  "frozen_artifacts": {
+    "canonical_main_model": {
+      "path": "results/lstm_model_weights.pt",
+      "sha256": "d1f4178199f682560f164ccac1d56816aae341eb05fbed6ac7ad73a4e2056297",
+      "bytes": 207285
+    },
+    "canonical_aux_model": {
+      "path": "results/auxiliary_model_weights.pt",
+      "sha256": "619f677ccc63c6a40c863858d8eee4175f72b1770dc6c8ba202e7b92c2768480",
+      "bytes": 21845
+    },
+    "frozen_v3_config": {
+      "path": "results/configs/v3_arbitration_config.json",
+      "sha256": "7b4f86934ece8d426148ff968b0152a5fac6cfa321615b229bfd35c63a179b35",
+      "bytes": 1426
+    },
+    "frozen_v3_calibration": {
+      "path": "results/configs/v3_arbitration_calibration.json",
+      "sha256": "1dfcedf45110971e776c9c9ec6639b556b2c058d3a0535d9a69f5e23be99b1c8",
+      "bytes": 2473
+    },
+    "frozen_v3_275_run_matrix": {
+      "path": "results/metrics/v3_final_11scenario_runs.csv",
+      "sha256": "a919e0b16321765fb1be5f97c15dc61062ccea737cd4059aed887ca6aa647086",
+      "bytes": 102226,
+      "rows": 275
+    },
+    "c4_development_matrix": {
+      "path": "results/metrics/c4_development_runs.csv",
+      "sha256": "108f7875ec8af675a4aa2dce5bec833735ff499be6ead588d3accce32efe3a15",
+      "bytes": 55763,
+      "rows": 105
+    },
+    "ekf_frozen_config": {
+      "path": "results/configs/ekf_frozen_config.json",
+      "sha256": "1eafff6cc1b7c89de837b679eeccf55451dc39530bea06850bfa538e771d3579",
+      "bytes": 8305
+    },
+    "ekf_100_run_matrix": {
+      "path": "results/metrics/ekf_closed_loop_runs.csv",
+      "sha256": "c8d98c4eb10656ae024dde72764a40d1eff52bde27944ea25144e418be7dbd68",
+      "bytes": 961854,
+      "rows": 100
+    }
+  },
+  "existing_verifiers": [
+    {
+      "path": "scripts/verify_c4_results.py",
+      "sha256": "be6f035e0f273405f26a0d013185b3523359695926c61952266c070f5f717c8b",
+      "bytes": 84930
+    },
+    {
+      "path": "scripts/verify_ekf_results.py",
+      "sha256": "6e7f81237bb9d3712c826ff08b040416c533c63945e8335c577fd5d2763bf9d9",
+      "bytes": 73399
+    },
+    {
+      "path": "scripts/verify_results.py",
+      "sha256": "c6d606478226d3653e48964ce96bfb4249f02831a614966907ddd489547acd63",
+      "bytes": 18603
+    },
+    {
+      "path": "scripts/verify_v3_results.py",
+      "sha256": "4a825c5cdc5ff9e41e6b2023001273f91e0301c216eb5ea678f137ed0d2f63d3",
+      "bytes": 21067
+    }
+  ],
+  "provenance_sources": {
+    "dataset": {
+      "path": "data/processed/dc_motor_lstm_dataset.npz",
+      "sha256": "5f77f76468908656b35dabbc48e8aa20cc0583eae3724cc989278d94fe2bab26",
+      "bytes": 990136
+    },
+    "main_training_notebook": {
+      "path": "notebooks/03_lstm_training.ipynb",
+      "sha256": "cb732e2944819bb3f68fe2e698871869720a21590ef2d26c9cca9f18649aa121"
+    },
+    "aux_training_script": {
+      "path": "scripts/train_auxiliary_model.py",
+      "sha256": "699f7668b2dc76aae0065226fa998f1031f9a01392a9620f9fb5d0a4a548921e"
+    },
+    "v3_calibration_algorithm": {
+      "path": "scripts/calibrate_v3_arbitration.py",
+      "sha256": "310f886193ca6bc1584f7e0985794efc32dd08535b1dfc4e1992a9dc88ba26c2"
+    },
+    "v3_evaluator": {
+      "path": "scripts/evaluate_v3_closed_loop.py",
+      "sha256": "edaeae1d87889014a63727c46820ad96925eb694e5c21f6212ba833d357bd431"
+    }
+  }
+}

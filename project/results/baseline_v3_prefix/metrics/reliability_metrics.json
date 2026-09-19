@@ -1,0 +1,240 @@
+{
+  "scenarios": {
+    "clean": {
+      "fault_detection_rate": null,
+      "false_alarm_rate": 0.013547840812870448,
+      "detection_latency_seconds": null,
+      "state_percentages_all": {
+        "NORMAL": 98.64521591871296,
+        "SENSOR_FAULT": 1.3547840812870449,
+        "MODEL_UNCERTAINTY": 0.0,
+        "BOTH": 0.0
+      },
+      "state_percentages_post_fault": {
+        "NORMAL": 98.64521591871296,
+        "SENSOR_FAULT": 1.3547840812870449,
+        "MODEL_UNCERTAINTY": 0.0,
+        "BOTH": 0.0
+      }
+    },
+    "sensor_bias": {
+      "fault_detection_rate": 0.026217228464419477,
+      "false_alarm_rate": 0.02368421052631579,
+      "detection_latency_seconds": 0.0,
+      "state_percentages_all": {
+        "NORMAL": 97.45977984758679,
+        "SENSOR_FAULT": 1.6934801016088061,
+        "MODEL_UNCERTAINTY": 0.5927180355630821,
+        "BOTH": 0.2540220152413209
+      },
+      "state_percentages_post_fault": {
+        "NORMAL": 97.37827715355806,
+        "SENSOR_FAULT": 1.7478152309612984,
+        "MODEL_UNCERTAINTY": 0.4993757802746567,
+        "BOTH": 0.37453183520599254
+      }
+    },
+    "sensor_dropout": {
+      "fault_detection_rate": 0.031210986267166042,
+      "false_alarm_rate": 0.02368421052631579,
+      "detection_latency_seconds": 0.0,
+      "state_percentages_all": {
+        "NORMAL": 97.12108382726502,
+        "SENSOR_FAULT": 0.5927180355630821,
+        "MODEL_UNCERTAINTY": 0.9314140558848433,
+        "BOTH": 1.3547840812870449
+      },
+      "state_percentages_post_fault": {
+        "NORMAL": 96.8789013732834,
+        "SENSOR_FAULT": 0.12484394506866417,
+        "MODEL_UNCERTAINTY": 1.1235955056179776,
+        "BOTH": 1.8726591760299627
+      }
+    },
+    "increased_noise": {
+      "fault_detection_rate": 0.8876404494382022,
+      "false_alarm_rate": 0.02631578947368421,
+      "detection_latency_seconds": 0.039999961853027344,
+      "state_percentages_all": {
+        "NORMAL": 38.950042337002536,
+        "SENSOR_FAULT": 20.914479254868755,
+        "MODEL_UNCERTAINTY": 9.483488569009314,
+        "BOTH": 30.65198983911939
+      },
+      "state_percentages_post_fault": {
+        "NORMAL": 11.235955056179774,
+        "SENSOR_FAULT": 30.087390761548065,
+        "MODEL_UNCERTAINTY": 13.48314606741573,
+        "BOTH": 45.19350811485643
+      }
+    },
+    "outside_load": {
+      "fault_detection_rate": 0.018726591760299626,
+      "false_alarm_rate": 0.015789473684210527,
+      "detection_latency_seconds": 0.040000000000000036,
+      "state_percentages_all": {
+        "NORMAL": 98.22184589331076,
+        "SENSOR_FAULT": 1.439458086367485,
+        "MODEL_UNCERTAINTY": 0.3386960203217612,
+        "BOTH": 0.0
+      },
+      "state_percentages_post_fault": {
+        "NORMAL": 98.12734082397003,
+        "SENSOR_FAULT": 1.8726591760299627,
+        "MODEL_UNCERTAINTY": 0.0,
+        "BOTH": 0.0
+      }
+    },
+    "parameter_shift": {
+      "fault_detection_rate": 0.011235955056179775,
+      "false_alarm_rate": 0.010526315789473684,
+      "detection_latency_seconds": 0.46999999999999975,
+      "state_percentages_all": {
+        "NORMAL": 98.89923793395428,
+        "SENSOR_FAULT": 1.100762066045724,
+        "MODEL_UNCERTAINTY": 0.0,
+        "BOTH": 0.0
+      },
+      "state_percentages_post_fault": {
+        "NORMAL": 98.87640449438202,
+        "SENSOR_FAULT": 1.1235955056179776,
+        "MODEL_UNCERTAINTY": 0.0,
+        "BOTH": 0.0
+      }
+    }
+  },
+  "sensitivity": [
+    {
+      "passes": 10,
+      "percentile": 90.0,
+      "tau_r": 0.4614004513066341,
+      "tau_sigma": 0.009034221742787535,
+      "validation_false_alarm_rate": 0.1889641546711826,
+      "mean_fault_detection_rate": 0.3770287141073658,
+      "sensor_quadrant_rate": 0.3316687473990845,
+      "model_quadrant_rate": 0.018726591760299626,
+      "runtime_seconds": 6.844001700000263
+    },
+    {
+      "passes": 10,
+      "percentile": 95.0,
+      "tau_r": 0.5474218441557062,
+      "tau_sigma": 0.012872213027333736,
+      "validation_false_alarm_rate": 0.09723398250070561,
+      "mean_fault_detection_rate": 0.2866416978776529,
+      "sensor_quadrant_rate": 0.305451518934665,
+      "model_quadrant_rate": 0.004993757802746567,
+      "runtime_seconds": 6.844001700000263
+    },
+    {
+      "passes": 10,
+      "percentile": 99.0,
+      "tau_r": 0.7244215891529964,
+      "tau_sigma": 0.023963389091488485,
+      "validation_false_alarm_rate": 0.019757267852102738,
+      "mean_fault_detection_rate": 0.19500624219725343,
+      "sensor_quadrant_rate": 0.264669163545568,
+      "model_quadrant_rate": 0.0,
+      "runtime_seconds": 6.844001700000263
+    },
+    {
+      "passes": 20,
+      "percentile": 90.0,
+      "tau_r": 0.4583136299852022,
+      "tau_sigma": 0.00903333830096497,
+      "validation_false_alarm_rate": 0.18938752469658482,
+      "mean_fault_detection_rate": 0.39800249687890144,
+      "sensor_quadrant_rate": 0.33416562630045776,
+      "model_quadrant_rate": 0.01373283395755306,
+      "runtime_seconds": 12.328259900000376
+    },
+    {
+      "passes": 20,
+      "percentile": 95.0,
+      "tau_r": 0.5465024022392768,
+      "tau_sigma": 0.012153643412703561,
+      "validation_false_alarm_rate": 0.09808072255151001,
+      "mean_fault_detection_rate": 0.29188514357053685,
+      "sensor_quadrant_rate": 0.30420307948397834,
+      "model_quadrant_rate": 0.003745318352059925,
+      "runtime_seconds": 12.328259900000376
+    },
+    {
+      "passes": 20,
+      "percentile": 99.0,
+      "tau_r": 0.7244444716846649,
+      "tau_sigma": 0.021764420340294834,
+      "validation_false_alarm_rate": 0.020039514535704205,
+      "mean_fault_detection_rate": 0.20024968789013733,
+      "sensor_quadrant_rate": 0.26591760299625467,
+      "model_quadrant_rate": 0.0012484394506866417,
+      "runtime_seconds": 12.328259900000376
+    },
+    {
+      "passes": 30,
+      "percentile": 90.0,
+      "tau_r": 0.45744428432035633,
+      "tau_sigma": 0.009128135095367631,
+      "validation_false_alarm_rate": 0.18924640135478407,
+      "mean_fault_detection_rate": 0.4,
+      "sensor_quadrant_rate": 0.33416562630045776,
+      "model_quadrant_rate": 0.009363295880149813,
+      "runtime_seconds": 18.38674069999979
+    },
+    {
+      "passes": 30,
+      "percentile": 95.0,
+      "tau_r": 0.5438392944442061,
+      "tau_sigma": 0.012928299688700424,
+      "validation_false_alarm_rate": 0.09850409257691223,
+      "mean_fault_detection_rate": 0.27990012484394505,
+      "sensor_quadrant_rate": 0.3029546400332917,
+      "model_quadrant_rate": 0.003745318352059925,
+      "runtime_seconds": 18.38674069999979
+    },
+    {
+      "passes": 30,
+      "percentile": 99.0,
+      "tau_r": 0.727650341719273,
+      "tau_sigma": 0.0215303745398926,
+      "validation_false_alarm_rate": 0.020039514535704205,
+      "mean_fault_detection_rate": 0.20049937578027466,
+      "sensor_quadrant_rate": 0.26633374947981686,
+      "model_quadrant_rate": 0.0,
+      "runtime_seconds": 18.38674069999979
+    },
+    {
+      "passes": 50,
+      "percentile": 90.0,
+      "tau_r": 0.45874740643579415,
+      "tau_sigma": 0.00920165042475209,
+      "validation_false_alarm_rate": 0.18938752469658482,
+      "mean_fault_detection_rate": 0.41622971285892635,
+      "sensor_quadrant_rate": 0.3312526009155223,
+      "model_quadrant_rate": 0.015605493133583021,
+      "runtime_seconds": 33.11642310000025
+    },
+    {
+      "passes": 50,
+      "percentile": 95.0,
+      "tau_r": 0.5451587654556818,
+      "tau_sigma": 0.012944345677392064,
+      "validation_false_alarm_rate": 0.09822184589331075,
+      "mean_fault_detection_rate": 0.2739076154806491,
+      "sensor_quadrant_rate": 0.30586766541822724,
+      "model_quadrant_rate": 0.004369538077403246,
+      "runtime_seconds": 33.11642310000025
+    },
+    {
+      "passes": 50,
+      "percentile": 99.0,
+      "tau_r": 0.7256379759489914,
+      "tau_sigma": 0.021230897538234792,
+      "validation_false_alarm_rate": 0.020039514535704205,
+      "mean_fault_detection_rate": 0.2,
+      "sensor_quadrant_rate": 0.2650853100291302,
+      "model_quadrant_rate": 0.0,
+      "runtime_seconds": 33.11642310000025
+    }
+  ]
+}

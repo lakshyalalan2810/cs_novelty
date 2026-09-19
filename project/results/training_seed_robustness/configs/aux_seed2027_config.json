@@ -1,0 +1,57 @@
+{
+  "calibration": {
+    "abs_residual_mean": 2.03945255279541,
+    "abs_residual_median": 1.7246828079223633,
+    "calibration_source": "clean validation data only",
+    "num_samples": 7086,
+    "recommended_recovery_gate": 10.477919578552246,
+    "residual_mean": 0.013252018950879574,
+    "residual_std": 2.6733174324035645,
+    "thresholds": {
+      "p90.0": 3.8222885131835938,
+      "p95.0": 5.095514297485352,
+      "p97.5": 7.530823707580566,
+      "p99.0": 8.906013488769531,
+      "p99.5": 9.88232135772705,
+      "p99.9": 10.477919578552246
+    }
+  },
+  "features": [
+    "voltage",
+    "current"
+  ],
+  "model": {
+    "dropout": 0.0,
+    "hidden_size": 32,
+    "input_size": 2,
+    "num_layers": 1,
+    "output_size": 1
+  },
+  "normalization": {
+    "input_mean": [
+      5.966879126899837,
+      1.4980793542251223
+    ],
+    "input_std": [
+      3.7230753645850108,
+      1.2906725047980379
+    ],
+    "target_mean": [
+      30.00111412449199
+    ],
+    "target_std": [
+      13.384715185057466
+    ]
+  },
+  "target": "y_true",
+  "training": {
+    "batch_size": 512,
+    "best_epoch": 23,
+    "learning_rate": 0.001,
+    "max_epochs": 100,
+    "min_delta": 1e-06,
+    "patience": 10,
+    "seed": 2027
+  },
+  "window_length": 20
+}

@@ -1,0 +1,18 @@
+{
+  "status": "recorded_before_c4_development_and_before_any_c4_final_use",
+  "candidate_seeds": [39026, 39027, 39028, 39029, 39030],
+  "audit_scope": "entire /cs_novelty/project tree, including results/baseline_v3_prefix and results/baseline_prefix",
+  "search_method": "standalone numeric-token repository scan over text and binary-readable content, with separate scan of the 39000-39099 block",
+  "candidate_matches_before_use": {
+    "39026": 0,
+    "39027": 0,
+    "39028": 0,
+    "39029": 0,
+    "39030": 0
+  },
+  "range_39000_39099_any_matches": 0,
+  "development_seeds": [19026, 19027, 19028, 19029, 19030],
+  "v3_final_seeds": [29026, 29027, 29028, 29029, 29030],
+  "interpretation": "The five candidate seeds were absent from searchable repository calibration, development, debugging, plot, and evaluation evidence before C4 development/final use. This repository audit cannot establish absence of unrecorded external runs.",
+  "selection_policy": "Candidates are not final C4 holdout seeds unless the predeclared C4 development stage gate passes. If the gate passes, the selected set will be frozen in c4_frozen_config.json before final evaluation."
+}

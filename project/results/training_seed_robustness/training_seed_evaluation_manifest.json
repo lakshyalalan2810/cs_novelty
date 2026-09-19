@@ -1,0 +1,130 @@
+{
+  "study": "training_seed_robustness",
+  "run_count": 150,
+  "training_seeds": [
+    2026,
+    2027,
+    2028
+  ],
+  "simulation_seeds": [
+    49026,
+    49027,
+    49028,
+    49029,
+    49030
+  ],
+  "controllers": [
+    "B_plain_MPC",
+    "C3_arbitration_MPC"
+  ],
+  "scenarios": [
+    "sensor_bias_5",
+    "sensor_dropout",
+    "load_disturbance",
+    "combined_fault_load",
+    "parameter_variation"
+  ],
+  "paired_design": "same scenario and simulation seed across B/C3 and all three matched training pairs",
+  "simulation_seed_freeze_path": "results/training_seed_robustness/simulation_seed_freeze.json",
+  "simulation_seed_freeze_sha256": "c70c61d61066fd2336a221299cc130235cceae5f4061a81167c34d10c82e3e86",
+  "frozen_v3_evaluator_path": "scripts/evaluate_v3_closed_loop.py",
+  "frozen_v3_evaluator_sha256": "edaeae1d87889014a63727c46820ad96925eb694e5c21f6212ba833d357bd431",
+  "pair_manifests": {
+    "2026": {
+      "path": "results/training_seed_robustness/model_pair_manifest.json",
+      "sha256": "b1c4ac1db684249d4eccd46691fd1b8ad30c36bb3be56cc19a50a7581c189d5e",
+      "main_model_sha256": "d1f4178199f682560f164ccac1d56816aae341eb05fbed6ac7ad73a4e2056297",
+      "main_config_sha256": "9254bbd088b0c9f7bd7ba71ee75c09fe4501ce28eb8e26efab7fb7d5130ce4cc",
+      "aux_model_sha256": "619f677ccc63c6a40c863858d8eee4175f72b1770dc6c8ba202e7b92c2768480",
+      "aux_config_sha256": "04fd322ba365b394751e4f60163ebea4b2164ff6fe699d7d2c2cc052eaae8ad2",
+      "sensor_calibration_sha256": "81e64239ec99af8c8a3908b45cee979e617e82cacdfeddeadcadf4561f202f46",
+      "v3_calibration_sha256": "7467f0be3489ab4bf7ac9f35c160ee94e19eafb0ed456596d12eca762b09d718",
+      "pair_config_sha256": "4aebc19efb29250fbcbadb1138cae0edd3f2c6eaf10a91d083f7dd7d9323ea8d",
+      "protocol_manifest_sha256": "8df38e0cbc4d7f950677872744fb2aa19cfb5cf3ebd0c8398b74c32ed067dfa5",
+      "algorithm_hashes": {
+        "runner": {
+          "path": "scripts/run_training_seed_models.py",
+          "sha256": "7b43c0d0f562c0ec3ea5a957d5266800d023bbbdf84b040d4f0805a91491dd74"
+        },
+        "sensor_calibration_source": {
+          "path": "notebooks/04c_reliability_finalization.ipynb",
+          "sha256": "82253ac4cb2a068fab42fc381015af1ac2bb4919babec36af790c0896ca2469e"
+        },
+        "v3_calibration_source": {
+          "path": "scripts/calibrate_v3_arbitration.py",
+          "sha256": "310f886193ca6bc1584f7e0985794efc32dd08535b1dfc4e1992a9dc88ba26c2"
+        }
+      },
+      "sensor_calibration_algorithm_sha256": "82253ac4cb2a068fab42fc381015af1ac2bb4919babec36af790c0896ca2469e",
+      "v3_calibration_algorithm_sha256": "310f886193ca6bc1584f7e0985794efc32dd08535b1dfc4e1992a9dc88ba26c2",
+      "calibration_algorithm_sha256": "ffbadd2556bdcea56d9a1b3529109879bd1c2a7614941a516405ad3ce7a6b4bc"
+    },
+    "2027": {
+      "path": "results/training_seed_robustness/model_pair_manifest.json",
+      "sha256": "b1c4ac1db684249d4eccd46691fd1b8ad30c36bb3be56cc19a50a7581c189d5e",
+      "main_model_sha256": "934fe3b3a1672532d68fb94ff7605b59a32f6ad4d8291b968b0a1a1ca17008f1",
+      "main_config_sha256": "af02115f4d62f8c4c2b0733067b437dfb4c0bd7f982bb8fcc45b2cf7f025dc5a",
+      "aux_model_sha256": "561f5529020c3b7d3b658f62c400e1b4ccedbce478c7f4e1d43e4dc1d2610fd6",
+      "aux_config_sha256": "e1e651b5aca612b93df60e191244a767c2e1c2d37d4f257bd2ac6b953e54a5c0",
+      "sensor_calibration_sha256": "3909dd3cf343cf0aec25b33607cf5a0815879a760710f2ded52a15b1b7127ad4",
+      "v3_calibration_sha256": "adba638df2a6b177e1e70b5bc4d597433a1907dc92e33efd4adc222d3dc95955",
+      "pair_config_sha256": "a0357c3f2919d1cd160335850b065c16442ae6c649f2611c2a458cde5a4edfb2",
+      "protocol_manifest_sha256": "8df38e0cbc4d7f950677872744fb2aa19cfb5cf3ebd0c8398b74c32ed067dfa5",
+      "algorithm_hashes": {
+        "runner": {
+          "path": "scripts/run_training_seed_models.py",
+          "sha256": "7b43c0d0f562c0ec3ea5a957d5266800d023bbbdf84b040d4f0805a91491dd74"
+        },
+        "sensor_calibration_source": {
+          "path": "notebooks/04c_reliability_finalization.ipynb",
+          "sha256": "82253ac4cb2a068fab42fc381015af1ac2bb4919babec36af790c0896ca2469e"
+        },
+        "v3_calibration_source": {
+          "path": "scripts/calibrate_v3_arbitration.py",
+          "sha256": "310f886193ca6bc1584f7e0985794efc32dd08535b1dfc4e1992a9dc88ba26c2"
+        }
+      },
+      "sensor_calibration_algorithm_sha256": "82253ac4cb2a068fab42fc381015af1ac2bb4919babec36af790c0896ca2469e",
+      "v3_calibration_algorithm_sha256": "310f886193ca6bc1584f7e0985794efc32dd08535b1dfc4e1992a9dc88ba26c2",
+      "calibration_algorithm_sha256": "ffbadd2556bdcea56d9a1b3529109879bd1c2a7614941a516405ad3ce7a6b4bc"
+    },
+    "2028": {
+      "path": "results/training_seed_robustness/model_pair_manifest.json",
+      "sha256": "b1c4ac1db684249d4eccd46691fd1b8ad30c36bb3be56cc19a50a7581c189d5e",
+      "main_model_sha256": "8c57a90ecbcc46bce14ffce41566365d871967aa090a0e39f98bbc71a7def024",
+      "main_config_sha256": "c0330dc7af509e80d4f257fe7aa452e5633d34eb6e4322a2da35b2a5feebc0ee",
+      "aux_model_sha256": "9739d68ca44fd76eb997f23f52a13efde666b9120b090861a04fab0f52e64f7f",
+      "aux_config_sha256": "3fc89a4dbfb84c58770707d0f98be4afb5cb8223f754c3843697919e0f7eddad",
+      "sensor_calibration_sha256": "e19df77cd05faf70ed73b8811d55298239e5c8bcafe5164c5151877abf721e40",
+      "v3_calibration_sha256": "f7e875e89772bde559ca9a7f17d065def1eea478ef82cee9884133090f3a5e74",
+      "pair_config_sha256": "9aa43116030f881158b9d8b1ac4446fdfd7cbeeed4058817d2a8d2cbfaca6302",
+      "protocol_manifest_sha256": "8df38e0cbc4d7f950677872744fb2aa19cfb5cf3ebd0c8398b74c32ed067dfa5",
+      "algorithm_hashes": {
+        "runner": {
+          "path": "scripts/run_training_seed_models.py",
+          "sha256": "7b43c0d0f562c0ec3ea5a957d5266800d023bbbdf84b040d4f0805a91491dd74"
+        },
+        "sensor_calibration_source": {
+          "path": "notebooks/04c_reliability_finalization.ipynb",
+          "sha256": "82253ac4cb2a068fab42fc381015af1ac2bb4919babec36af790c0896ca2469e"
+        },
+        "v3_calibration_source": {
+          "path": "scripts/calibrate_v3_arbitration.py",
+          "sha256": "310f886193ca6bc1584f7e0985794efc32dd08535b1dfc4e1992a9dc88ba26c2"
+        }
+      },
+      "sensor_calibration_algorithm_sha256": "82253ac4cb2a068fab42fc381015af1ac2bb4919babec36af790c0896ca2469e",
+      "v3_calibration_algorithm_sha256": "310f886193ca6bc1584f7e0985794efc32dd08535b1dfc4e1992a9dc88ba26c2",
+      "calibration_algorithm_sha256": "ffbadd2556bdcea56d9a1b3529109879bd1c2a7614941a516405ad3ce7a6b4bc"
+    }
+  },
+  "output": {
+    "runs": "results/training_seed_robustness/training_seed_runs.csv",
+    "runs_sha256": "8d9cb9dc8a01c2aab4df5f140e69b32e44cad4fbc49e5d7d1651a269fbaa0842",
+    "timing": "results/training_seed_robustness/training_seed_timing.csv",
+    "timing_sha256": "58d4f6d8a5491350ec7da2e54539b9de878af5290652de75512bb3e252e8dfea",
+    "reliability_events": "results/training_seed_robustness/training_seed_reliability_events.csv",
+    "reliability_events_sha256": "5c9c6da268acc4c07e9c5f6d77dab87029f2f3ec6fa78355f15b249b29bd962d"
+  },
+  "evaluation_wall_time_s": 521.1727885
+}

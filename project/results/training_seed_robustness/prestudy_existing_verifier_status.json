@@ -1,0 +1,18 @@
+{
+  "checked_at": "2026-09-16T20:34:15.6968030+05:30",
+  "verify_results": {
+    "status": "PASS"
+  },
+  "verify_v3_results": {
+    "status": "PASS",
+    "maximum_calibration_reconstruction_difference": 6.13244566239E-10
+  },
+  "verify_c4_results": {
+    "status": "PRE_EXISTING_FAIL",
+    "reason": "missing results/configs/c4_frozen_config.json; C4 branch is closed and was not modified in this study"
+  },
+  "verify_ekf_results": {
+    "status": "PASS",
+    "role_decision": "BASELINE_ONLY"
+  }
+}

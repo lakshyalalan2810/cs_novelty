@@ -1,0 +1,13 @@
+{
+  "previous_model_comparison_rtol": 0,
+  "previous_model_comparison_atol": 1e-09,
+  "model_comparison_rtol": 1e-06,
+  "model_comparison_atol": 1e-05,
+  "calibration_reconstruction_absolute_differences": {
+    "agreement_threshold": 0.0,
+    "param_mismatch_threshold": 0.0,
+    "param_mismatch_recovery_threshold": 0.0,
+    "aux_recovery_gate": 0.0
+  },
+  "maximum_calibration_reconstruction_absolute_difference": 0.0
+}

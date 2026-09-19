@@ -1,0 +1,356 @@
+{
+  "canonical_comparison": [
+    {
+      "scenario": "combined_fault_load",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 13.61083709229975,
+      "fault_window_rmse": 11.690471833934373,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.5014975041597338,
+      "control_effort_u2": 6113.486124234314
+    },
+    {
+      "scenario": "combined_fault_load",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 13.61083709229975,
+      "fault_window_rmse": 11.690471833934373,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.5014975041597338,
+      "control_effort_u2": 6113.486124234314
+    },
+    {
+      "scenario": "load_disturbance",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 11.28808596390651,
+      "fault_window_rmse": 2.8277075493245376,
+      "false_recovery_events": 0.2,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.10116472545757071,
+      "control_effort_u2": 8005.370206293832
+    },
+    {
+      "scenario": "load_disturbance",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 11.28808596390651,
+      "fault_window_rmse": 2.8277075493245376,
+      "false_recovery_events": 0.2,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.10116472545757071,
+      "control_effort_u2": 8005.370206293832
+    },
+    {
+      "scenario": "parameter_variation",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 10.817063033617924,
+      "fault_window_rmse": 0.6499521061382814,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.0013311148086522463,
+      "control_effort_u2": 7780.987135671782
+    },
+    {
+      "scenario": "parameter_variation",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 10.817063033617924,
+      "fault_window_rmse": 0.6499521061382814,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.0013311148086522463,
+      "control_effort_u2": 7780.987135671782
+    },
+    {
+      "scenario": "sensor_bias_15",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 10.80917059258872,
+      "fault_window_rmse": 0.22260457117100776,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6079.257906992027
+    },
+    {
+      "scenario": "sensor_bias_15",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 10.80917059258872,
+      "fault_window_rmse": 0.22260457117100776,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6079.257906992027
+    },
+    {
+      "scenario": "sensor_bias_5",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 10.80917059258872,
+      "fault_window_rmse": 0.22260457117100776,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6079.257906992027
+    },
+    {
+      "scenario": "sensor_bias_5",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 10.80917059258872,
+      "fault_window_rmse": 0.22260457117100776,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6079.257906992027
+    },
+    {
+      "scenario": "sensor_drift",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 11.635482800562837,
+      "fault_window_rmse": 5.279543539576103,
+      "false_recovery_events": 0.2,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.0029950083194675544,
+      "control_effort_u2": 5249.344094270083
+    },
+    {
+      "scenario": "sensor_drift",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 11.635482800562837,
+      "fault_window_rmse": 5.279543539576103,
+      "false_recovery_events": 0.2,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.0029950083194675544,
+      "control_effort_u2": 5249.344094270083
+    },
+    {
+      "scenario": "sensor_dropout",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 10.80917059258872,
+      "fault_window_rmse": 0.22260457117100776,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6079.257906992027
+    },
+    {
+      "scenario": "sensor_dropout",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 10.80917059258872,
+      "fault_window_rmse": 0.22260457117100776,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6079.257906992027
+    }
+  ],
+  "development_extension": [
+    {
+      "scenario": "combined_fault_load",
+      "controller": "B_plain_MPC",
+      "overall_rmse": 11.26421898281578,
+      "fault_window_rmse": 4.437062058350234,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.0,
+      "control_effort_u2": 8033.865433038185
+    },
+    {
+      "scenario": "combined_fault_load",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 13.626551495270283,
+      "fault_window_rmse": 11.70891690754215,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.5008319467554077,
+      "control_effort_u2": 6220.7385585579195
+    },
+    {
+      "scenario": "combined_fault_load",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 13.626551495270283,
+      "fault_window_rmse": 11.70891690754215,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.5008319467554077,
+      "control_effort_u2": 6220.7385585579195
+    },
+    {
+      "scenario": "load_disturbance",
+      "controller": "B_plain_MPC",
+      "overall_rmse": 10.83942809940061,
+      "fault_window_rmse": 0.9834530449148413,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.0,
+      "control_effort_u2": 8468.753988915094
+    },
+    {
+      "scenario": "load_disturbance",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 10.994336771955016,
+      "fault_window_rmse": 1.9901464069343269,
+      "false_recovery_events": 0.4,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.05923460898502495,
+      "control_effort_u2": 8235.94075949692
+    },
+    {
+      "scenario": "load_disturbance",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 10.994336771955016,
+      "fault_window_rmse": 1.9901464069343269,
+      "false_recovery_events": 0.4,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.05923460898502495,
+      "control_effort_u2": 8235.94075949692
+    },
+    {
+      "scenario": "parameter_variation",
+      "controller": "B_plain_MPC",
+      "overall_rmse": 10.82710889194807,
+      "fault_window_rmse": 0.6699112237614517,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.0,
+      "control_effort_u2": 7848.819090027757
+    },
+    {
+      "scenario": "parameter_variation",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 10.880871966377224,
+      "fault_window_rmse": 1.2387325339933843,
+      "false_recovery_events": 0.2,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.05690515806988352,
+      "control_effort_u2": 7656.504795971194
+    },
+    {
+      "scenario": "parameter_variation",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 10.964855206477916,
+      "fault_window_rmse": 1.9722168075240734,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.1271214642262895,
+      "control_effort_u2": 7418.178897830246
+    },
+    {
+      "scenario": "sensor_bias_15",
+      "controller": "B_plain_MPC",
+      "overall_rmse": 11.905182359736417,
+      "fault_window_rmse": 7.771003656803987,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.0,
+      "control_effort_u2": 6671.496660515681
+    },
+    {
+      "scenario": "sensor_bias_15",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 10.819733035600333,
+      "fault_window_rmse": 0.3915485433658523,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6187.846538184581
+    },
+    {
+      "scenario": "sensor_bias_15",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 10.819733035600333,
+      "fault_window_rmse": 0.3915485433658523,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6187.846538184581
+    },
+    {
+      "scenario": "sensor_bias_5",
+      "controller": "B_plain_MPC",
+      "overall_rmse": 10.959953132119468,
+      "fault_window_rmse": 2.8710891071610343,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.0,
+      "control_effort_u2": 6710.416243180822
+    },
+    {
+      "scenario": "sensor_bias_5",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 10.819733035600333,
+      "fault_window_rmse": 0.3915485433658523,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6187.846538184581
+    },
+    {
+      "scenario": "sensor_bias_5",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 10.819733035600333,
+      "fault_window_rmse": 0.3915485433658523,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6187.846538184581
+    },
+    {
+      "scenario": "sensor_drift",
+      "controller": "B_plain_MPC",
+      "overall_rmse": 11.650892188549856,
+      "fault_window_rmse": 5.304040982749493,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.0,
+      "control_effort_u2": 5344.379515265699
+    },
+    {
+      "scenario": "sensor_drift",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 11.651055160286486,
+      "fault_window_rmse": 5.304576398954529,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.00033277870216306157,
+      "control_effort_u2": 5344.664061272379
+    },
+    {
+      "scenario": "sensor_drift",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 11.651055160286486,
+      "fault_window_rmse": 5.304576398954529,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.00033277870216306157,
+      "control_effort_u2": 5344.664061272379
+    },
+    {
+      "scenario": "sensor_dropout",
+      "controller": "B_plain_MPC",
+      "overall_rmse": 27.524915049490772,
+      "fault_window_rmse": 20.87480962755925,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.0,
+      "control_effort_u2": 15050.587908257043
+    },
+    {
+      "scenario": "sensor_dropout",
+      "controller": "C1_sensor_MPC",
+      "overall_rmse": 10.819733035600333,
+      "fault_window_rmse": 0.3915485433658523,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6187.846538184581
+    },
+    {
+      "scenario": "sensor_dropout",
+      "controller": "C2_aux_recovery_MPC",
+      "overall_rmse": 10.819733035600333,
+      "fault_window_rmse": 0.3915485433658523,
+      "false_recovery_events": 0.0,
+      "recovery_latency_s": NaN,
+      "sub_fraction": 0.6672212978369384,
+      "control_effort_u2": 6187.846538184581
+    }
+  ]
+}

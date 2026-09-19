@@ -1,0 +1,7 @@
+family,run_count,optimizer_failures,main_prediction_failures,aux_prediction_failures,ekf_numerical_failures,nonfinite_events,voltage_violations,slew_violations,incomplete_runs,total_failure_safety_count
+bias,120,0,0,0,0,0,0,0,0,0
+combined_bias_load,120,0,0,0,0,0,0,0,0,0
+current_sensor,135,0,0,0,0,0,0,0,0,0
+drift,120,0,0,0,0,0,0,0,0,0
+dropout,120,0,0,0,0,0,0,0,0,0
+load,120,0,0,0,0,0,0,0,0,0

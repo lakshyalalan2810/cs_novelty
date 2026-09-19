@@ -1,0 +1,9 @@
+{
+  "1_plain_mpc_nominal": "Plain LSTM-MPC completed constant, step, changing-reference, and load-step runs. Nominal-step RMSE was 7.386 rad/s; the plots show the remaining transient and learned-model bias.",
+  "2_pi_comparison": "PI vs plain MPC RMSE was 7.178 vs 7.386 nominally and 11.279 vs 10.850 under the load step. The table keeps control effort and settling time beside those errors.",
+  "3_sensor_reliability": "The temporal gate selected virtual feedback in every explicit sensor-fault study; mean substitution rate was 30.5%. It is most decisive for large bias/dropout and less decisive for small bias, drift, and noise.",
+  "4_model_quality": "M(t) is normalized only with clean validation data. The uncertainty cases spent 8.2% of their time in HIGH, causing shorter horizons, larger move penalties, and smaller voltage steps without a hard fault class.",
+  "5_adaptive_comparison": "Across the five comparison scenarios, mean RMSE was 13.458 for adaptive, 12.345 for plain MPC, and 12.271 for sensor-only MPC. Adaptation is retained as a safety response even where it does not improve RMSE.",
+  "6_safety_and_compute": "Applied-command voltage/rate violations: 0; optimizer failures handled by PI fallback: 0; mean successful MPC call time: 151.5 ms on this CPU. Speed, NaN/Inf, slew, and optimizer guards were active.",
+  "7_limitations": "The LSTM was trained open-loop and even the selected 200 ms prediction horizon is short relative to motor settling. Sensor residuals can still react to plant mismatch, and SLSQP CPU time exceeds the 50 ms controller interval in some runs. The next step is timing-aware deployment validation or a faster solver/distilled predictor, not another diagnostic classifier."
+}

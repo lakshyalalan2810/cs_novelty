@@ -1,0 +1,14 @@
+{
+  "mc_passes": 10,
+  "threshold_percentile": 99.0,
+  "tau_r": 0.7244215891529964,
+  "tau_sigma": 0.023963389091488485,
+  "seed": 2026,
+  "state_codes": {
+    "NORMAL": 0,
+    "SENSOR_FAULT": 1,
+    "MODEL_UNCERTAINTY": 2,
+    "BOTH": 3
+  },
+  "validation_false_alarm_rate": 0.019757267852102738
+}

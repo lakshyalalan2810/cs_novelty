@@ -1,0 +1,17 @@
+{
+  "residual_mean": -0.41037859404574945,
+  "residual_std": 2.680236933678553,
+  "abs_residual_mean": 2.109867248017879,
+  "abs_residual_median": 1.7191013057815105,
+  "thresholds": {
+    "p90.0": 4.351405947406754,
+    "p95.0": 5.305743895457982,
+    "p97.5": 7.2127913943469935,
+    "p99.0": 8.264497194577983,
+    "p99.5": 8.68562186993538,
+    "p99.9": 9.047692459184507
+  },
+  "recommended_recovery_gate": 9.047692459184507,
+  "calibration_source": "clean validation data only",
+  "num_samples": 7086
+}

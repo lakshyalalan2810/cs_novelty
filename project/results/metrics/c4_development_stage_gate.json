@@ -1,0 +1,91 @@
+{
+  "decision": "NO_GO",
+  "latency_policy": "For each abrupt sensor-fault scenario, the latency criterion is evaluable only when all five paired C3 and all five paired C4 runs have finite detection_latency_s values. Any missing/nonfinite latency makes that scenario's latency criterion fail; detection-rate preservation is evaluated separately.",
+  "checks": {
+    "load_false_entry_relative_reduction": 0.0,
+    "load_false_entry_pass": false,
+    "load_substitution_relative_reduction": 0.0,
+    "load_substitution_pass": false,
+    "load_tracking_penalty_fraction_removed": 0.0,
+    "load_tracking_pass": false,
+    "load_no_new_false_entry_on_clean_c3_seed": true,
+    "load_no_new_false_entry_on_clean_c3_seed_pass": true,
+    "combined_fault_load": {
+      "rmse_relative_degradation": 0.0,
+      "rmse_pass": true,
+      "c3_detection_rate": 1.0,
+      "c4_detection_rate": 1.0,
+      "detection_rate_pass": true,
+      "genuine_fault_suppression_count": 0,
+      "genuine_fault_suppression_pass": true
+    },
+    "abrupt_sensor_faults": {
+      "sensor_bias_15": {
+        "rmse_relative_degradation": 0.0,
+        "rmse_pass": true,
+        "c3_detection_rate": 1.0,
+        "c4_detection_rate": 1.0,
+        "detection_rate_pass": true,
+        "latency_policy": "For each abrupt sensor-fault scenario, the latency criterion is evaluable only when all five paired C3 and all five paired C4 runs have finite detection_latency_s values. Any missing/nonfinite latency makes that scenario's latency criterion fail; detection-rate preservation is evaluated separately.",
+        "latency_complete": true,
+        "mean_detection_latency_increase_s": 0.0,
+        "latency_pass": true,
+        "genuine_fault_suppression_count": 0,
+        "genuine_fault_suppression_pass": true
+      },
+      "sensor_dropout": {
+        "rmse_relative_degradation": 0.0,
+        "rmse_pass": true,
+        "c3_detection_rate": 1.0,
+        "c4_detection_rate": 1.0,
+        "detection_rate_pass": true,
+        "latency_policy": "For each abrupt sensor-fault scenario, the latency criterion is evaluable only when all five paired C3 and all five paired C4 runs have finite detection_latency_s values. Any missing/nonfinite latency makes that scenario's latency criterion fail; detection-rate preservation is evaluated separately.",
+        "latency_complete": true,
+        "mean_detection_latency_increase_s": 0.0,
+        "latency_pass": true,
+        "genuine_fault_suppression_count": 0,
+        "genuine_fault_suppression_pass": true
+      }
+    },
+    "parameter_variation": {
+      "rmse_relative_degradation_vs_better_baseline": 0.5973221979172674,
+      "rmse_pass": false,
+      "c3_event_aux_fraction": 0.0,
+      "c4_event_aux_fraction": 0.0,
+      "auxiliary_misuse_events": 0,
+      "auxiliary_misuse_pass": true
+    },
+    "reference_transients": {
+      "step_reference": {
+        "reliability_latches": 1,
+        "latch_pass": false,
+        "mean_substitution_fraction": 0.05490848585690515,
+        "substitution_pass": false,
+        "overall_rmse_relative_degradation_vs_c3": 0.0,
+        "tracking_pass": true
+      },
+      "changing_reference": {
+        "reliability_latches": 1,
+        "latch_pass": false,
+        "mean_substitution_fraction": 0.05490848585690515,
+        "substitution_pass": false,
+        "overall_rmse_relative_degradation_vs_c3": 0.0,
+        "tracking_pass": true
+      }
+    },
+    "safety": {
+      "optimizer_failures": 0,
+      "voltage_violations": 0,
+      "slew_violations": 0,
+      "nonfinite_events": 0,
+      "pass": true
+    }
+  },
+  "bindings": {
+    "c4_development_config": "8bf0f2a5433496e3d55073af9be21a57f85725db4e39a29d569bb54473639266",
+    "c4_attribution_calibration": "cd58cb26d10e920b6449b4efaf14504c46db70a03727fdb4462052a77566e397",
+    "c4_go_no_go_criteria": "751ffa4ef89f5b5cdeac41f6ad95ef52b8ca2c61a32baef0fe54e9b02218f7ba",
+    "c4_evaluator_script": "7b546ed92da8394f374e5ebd1b4535f2b1161afb1e322abb501c763b6bb44cb2",
+    "c4_verifier_script": "294bfec07f45e5570e5a16401b5a372d4cf6793feca864f37d0ee8dc96f8424d"
+  }
+}

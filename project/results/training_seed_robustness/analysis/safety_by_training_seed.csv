@@ -1,0 +1,4 @@
+training_seed,run_count,optimizer_failures,main_prediction_failures,aux_prediction_failures,voltage_violations,slew_violations,nonfinite_events,incomplete_runs
+2026,50,0,0,0,0,0,0,0
+2027,50,0,0,0,0,0,0,0
+2028,50,0,0,0,0,0,0,0

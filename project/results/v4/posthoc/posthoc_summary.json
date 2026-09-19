@@ -1,0 +1,19 @@
+{
+  "analysis": "POST-HOC (conditional-on-clean-start)",
+  "inputs_read_only": [
+    "results\\training_seed_robustness\\training_seed_runs.csv",
+    "results\\training_seed_robustness\\training_seed_reliability_events.csv",
+    "results\\final_robustness\\final_robustness_runs.csv",
+    "results\\final_robustness\\final_robustness_reliability_events.csv",
+    "results\\final_robustness\\severity_paired_points.csv",
+    "results\\final_robustness\\operating_envelope_classification.csv"
+  ],
+  "part_a_c3_runs": 75,
+  "part_a_pre_event_latches": 35,
+  "part_b_primary_c3_runs": 300,
+  "part_b_pre_event_latches": 88,
+  "part_b_pre_and_post_entries": 0,
+  "preregistered_detection_reproduced_exactly": true,
+  "current_boundary_excluded": "current-sensor matrix runs are outside the V3 single-speed-fault support claim; their speed-detector entries are false entries under current corruption, not startup-latch evidence.",
+  "note": "POST-HOC decomposition only. Preregistered envelope labels are unchanged; conditional labels answer a different question (detection given a clean start)."
+}

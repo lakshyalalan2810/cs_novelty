@@ -1,0 +1,52 @@
+PASS: V3 freeze record predates C4 implementation
+PASS: canonical 275-run matrix matches the pre-C4 frozen SHA256
+PASS: frozen V3 verification report bytes are unchanged
+PASS: all frozen model/config/calibration/original-run SHA256 hashes match exactly
+PASS: main model hash matches calibration provenance
+PASS: auxiliary model hash matches calibration provenance
+PASS: main LSTM config matches the independently frozen V3 SHA256
+PASS: historical frozen calibration predates the main-config provenance field; current config verified independently
+PASS: arbitration config binds the exact calibration artifact
+PASS: frozen thresholds and physical speed envelope are unchanged
+PASS: frozen eight-scenario arbitration config is unchanged
+PASS: calibration dataset and validation-run provenance match exactly
+PASS: final seeds are excluded from calibration
+PASS: final seeds were absent from preserved pre-fix evidence
+PASS: portably reproduced model-derived agreement_threshold
+PASS: frozen config numerically matches model-derived agreement_threshold
+PASS: portably reproduced model-derived aux_recovery_gate
+PASS: frozen config numerically matches model-derived aux_recovery_gate
+PASS: portably reproduced model-derived param_mismatch_recovery_threshold
+PASS: frozen config numerically matches model-derived param_mismatch_recovery_threshold
+PASS: portably reproduced model-derived param_mismatch_threshold
+PASS: frozen config numerically matches model-derived param_mismatch_threshold
+PASS: final row count is exactly 275
+PASS: controller, scenario, and seed sets match exactly
+PASS: controller/scenario/seed keys contain no duplicates
+PASS: all 275 controller/scenario/seed combinations exist
+PASS: the original 200 frozen rows are numerically unchanged
+PASS: the saved reference artifact contains exactly the 75 rows extracted from the hash-verified canonical matrix
+PASS: summary keys match independently rebuilt groups
+PASS: summary means, sample standard deviations, and medians reproduce
+PASS: optimizer, prediction, voltage, slew, and nonfinite event counts are exactly zero
+PASS: summary failure and violation counts match exactly
+PASS: source fractions sum to one per run
+PASS: combined-fault C3 improvement over plain MPC is paired-consistent
+PASS: drift evidence still supports no material improvement
+PASS: load-disturbance false sensor-fault entry counts are present and integral
+PASS: nominal/reference false-substitution and source-selection metrics are complete
+PASS: reference substitution event rows reproduce exact per-scenario substitution counts
+PASS: all reference substitutions were instantaneous guards, not latched reliability entries
+PASS: C2 and C1 behavioral metrics are exactly identical in all 55 paired cases
+PASS: C2 diagnostics record every requested recovery condition
+PASS: C2 diagnostic totals reproduce exactly
+PASS: auxiliary recovery gate was never uniquely binding and never delayed recovery
+PASS: saved C2 ablation interpretation matches the evidence
+PASS: online arbitrator has no ground-truth input
+PASS: V3 report reproduces from canonical artifacts
+PASS: C2 ablation report reproduces from canonical artifacts
+PASS: README and pipeline status use the canonical run count
+PASS: preserved V1/V2/V3 snapshot remains complete
+
+Maximum calibration reconstruction difference: 6.13244566239e-10
+V3 VERIFIER RESULT: PASS

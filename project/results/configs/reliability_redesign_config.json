@@ -1,0 +1,26 @@
+{
+  "seed": 2026,
+  "window_length": 20,
+  "rolling_window": 20,
+  "ewma_alpha": 0.1,
+  "mismatch_horizon": 15,
+  "mismatch_rolling_window": 20,
+  "calibration_percentile": 99.9,
+  "target_validation_false_alarm_rate": 0.01,
+  "validation_false_alarm_rate": 0.003245836861416878,
+  "guard_threshold": 0.7235420107841481,
+  "cusum_center": -0.009416818618774414,
+  "cusum_allowance": 0.14038589929835443,
+  "cusum_clean_99_threshold": 1.0348974832978977,
+  "feedback_guard": "instantaneous residual only; CUSUM is monitor-only",
+  "tau_ewma": 0.3773456927580328,
+  "tau_cusum": 2.447782537553034,
+  "tau_mismatch": 0.8613077402114868,
+  "state_codes": {
+    "NORMAL": 0,
+    "SENSOR_SUSPECT": 1,
+    "MODEL_MISMATCH": 2
+  },
+  "sensor_precedence": true,
+  "mc_dropout_retained": false
+}

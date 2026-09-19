@@ -1,0 +1,151 @@
+\documentclass[conference]{IEEEtran}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb}
+\usepackage[hidelinks]{hyperref}
+
+\title{Reliability-Aware LSTM-MPC With Dual Witnesses for Sensor-Fault-Tolerant DC-Motor Control: A Preregistered Evaluation}
+\author{\IEEEauthorblockN{TODO: author list}
+\IEEEauthorblockA{TODO: affiliation \\ TODO: email}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+TODO: 150--200 words. Frame as a rigorous evaluation of learned
+residual-based sensor-fault tolerance for LSTM model-predictive control
+of a DC motor: frozen evidence, a post-hoc startup-latch decomposition,
+detector fixes (CUSUM anti-windup, warm-up gating, independent-witness
+AND rule, bounded recovery), classical baselines with their own
+detectors, and a preregistered confirmatory study on fresh seeds. No
+claim of general superiority; negative results are retained.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+TODO: problem (speed-sensor faults under MPC), why learned residuals,
+the startup-latch confound found post-hoc, contributions:
+(1)~decomposition separating false latch from missed detection;
+(2)~V4 detector variants with frozen-compatible defaults;
+(3)~classical baselines with independent detectors;
+(4)~preregistered confirmatory protocol on fresh seeds/blocks.
+
+\section{Related Work}
+\label{sec:related}
+TODO: learned models for MPC \cite{Mayne2000}; LSTM sequence models
+\cite{Hochreiter1997}; CUSUM change detection \cite{Page1954};
+observer-based fault diagnosis (TODO: search terms: Luenberger observer
+fault detection survey; EKF fault diagnosis review); sensor validation
+and plausibility checks (TODO: search terms: analytic redundancy
+sensor fault detection survey).
+
+\section{Method}
+\label{sec:method}
+
+\subsection{Plant and control law}
+TODO: DC-motor model, frozen LSTM-MPC configuration, PI fallback.
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=7.16in]{figures/fig_architecture.pdf}
+\caption{V4 fault-tolerant loop. The main LSTM virtual sensor and an
+independent witness (auxiliary LSTM or EKF, neither consuming measured
+speed) feed the V4 monitor, which combines a CUSUM residual test with a
+witness-agreement AND rule. Residuals $e_m$ (main) and $e_w$ (witness)
+drive entry; the feedback selector substitutes the main estimate while
+suspect. No ground-truth signal enters the online path.}
+\label{fig:architecture}
+\end{figure*}
+
+\subsection{Frozen detector and its failure modes}
+TODO: CUSUM structure, startup false-latching (Fig.~\ref{fig:timeline}),
+unbounded discharge, load-induced false entry.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=3.5in]{figures/fig_latch_timeline.pdf}
+\caption{First reliability-entry times per Part~B C3 fault family
+(post-hoc). Crosses: pre-event latches on a healthy sensor (startup
+cluster below 1.2~s; one mid-run latch at 2.03~s); circles: post-event
+entries. Dashed lines: fault onsets.}
+\label{fig:timeline}
+\end{figure}
+
+\subsection{V4 detector variants}
+TODO: anti-windup clamp, warm-up gating, witness AND rule, bounded
+recovery; factorial ablation; frozen-compatible defaults.
+
+\subsection{Classical baselines}
+TODO: E2 (EKF+CUSUM), S1 (fixed gate), S2 (median/rate plausibility),
+S3 (Luenberger+CUSUM), each with its own detector and substitution.
+
+\section{Experimental Protocol}
+\label{sec:protocol}
+TODO: V4 dataset (closed-loop + startup-rich, seed 62026), 11 training
+seeds, frozen calibration procedures with bootstrap uncertainty,
+preregistered seed blocks, confirmatory hypotheses H1--H9 with Holm
+correction, clean-start pair-exclusion rule, intention-to-treat tracking
+endpoints. Full preregistration: \texttt{V4\_PREREGISTRATION.md}.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Post-hoc decomposition (frozen data)}
+The frozen pooled detection endpoint conflates missed detection with
+pre-event false latching: conditional on a clean start, C3 detects
+11/11 bias faults at 0.02~s (Table~\ref{tab:posthoc}, Fig.~\ref{fig:cond}).
+
+\begin{table}[t]
+\centering
+\caption{Post-hoc false-latch rate and conditional detection per
+training seed (Part~B pooled; exploratory).}
+\label{tab:posthoc}
+\input{tables/tab_posthoc_per_seed.tex}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=3.5in]{figures/fig_conditional_detection.pdf}
+\caption{Pooled preregistered detection vs.\ conditional-on-clean-start
+detection by family (post-hoc). Drift remains hard to detect under
+either definition.}
+\label{fig:cond}
+\end{figure}
+
+\begin{table*}[t]
+\centering
+\caption{Operating envelope: unchanged preregistered labels beside
+post-hoc conditional-on-clean-start labels (exploratory; 16 conditions).}
+\label{tab:envelope}
+\input{tables/tab_envelope_relabel.tex}
+\end{table*}
+
+\subsection{Confirmatory results}
+TODO: fill after running Section~9 of the preregistration. Hypothesis
+table H1--H9, DET curves, minimum detectable magnitudes, recovery and
+robustness summaries, timing distributions.
+
+\begin{table}[t]
+\centering
+\caption{Frozen Part~B pooled detection anchor (unchanged).}
+\label{tab:frozen}
+\input{tables/tab_frozen_detection.tex}
+\end{table}
+
+\section{Limitations}
+\label{sec:limitations}
+TODO ( retained from frozen evidence, plus V4 scope): drift detection
+remains poor; V3 arbitration validated only for single-speed-sensor
+faults; current-channel corruption degrades current-fed witnesses;
+MPC solve times exceed the control period on the reference machine;
+results are simulation-only on one motor model.
+
+\section{Conclusion}
+\label{sec:conclusion}
+TODO: summary of what the confirmatory study established and did not
+establish; no general-superiority claim.
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

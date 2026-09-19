@@ -1,0 +1,51 @@
+{
+  "recorded_at": "2026-09-16T20:28:51.5637357+05:30",
+  "purpose": "Pre-training/pre-evaluation hashes for runtime and calibration dependencies not covered by the minimum frozen-evidence manifest.",
+  "dependencies": [
+    {
+      "path": "results/configs/lstm_model_config.json",
+      "sha256": "9254bbd088b0c9f7bd7ba71ee75c09fe4501ce28eb8e26efab7fb7d5130ce4cc",
+      "bytes": 801
+    },
+    {
+      "path": "results/configs/v2_auxiliary_config.json",
+      "sha256": "04fd322ba365b394751e4f60163ebea4b2164ff6fe699d7d2c2cc052eaae8ad2",
+      "bytes": 1297
+    },
+    {
+      "path": "results/configs/reliability_final_config.json",
+      "sha256": "a093f5a436f0a4737a7d7f4092383e64ca0a9f64e54adc4f0f41473da4a8e71b",
+      "bytes": 1412
+    },
+    {
+      "path": "src/reliability.py",
+      "sha256": "909fd117453e66a6a034c230a8de47ee63f6d8623836e642c3788fe675931f26",
+      "bytes": 46835
+    },
+    {
+      "path": "src/lstm_model.py",
+      "sha256": "88f1a38c885572414b7f3077e6137285941f635df835e059b0c61f4dfdcd4ec2",
+      "bytes": 1988
+    },
+    {
+      "path": "src/auxiliary_sensor_model.py",
+      "sha256": "e2a1cdba68fe97630b882c2a36dd8b21077d64705b5f5d3db56bb1efa5387bae",
+      "bytes": 10167
+    },
+    {
+      "path": "src/mpc.py",
+      "sha256": "9c11a8e18c65c5dbd66bde6150cbb0904fcdf9468a6c9097b6c0922482fe0786",
+      "bytes": 19535
+    },
+    {
+      "path": "src/motor_model.py",
+      "sha256": "3c7b4d955fa0db79dced95e222aa3533206ccc843c9d07235a4eb43ce5c119e8",
+      "bytes": 3612
+    },
+    {
+      "path": "notebooks/04c_reliability_finalization.ipynb",
+      "sha256": "82253ac4cb2a068fab42fc381015af1ac2bb4919babec36af790c0896ca2469e",
+      "bytes": 100197
+    }
+  ]
+}

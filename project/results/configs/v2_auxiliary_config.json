@@ -1,0 +1,57 @@
+{
+  "model": {
+    "input_size": 2,
+    "hidden_size": 32,
+    "num_layers": 1,
+    "dropout": 0.0,
+    "output_size": 1
+  },
+  "training": {
+    "batch_size": 512,
+    "learning_rate": 0.001,
+    "max_epochs": 100,
+    "patience": 10,
+    "min_delta": 1e-06,
+    "seed": 2026,
+    "best_epoch": 17
+  },
+  "window_length": 20,
+  "features": [
+    "voltage",
+    "current"
+  ],
+  "target": "y_true",
+  "calibration": {
+    "residual_mean": -0.41037859404574945,
+    "residual_std": 2.680236933678553,
+    "abs_residual_mean": 2.109867248017879,
+    "abs_residual_median": 1.7191013057815105,
+    "thresholds": {
+      "p90.0": 4.351405947406754,
+      "p95.0": 5.305743895457982,
+      "p97.5": 7.2127913943469935,
+      "p99.0": 8.264497194577983,
+      "p99.5": 8.68562186993538,
+      "p99.9": 9.047692459184507
+    },
+    "recommended_recovery_gate": 9.047692459184507,
+    "calibration_source": "clean validation data only",
+    "num_samples": 7086
+  },
+  "normalization": {
+    "input_mean": [
+      5.966879126899837,
+      1.4980793542251223
+    ],
+    "input_std": [
+      3.7230753645850108,
+      1.2906725047980379
+    ],
+    "target_mean": [
+      30.00111412449199
+    ],
+    "target_std": [
+      13.384715185057466
+    ]
+  }
+}

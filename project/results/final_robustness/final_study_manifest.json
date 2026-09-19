@@ -1,0 +1,95 @@
+{
+  "study": "final_robustness_hardening",
+  "status": "frozen_at_closeout",
+  "frozen_at_utc": "2026-09-18T10:00:06.236987+00:00",
+  "artifact_count": 21,
+  "frozen_artifacts": {
+    "results/final_robustness/final_robustness_runs.csv": {
+      "sha256": "f2e38eae74ebaa02de0f40d7ab7f1ee4f54aeb892109d3a0a4e01d4fcaacde2c",
+      "bytes": 1388608
+    },
+    "results/final_robustness/variance_decomposition.csv": {
+      "sha256": "8bd6fc17816ba971c7ef728173ff6f8c815771fb874cd0c45bce800c8c6c8820",
+      "bytes": 4577
+    },
+    "results/final_robustness/variance_bootstrap.csv": {
+      "sha256": "c08a725a0450b5fc595891793b48f76c71c15456c6e2853223c35194d29f74fd",
+      "bytes": 905
+    },
+    "results/final_robustness/variance_decomposition_summary.json": {
+      "sha256": "ee0be61f9b83b1100f18b28e46f97717f2cc5c7e2e6ae7c93afd60f992a358a8",
+      "bytes": 20340
+    },
+    "results/final_robustness/severity_paired_points.csv": {
+      "sha256": "28135da4947c8a2c2901db3e83e1fe9d44f5928059f5d3464de5c92d8432a8b0",
+      "bytes": 78838
+    },
+    "results/final_robustness/severity_training_seed_means.csv": {
+      "sha256": "a09141ed17a52bbbb8d11aff88d83be7fc31a387b4a92afc89f2e3fd65c7fb40",
+      "bytes": 14459
+    },
+    "results/final_robustness/detection_wilson_intervals.csv": {
+      "sha256": "654fb235102319079e6542bfc5439ee28c8eab50b523d0dcb469305171f70add",
+      "bytes": 9069
+    },
+    "results/final_robustness/severity_hierarchical_bootstrap.csv": {
+      "sha256": "538925bb3c502c68665bc7e4dba749affd4027030e05160f58dd225fa70983d3",
+      "bytes": 3218
+    },
+    "results/final_robustness/source_recovery_summary.csv": {
+      "sha256": "b20a522f032abacbcb6f8ab62ee63795897b94c827a2c8cc8d37ca2d524a9786",
+      "bytes": 12703
+    },
+    "results/final_robustness/load_false_entry_summary.csv": {
+      "sha256": "34c61c6c843c06480c6aee503894d11d53ba2c097df08476be1729219c2321d6",
+      "bytes": 3662
+    },
+    "results/final_robustness/current_sensor_paired_points.csv": {
+      "sha256": "0497d9f5b9a1f7cb93c0920efe8f43c0ce9df5a74ab2a85bc0e19924e6e74b00",
+      "bytes": 13643
+    },
+    "results/final_robustness/current_sensor_summary.csv": {
+      "sha256": "f775c2bed876d2bc94030dfb03f6636a6571589b40ca92a97e7476f3ebef7194",
+      "bytes": 7467
+    },
+    "results/final_robustness/current_sensor_hierarchical_bootstrap.csv": {
+      "sha256": "19f2293e1f6063af3e7392aac3d71c6d1db4ae28b94c76291961cbdc214129b6",
+      "bytes": 1025
+    },
+    "results/final_robustness/combined_grid_effects.csv": {
+      "sha256": "c3160c55832dd1192f71351d13134660b3c522fa362eee578ee3fc5320a484f4",
+      "bytes": 2836
+    },
+    "results/final_robustness/part_b_safety_summary.csv": {
+      "sha256": "8bc83ba986d17c31b796ff3b755bee6b7c4fad06829e75edfd039e7567f2a111",
+      "bytes": 400
+    },
+    "results/final_robustness/operating_envelope_classification.csv": {
+      "sha256": "b0909fbfc40c15a81ea511db2dda5ebc9be2e55db079186fe6d2f1b5cc2fb21b",
+      "bytes": 9678
+    },
+    "results/final_robustness/part_b_analysis_summary.json": {
+      "sha256": "a4fb963b60d30d0ceb10ca27239780857c310ecccdffcc1c6cf5b2ffb766b3d9",
+      "bytes": 180207
+    },
+    "results/final_robustness/final_robustness_evaluation_manifest.json": {
+      "sha256": "36e8e44eae09ddc6a135b15e30cbb9e7ae037f1ad350409705c6e632747119c3",
+      "bytes": 14358
+    },
+    "results/final_robustness/final_closeout.json": {
+      "sha256": "5ea017ce3a83ad51b73555dc532cb26fdc2190de9689ab0e6aa7dc89711cf862",
+      "bytes": 8280
+    },
+    "FINAL_ROBUSTNESS_AND_SEVERITY_STUDY.md": {
+      "sha256": "e4aa5552d27e71287072502c50a096ab56daf98b89f6a6c8c8521d7aefe4172d",
+      "bytes": 25962
+    },
+    "scripts/verify_final_robustness_study.py": {
+      "sha256": "25a7f57a7fe3223c4feff43931df4cafef345f5f2f0f874f1553d66c67cce8e3",
+      "bytes": 97530
+    }
+  },
+  "notes": [
+    "New-study artifacts only. Historical V3/C4/EKF/training-seed manifests untouched."
+  ]
+}

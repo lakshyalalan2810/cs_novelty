@@ -1,0 +1,9 @@
+{
+  "forced_consecutive_updates": 10,
+  "max_abs_speed_rad_s": 38.975633886101754,
+  "voltage_violations": 0,
+  "slew_violations": 0,
+  "mpc_resumed": true,
+  "resume_voltage_jump_v": 0.09368141295504806,
+  "resume_slew_limit_v": 2.0
+}

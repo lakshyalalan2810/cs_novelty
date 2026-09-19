@@ -1,0 +1,99 @@
+{
+  "best_epoch": 16,
+  "best_validation_loss_normalized": 0.040239149638052495,
+  "model_params": 4641,
+  "per_trajectory_test": [
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869,
+      "mae": 4.685281675009279,
+      "rmse": 5.640258273519498,
+      "run_id": 8
+    },
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.06000000238418579,
+      "mae": 0.9666729352415668,
+      "rmse": 1.1195313853031497,
+      "run_id": 15
+    },
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869,
+      "mae": 3.490988314000355,
+      "rmse": 3.9324054689477865,
+      "run_id": 17
+    },
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869,
+      "mae": 2.3872787166389995,
+      "rmse": 2.8842455182505566,
+      "run_id": 22
+    },
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869,
+      "mae": 0.7112583810878345,
+      "rmse": 0.8578717647220457,
+      "run_id": 25
+    },
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869,
+      "mae": 3.0096844130910925,
+      "rmse": 3.582559817420215,
+      "run_id": 28
+    }
+  ],
+  "per_trajectory_val": [
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869,
+      "mae": 4.0138041890343805,
+      "rmse": 4.495312668470718,
+      "run_id": 3
+    },
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869,
+      "mae": 1.6793225435295618,
+      "rmse": 1.9678447227597704,
+      "run_id": 9
+    },
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869,
+      "mae": 2.677098148763432,
+      "rmse": 2.903248943582806,
+      "run_id": 11
+    },
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869,
+      "mae": 2.082282232592209,
+      "rmse": 2.628719734353766,
+      "run_id": 16
+    },
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.09000000357627869,
+      "mae": 1.400663289551408,
+      "rmse": 1.6382480137213342,
+      "run_id": 19
+    },
+    {
+      "has_load_change": true,
+      "load_torque_range": 0.05999999865889549,
+      "mae": 0.9747309604542177,
+      "rmse": 1.246316522464128,
+      "run_id": 23
+    }
+  ],
+  "test_mae": 2.541860739178188,
+  "test_r2": 0.9445295009392493,
+  "test_rmse": 3.425863095789247,
+  "test_samples": 7086,
+  "training_runtime_seconds": 29.85476349999999,
+  "training_seed": 2028
+}
