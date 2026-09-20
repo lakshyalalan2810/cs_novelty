@@ -12,23 +12,74 @@
 \maketitle
 
 \begin{abstract}
-TODO: 150--200 words. Frame as a rigorous evaluation of learned
-residual-based sensor-fault tolerance for LSTM model-predictive control
-of a DC motor: frozen evidence, a post-hoc startup-latch decomposition,
-detector fixes (CUSUM anti-windup, warm-up gating, independent-witness
-AND rule, bounded recovery), classical baselines with their own
-detectors, and a preregistered confirmatory study on fresh seeds. No
-claim of general superiority; negative results are retained.
+Speed-sensor faults degrade closed-loop LSTM model-predictive control
+of a permanent-magnet DC motor by corrupting the feedback signal.
+This paper evaluates a reliability-aware architecture in which learned
+residuals gate feedback substitution, cross-checked by two independent
+witnesses, an auxiliary current-fed LSTM and an extended Kalman filter,
+neither of which consumes measured speed. The frozen V3 detector reduced
+fault-window RMSE by 87.2--98.2\% on abrupt bias and dropout faults
+relative to the unprotected baseline, conditional on a clean start, but
+provided zero benefit on drift and degraded load-disturbance tracking by
+171\%. A post-hoc decomposition showed the frozen detector's apparent
+detection gap was dominated by startup false latching rather than missed
+faults: conditional on a clean start, bias detection reached 100\% across
+three training seeds. V4 introduces a CUSUM anti-windup clamp, startup
+warmup gating, a witness-agreement AND rule, and bounded recovery
+discharge. Efficacy is tested in a preregistered confirmatory study with
+nine Holm-corrected hypotheses on fresh seeds. [PENDING: V4 confirmatory]
+Confirmatory results will determine whether V4 reduces false latching and
+preserves detection. [PENDING: V4 confirmatory]
 \end{abstract}
 
 \section{Introduction}
 \label{sec:intro}
-TODO: problem (speed-sensor faults under MPC), why learned residuals,
-the startup-latch confound found post-hoc, contributions:
-(1)~decomposition separating false latch from missed detection;
-(2)~V4 detector variants with frozen-compatible defaults;
-(3)~classical baselines with independent detectors;
-(4)~preregistered confirmatory protocol on fresh seeds/blocks.
+
+Speed-sensor faults corrupt the feedback path of closed-loop motor drives.
+Model predictive control (MPC)~\cite{Mayne2000} with learned LSTM
+dynamics~\cite{Hochreiter1997,Zarzycki2022} is particularly exposed: a
+biased or frozen speed measurement propagates through both the state
+estimate and the receding-horizon optimization. Learned residuals offer a
+detection signal, but a residual is only useful if its detector separates
+true faults from transients.
+
+We evaluated a frozen V3 detector combining an instant residual gate with a
+CUSUM test~\cite{Page1954} over 275 closed-loop runs (5 controllers
+$\times$ 11 scenarios $\times$ 5 seeds, 29026--29030). On abrupt faults
+the protected controller (C3) reduced fault-window RMSE relative to the
+unprotected baseline (B) by 95.4\% (bias 15), 87.2\% (bias 5), 98.2\%
+(dropout), and 42.6\% (noise); drift showed zero benefit (5.305 vs.\ 5.305
+rad/s), combined fault-plus-load improved 8.75\%, parameter variation was
+neutral (0.670 vs.\ 0.669~rad/s), and nominal, step, and changing
+references showed no degradation. Load disturbance alone degraded tracking
+171\% under C3 relative to B (2.539 vs.\ 0.937~rad/s). No optimizer
+failure, voltage, slew, or nonfinite event occurred in any run. A post-hoc
+decomposition (Table~\ref{tab:posthoc}) showed the apparent detection gap
+was dominated by startup false latches (clustered below 1.2~s;
+per-training-seed false-latch rates 0.20, 0.68, and 0.00) rather than
+missed faults: conditional on a clean start, C3 detected bias and combined
+fault-plus-load faults at 100\% across all three training seeds, while
+drift detection stayed at 0.091--0.182.
+
+\begin{enumerate}
+\item Post-hoc decomposition separating false latching from missed
+detection in the frozen V3 detector.
+\item V4 detector variants (CUSUM anti-windup clamp k=2.0, 150-sample
+warmup gating, witness AND-rule, bounded recovery discharge) with a
+factorial ablation.
+\item Classical baselines E2 (EKF+CUSUM), S1 (fixed gate), S2
+(median/rate plausibility), S3 (Luenberger+CUSUM), each with its own
+independent detector and substitution source---none reading measured speed
+during substitution.
+\item Preregistered confirmatory protocol with 9 hypotheses, Holm
+correction, and clean-start pair-exclusion rule.
+\end{enumerate}
+
+Whether the V4 variants reduce false latching and preserve detection on
+fresh seeds is tested by the preregistered confirmatory study. [PENDING: V4
+confirmatory] This paper does not claim general superiority; negative
+results (drift, load disturbance, training-seed sensitivity) are retained
+verbatim.
 
 \section{Related Work}
 \label{sec:related}
@@ -43,7 +94,31 @@ sensor fault detection survey).
 \label{sec:method}
 
 \subsection{Plant and control law}
-TODO: DC-motor model, frozen LSTM-MPC configuration, PI fallback.
+\label{sec:plant}
+
+The plant is a permanent-magnet DC motor with states armature current $i$
+and angular speed $\omega$:
+\begin{equation}
+\label{eq:current}
+L\frac{di}{dt} = V - Ri - K_b\omega,
+\end{equation}
+\begin{equation}
+\label{eq:speed}
+J\frac{d\omega}{dt} = K_t i - B\omega - T_f(\omega) - T_L,
+\end{equation}
+with $R=2~\Omega$, $L=0.5$~H, $K_b=K_t=0.1$,
+$J=0.01$~kg$\cdot$m$^2$, $B=0.002$, Coulomb torque $0.02$~N$\cdot$m
+smoothed via $\tanh$, and load torque $T_L$. Integration uses RK4 at a
+10~ms plant timestep; the controller issues a new voltage every 50~ms (5
+plant steps).
+
+The controller is an SLSQP-based MPC~\cite{Mayne2000} with horizon $H=20$,
+move blocks $(5,15)$ giving $N_c=2$ free moves, voltage limits 0--12~V, a
+maximum step of 2~V per interval, \texttt{maxiter}=8, and warm start
+enabled. Adaptation regions rescale the horizon and step limit: LOW
+($H=20$, 2~V), MEDIUM ($H=20$, 1.5~V), HIGH ($H=15$, 1~V). On the reference
+machine, measured solve times averaged 68~ms (median 60.6~ms, p95
+135.8~ms, max 666.9~ms); 41.6\% of solves met the 50~ms target.
 
 \begin{figure*}[t]
 \centering
@@ -57,9 +132,44 @@ suspect. No ground-truth signal enters the online path.}
 \label{fig:architecture}
 \end{figure*}
 
-\subsection{Frozen detector and its failure modes}
-TODO: CUSUM structure, startup false-latching (Fig.~\ref{fig:timeline}),
-unbounded discharge, load-induced false entry.
+\subsection{Learned predictors}
+\label{sec:predictors}
+
+The main predictor is a 2-layer residual LSTM~\cite{Hochreiter1997} with
+hidden size 64, dropout 0.2, and 50{,}753 parameters. Its input is a
+20-step window of $[\text{voltage}, \text{measured speed}]$. On held-out
+test data it achieved RMSE 0.1409~rad/s, MAE 0.1131~rad/s, and $R^2 =
+0.9999$. Recursive open-loop rollout error grew with horizon: RMSE
+0.211~rad/s at $H=5$, 0.336~rad/s at $H=10$, and 0.488~rad/s at $H=15$.
+The network supplies multi-step speed predictions to the MPC, an LSTM-MPC
+arrangement consistent with trajectory-linearization
+practice~\cite{Zarzycki2022}.
+
+The auxiliary predictor is a 1-layer LSTM with hidden size 32 and
+4{,}641 parameters. Its input is a 20-step window of $[\text{voltage},
+\text{armature current}]$ with no speed-sensor input, so its estimates
+remain independent of speed-sensor corruption by construction. On clean
+test data it achieved RMSE 3.44~rad/s.
+
+\subsection{Frozen V3 detector}
+\label{sec:v3detector}
+
+The frozen V3 monitor tests the main residual $e_m = y_{\text{meas}} -
+\hat{\omega}_{\text{main}}$ with two parallel rules. The instant rule flags
+$|e_m|$ above a gate of 0.9372~rad/s, the 99.9th percentile of
+clean-validation residuals. The CUSUM rule~\cite{Page1954} accumulates
+two-sided deviations about center $-0.0094$ with allowance 0.1404 against
+threshold 1.5697. Entry requires 3 consecutive flagged samples; exit
+requires 5 consecutive clean samples. Recovery requires both $|e_m|$ within
+the gate and the CUSUM score within threshold, and the CUSUM accumulators
+reset only after confirmed full recovery. Post-hoc analysis traced the
+dominant failure mode to startup false latching
+(Fig.~\ref{fig:timeline}).
+
+The feedback selector follows the hierarchy PHYSICAL $\to$ MAIN\_VIRTUAL
+$\to$ AUX\_VIRTUAL $\to$ FALLBACK: measured speed while healthy, the main
+LSTM estimate while suspect, the auxiliary estimate if the main channel is
+unavailable, and a fallback law otherwise.
 
 \begin{figure}[t]
 \centering
@@ -72,20 +182,114 @@ entries. Dashed lines: fault onsets.}
 \end{figure}
 
 \subsection{V4 detector variants}
-TODO: anti-windup clamp, warm-up gating, witness AND rule, bounded
-recovery; factorial ablation; frozen-compatible defaults.
+\label{sec:v4}
+
+The V4 monitor (Fig.~\ref{fig:architecture}) implements four fixes to the
+frozen design: (i) a CUSUM anti-windup clamp with $k=2.0$ bounding score
+accumulation; (ii) startup warmup gating that suppresses entries during the
+first 150 samples; (iii) a witness AND-rule requiring both main-residual
+evidence and witness-agreement evidence before entry; and (iv) bounded
+recovery that confines the post-fault discharge transient to a configurable
+window. The ablation studies five configurations: full, clamp-only,
+gating-only, clamp-plus-gating, and witness-only. The two primary
+confirmatory controllers are V4\_full\_aux (auxiliary-LSTM witness) and
+V4\_full\_ekf (EKF witness). Whether these variants reduce false latching
+and preserve detection relative to C3 is tested by the preregistered
+confirmatory study. [PENDING: V4 confirmatory]
+
+A three-way consistency attributor (C4) was implemented and calibrated
+during development; it returned output numerically identical to C3 across
+all 105 paired development runs, produced zero
+LIKELY\_PLANT\_OR\_MAIN\_MISMATCH states, and was gated NO\_GO with seeds
+39026--39030 untouched.
 
 \subsection{Classical baselines}
-TODO: E2 (EKF+CUSUM), S1 (fixed gate), S2 (median/rate plausibility),
-S3 (Luenberger+CUSUM), each with its own detector and substitution.
+\label{sec:baselines}
+
+E2 is an EKF over the augmented state $[i,\omega,T_L]$ with $T_L$ modeled
+as a random walk. It consumes voltage and armature current only, runs a
+CUSUM test~\cite{Page1954} on the EKF innovation, and substitutes the EKF
+speed estimate while suspect. The filter uses fixed nominal motor
+parameters. S1 applies a fixed plausibility gate to $|y_{\text{meas}} -
+\hat{\omega}_{\text{EKF}}|$. S2 is a model-free median/rate plausibility
+check substituting the median speed. S3 combines a back-EMF Luenberger
+observer with a CUSUM test and observer-estimate substitution, following
+standard observer-based fault-diagnosis practice (TODO:cite---Luenberger/EKF
+fault-detection survey). Each baseline carries its own independent detector
+and substitution source. None of E2/S1/S2/S3 reads measured speed during
+substitution; all use the same physical current and voltage inputs as the
+auxiliary LSTM.
+
+During development, E2 recorded fault-window RMSE 0.283~rad/s on bias-5 and
+dropout faults, versus 0.371~rad/s for C3 and 2.908~rad/s for B on bias-5,
+but degraded to 2.971~rad/s under R+30\% parameter variation because the
+filter retains fixed nominal parameters (the parameter-transfer estimator
+reached 10.69~rad/s); E2 was assigned role gate BASELINE\_ONLY after it
+failed paired improvement on combined fault-plus-load in 0/5 seeds.
 
 \section{Experimental Protocol}
 \label{sec:protocol}
-TODO: V4 dataset (closed-loop + startup-rich, seed 62026), 11 training
-seeds, frozen calibration procedures with bootstrap uncertainty,
-preregistered seed blocks, confirmatory hypotheses H1--H9 with Holm
-correction, clean-start pair-exclusion rule, intention-to-treat tracking
-endpoints. Full preregistration: \texttt{V4\_PREREGISTRATION.md}.
+
+\subsection{Dataset and training}
+\label{sec:dataset}
+
+Training data comprise 120 startup-rich trajectories (startup-from-rest,
+closed-loop MPC, closed-loop PI, open-loop multisine, open random-step)
+generated under seed 62026 and split 72/24/24 into training, validation,
+and test sets. Training uses eleven training seeds (2026--2036).
+Normalization statistics come from training windows only. The main and
+auxiliary networks each train for at most 200 epochs.
+
+\subsection{Calibration}
+\label{sec:calibration}
+
+CUSUM thresholds use a frozen p99.9 grid search with auxiliary/witness
+gates; uncertainty comes from a 1000-trajectory bootstrap. Calibration runs
+under seed $20260920+\text{training\_seed}$; baseline calibration uses seed
+20260921. No test trajectory, fault scenario, or closed-loop result entered
+calibration.
+
+\subsection{Confirmatory hypotheses}
+\label{sec:hypotheses}
+
+Nine preregistered hypotheses (family $\alpha=0.05$, Holm step-down)
+govern the confirmatory study; the full protocol is in
+\texttt{V4\_PREREGISTRATION.md}. The study planned approximately
+268{,}910 confirmatory runs and was preregistered before any confirmatory
+seed was executed.
+\begin{enumerate}
+\item[H1.] V4\_full\_aux false-latch probability is lower than C3 on
+fault-free pairs.
+\item[H2.] V4\_full\_ekf false-latch probability is lower than C3 on
+fault-free pairs.
+\item[H3.] V4\_full\_aux detection probability exceeds C3 at bias $2\sigma$
+on clean-start pairs.
+\item[H4.] V4\_full\_ekf detection probability exceeds C3 at bias $2\sigma$
+on clean-start pairs.
+\item[H5.] V4\_full\_aux recovery probability exceeds C3 at bias $8\sigma$
+on clean-start pairs.
+\item[H6.] V4\_full\_aux fault-window RMSE is lower than B at bias $8\sigma$
+(intention-to-treat).
+\item[H7.] The V4\_full\_aux tracking penalty versus B is smaller than the
+C3 penalty versus B (intention-to-treat).
+\item[H8.] V4\_full\_aux load false-entry probability is lower than C3 at
+0.15~N$\cdot$m.
+\item[H9.] V4\_full\_ekf load false-entry probability is lower than C3 at
+0.15~N$\cdot$m.
+\end{enumerate}
+Paired comparisons share $(\text{training\_seed}, \text{sim\_seed})$ pairs.
+For conditional endpoints (H3--H5, H8--H9), pairs in which either controller
+pre-latched are excluded (clean-start pair-exclusion rule); H6--H7 use
+intention-to-treat with no exclusion.
+
+\subsection{Evaluation seeds}
+\label{sec:seeds}
+
+Confirmatory seeds occupy fresh blocks: 71000--71999 for fault-free runs
+(200 seeds), 72000--72049 for the magnitude sweep, and a 100-seed recovery
+block. These blocks are distinct from all development blocks used in prior
+V3/C4 studies. Confirmatory analysis runs in
+\texttt{v4\_confirm\_analysis.py} with Holm step-down correction.
 
 \section{Results}
 \label{sec:results}
