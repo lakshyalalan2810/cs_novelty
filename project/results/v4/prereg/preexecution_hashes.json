@@ -1,0 +1,27 @@
+{
+  "algorithm": "sha256",
+  "originally_frozen_before_confirmatory_execution": true,
+  "administratively_refrozen_before_clean_confirmatory_restart": true,
+  "administrative_refreeze_datetime": "2026-09-22T15:44:25+05:30",
+  "confirmatory_analysis_performed": false,
+  "aborted_execution_rows_discarded": 400,
+  "retained_confirmatory_rows_at_refreeze": 0,
+  "prior_manifest_sha256": "abf6ae5a492ea0d2544586e13f9c26703aaf7b8ab76efb2b10ce9e14ba791b1c",
+  "original_plan_sha256": "7e409aef24c1472382b19964927c878f1daf44f1564d23b6ef1e10f07c35b75f",
+  "refrozen_plan_sha256": "fb3e2e614b2b35dd3ae66be3c821d389b59573291140ab2a2f906a2912166ae5",
+  "files": {
+    "V4_EXECUTION_PLAN_REFREEZE_NOTE.md": "170038598acdcce2a29e2d7b98da71e1e734090a9263386daac304ef83582006",
+    "V4_PREEXECUTION_AMENDMENT.md": "9083c79b395d8d5f87bd4569f91b42b3cf1d5d11d0d619db86a89d7e40a013a2",
+    "results/v4/prereg/h1_h9_execution_plan.json": "fb3e2e614b2b35dd3ae66be3c821d389b59573291140ab2a2f906a2912166ae5",
+    "scripts/v4_confirm_analysis.py": "f5a5bea644d7a5a5a865bc378783f826706f8ac7af8a4c09516f4b0dd7f7da64",
+    "scripts/v4_protocol_core.py": "f7ee31ae6f266aacf6a7ecc28de9e6ef2cfaac8417bbdf4e1b909b9d1632a07f",
+    "scripts/v4_protocol_common.py": "48cd07c298c47f9d6172273e71ab85d10ac931cea9b6301d78eb22814b15fd54",
+    "V4_PREREGISTRATION.md": "fdd312bc8504da4d4a6125dedc22b0bcc88b3d690b122511fb8b940a1baadfe1",
+    "results/v4/models/training_summary.json": "b649d4f3537b5b89b1f4167890b58a6ca9400f837d65906f85590254bac673fb",
+    "results/v4/calibration/calibration_summary.json": "c5fc09d3a1365d4e4058a5b2d0139863c434269f65a873defee2b523f2a75229",
+    "results/v4/calibration/baselines_v4_calibration.json": "2ea8e8f986b6bb376a1cff188afc8e520e25ecef47396a2e20697d8fe2f39020",
+    "data/processed/v4/dc_motor_v4_dataset_manifest.json": "41352529b5a98b028f177c62e741e83e3272478c9108feac63ca458ae07e90ba",
+    "data/processed/v4/dc_motor_v4_dataset.npz": "96f9187ca907d0bb524ad198dc618ea1dd9f079ee155821776f1bbdac0ea573f",
+    "results/v4/prereg/seed_manifest.json": "13f607fa71936de028105432c82bf673c9b43de1db2f5beb3ad6e1e803c7e28f"
+  }
+}

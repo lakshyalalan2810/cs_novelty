@@ -1,0 +1,32 @@
+{
+  "status": "repair_complete",
+  "reason": "V4_full_ekf called step() before initialize(); every affected 6 s cell recorded 581 observer failures",
+  "scientific_scope": "all and only 2700 planned V4_full_ekf cells",
+  "plan_sha256": "fb3e2e614b2b35dd3ae66be3c821d389b59573291140ab2a2f906a2912166ae5",
+  "old_checkpoint_provenance": "7979c98f08431d51c9828bc282f706893abee75de16dc9483d948c16e6a8eed1",
+  "new_checkpoint_provenance": "39f1f08802baea34024ad3a323ae0b4a0c4095f13eb8a8e4752906073d2e6a50",
+  "pre_repair_source_sha256": "4b5300863afeecceef378307ab30ab43cf223fb97ad48192a538c13b94713de2",
+  "repaired_source_sha256": "9545883fc071ff420ed6667906ac31ebeba5c3fc1e337b61c7044f7df6b7ca20",
+  "target_counts": {
+    "faultfree": 2400,
+    "sweep": 300
+  },
+  "pre_repair_artifact_hashes": {
+    "results/v4/faultfree/runs.csv": "f057644bb9a9138069790de2612d868dd26b64a6720f52bd1c42eebbadfa55e0",
+    "results/v4/faultfree/events.csv": "53634819943b1112bfa2cad7763a06ab98e4817703937722554212bd93bea4ee",
+    "results/v4/faultfree/checkpoint.sqlite3": "a2f0fc3fa4efac00f9c7ae21c45e3cc936bc5c39c1ffe7b889047dc06ef85a47",
+    "results/v4/sweep/runs.csv": "c54aaf90b30896d28b29386cb1415238d8f2568d92b7f77d02b763d343a0d150",
+    "results/v4/sweep/events.csv": "e3fab5fb8ea3b37f46f9bab8679e40c2dfab081e629e4aa76b95e57eee7b81f4",
+    "results/v4/sweep/checkpoint.sqlite3": "063be30a99056c48e8c9f2770c822b3717f0b5ec79e7f488e076daa2b03bb7cd"
+  },
+  "started_utc": "2026-09-22T16:06:30.169928+00:00",
+  "completed_utc": "2026-09-22T17:10:00.291313+00:00",
+  "post_repair_artifact_hashes": {
+    "results/v4/faultfree/runs.csv": "d8fbc3d7a3098ad695a25d92b33dffc7ff10e06938c5de3c9746255a0b4570cd",
+    "results/v4/faultfree/events.csv": "50290c64bb73963f59bbec9bff40ac27ae759e21dcffe5a05edc92cb32203c94",
+    "results/v4/faultfree/checkpoint.sqlite3": "4d9ebdf3b8834ff63bda3d7ae74f645fa019ccf57ce5ade5c07f9f016638fd2e",
+    "results/v4/sweep/runs.csv": "8d63e71ec05263d649eefa70309ccaa808f98eea6b7dc7cd3b1bd9c51ce481d8",
+    "results/v4/sweep/events.csv": "d020f99fe4fdc7424cba3327402ef504e08e2da97e8774339e6c34d2d253a1b4",
+    "results/v4/sweep/checkpoint.sqlite3": "797e9d3e28a223df483b72ca99a73c4305c78e9889ce4ac7cabdb24560d717cd"
+  }
+}

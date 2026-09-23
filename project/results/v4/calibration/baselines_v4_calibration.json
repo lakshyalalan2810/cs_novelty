@@ -1,0 +1,157 @@
+{
+  "study": "v4_baseline_calibration",
+  "calibration_population": "V4 clean validation trajectories only",
+  "validation_run_ids": [
+    3,
+    11,
+    12,
+    13,
+    18,
+    20,
+    23,
+    27,
+    42,
+    44,
+    70,
+    72,
+    80,
+    81,
+    84,
+    88,
+    90,
+    92,
+    98,
+    106,
+    108,
+    114,
+    116,
+    118
+  ],
+  "e2_ekf_cusum": {
+    "center": -0.4441425095077278,
+    "allowance": 4.270947211648037,
+    "instant_threshold": 29.715850332086447,
+    "threshold": 13302.585694458448,
+    "cusum_percentile": 99.9,
+    "calibration_grid": [
+      {
+        "percentile": 90.0,
+        "cusum_threshold": 5639.993034992396,
+        "validation_false_alarm_rate": 0.10069150437482359
+      },
+      {
+        "percentile": 95.0,
+        "cusum_threshold": 7903.1947472980555,
+        "validation_false_alarm_rate": 0.05083968388371437
+      },
+      {
+        "percentile": 97.5,
+        "cusum_threshold": 10150.438993910928,
+        "validation_false_alarm_rate": 0.02589613322043466
+      },
+      {
+        "percentile": 99.0,
+        "cusum_threshold": 11558.539607039178,
+        "validation_false_alarm_rate": 0.01090177815410669
+      },
+      {
+        "percentile": 99.5,
+        "cusum_threshold": 12046.981640431506,
+        "validation_false_alarm_rate": 0.005962461191081005
+      },
+      {
+        "percentile": 99.9,
+        "cusum_threshold": 13302.585694458448,
+        "validation_false_alarm_rate": 0.002046288456110641
+      }
+    ]
+  },
+  "s1_fixed_gate": {
+    "gate": 29.715850332086447,
+    "enter_count": 3,
+    "exit_count": 5
+  },
+  "s2_plausibility": {
+    "window": 20,
+    "median_gate": 7.586407429695501,
+    "rate_limit": 122.08893079757691,
+    "dt": 0.01
+  },
+  "s3_luenberger_cusum": {
+    "center": -0.447602478514181,
+    "allowance": 3.610652988643733,
+    "instant_threshold": 26.42979482496342,
+    "threshold": 8762.383055462917,
+    "cusum_percentile": 99.9,
+    "calibration_grid": [
+      {
+        "percentile": 90.0,
+        "cusum_threshold": 4388.488671465713,
+        "validation_false_alarm_rate": 0.10047182903136276
+      },
+      {
+        "percentile": 95.0,
+        "cusum_threshold": 5910.779573862412,
+        "validation_false_alarm_rate": 0.05075631418262559
+      },
+      {
+        "percentile": 97.5,
+        "cusum_threshold": 7286.216801103424,
+        "validation_false_alarm_rate": 0.025811823480432972
+      },
+      {
+        "percentile": 99.0,
+        "cusum_threshold": 8099.611997939831,
+        "validation_false_alarm_rate": 0.010893699694698862
+      },
+      {
+        "percentile": 99.5,
+        "cusum_threshold": 8416.15398474579,
+        "validation_false_alarm_rate": 0.005897862892034416
+      },
+      {
+        "percentile": 99.9,
+        "cusum_threshold": 8762.383055462917,
+        "validation_false_alarm_rate": 0.0019428254232583958
+      }
+    ]
+  },
+  "bootstrap_uncertainty": {
+    "e2_threshold": {
+      "mean": 12645.7662656727,
+      "std": 1252.4952498872099,
+      "ci_lo": 7867.943852796857,
+      "ci_hi": 13534.246843892428,
+      "replicates": 1000
+    },
+    "s1_gate": {
+      "mean": 27.911954852325252,
+      "std": 3.864917757098956,
+      "ci_lo": 20.4502752425338,
+      "ci_hi": 32.23063702614275,
+      "replicates": 1000
+    },
+    "s2_median_gate": {
+      "mean": 7.12197475261894,
+      "std": 1.0150952687468788,
+      "ci_lo": 4.799253532195095,
+      "ci_hi": 8.303935050964355,
+      "replicates": 1000
+    },
+    "s2_rate_limit": {
+      "mean": 122.12241172657092,
+      "std": 1.607291184402876,
+      "ci_lo": 119.59578938961117,
+      "ci_hi": 125.14457702636719,
+      "replicates": 1000
+    },
+    "s3_threshold": {
+      "mean": 8662.676882423133,
+      "std": 336.4075195083712,
+      "ci_lo": 7662.41207879526,
+      "ci_hi": 8867.683304137525,
+      "replicates": 1000
+    }
+  },
+  "no_fault_data_statement": "Baseline detectors use only clean, fault-free V4 validation trajectories (plus the frozen EKF calibration); no test trajectories, fault scenarios, or closed-loop results."
+}

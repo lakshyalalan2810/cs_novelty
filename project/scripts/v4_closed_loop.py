@@ -490,7 +490,7 @@ def run_v4_cell(config: RunConfig) -> tuple[dict, list[dict], dict | None]:
             else:
                 observer_started = perf_counter()
                 try:
-                    if i == 0:
+                    if not stack.witness_ekf.initialized:
                         witness_state = stack.witness_ekf.initialize(
                             current_val)
                     else:

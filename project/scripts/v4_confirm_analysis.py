@@ -27,7 +27,11 @@ from v4_analysis import (  # noqa: E402
     holm,
     wilson_ci,
 )
-from v4_protocol_common import FAULTFREE_SEEDS, SEVERITY_SEEDS  # noqa: E402
+from v4_protocol_common import (  # noqa: E402
+    C3_LEGACY_SEEDS,
+    FAULTFREE_SEEDS,
+    SEVERITY_SEEDS,
+)
 
 RESULTS = PROJECT / "results" / "v4"
 OUT_DIR = RESULTS / "confirmatory"
@@ -120,6 +124,23 @@ def paired_clean_deltas(frame: pd.DataFrame, left: str, right: str,
     return result
 
 
+def c3_comparison_population(frame: pd.DataFrame,
+                             controllers: tuple[str, ...]) -> pd.DataFrame:
+    """Restrict direct C3 comparisons to the frozen common seed population."""
+    compared = frame[frame["controller"].isin(controllers)]
+    expected = set(C3_LEGACY_SEEDS)
+    available = {
+        controller: set(compared.loc[compared["controller"] == controller,
+                                     "training_seed"].astype(int))
+        for controller in controllers
+    }
+    common = set.intersection(*(seeds for seeds in available.values()))
+    if common != expected:
+        fail(f"C3 comparison seed intersection is {sorted(common)}, "
+             f"expected {sorted(expected)}; availability={available}")
+    return compared[compared["training_seed"].isin(C3_LEGACY_SEEDS)].copy()
+
+
 def hypothesis_frames(faultfree: pd.DataFrame, sweep: pd.DataFrame,
                       recovery: pd.DataFrame) -> dict[str, pd.DataFrame]:
     faultfree = faultfree.copy()
@@ -127,30 +148,37 @@ def hypothesis_frames(faultfree: pd.DataFrame, sweep: pd.DataFrame,
         faultfree["reliability_entries"] > 0).astype(float)
     out: dict[str, pd.DataFrame] = {}
     keys_ref = ["training_seed", "simulation_seed", "reference"]
-    out["H1"] = paired_deltas(faultfree, "C3", "V4_full_aux", "false_latch",
+    h1 = c3_comparison_population(faultfree, ("C3", "V4_full_aux"))
+    h2 = c3_comparison_population(faultfree, ("C3", "V4_full_ekf"))
+    out["H1"] = paired_deltas(h1, "C3", "V4_full_aux", "false_latch",
                               keys_ref)
-    out["H2"] = paired_deltas(faultfree, "C3", "V4_full_ekf", "false_latch",
+    out["H2"] = paired_deltas(h2, "C3", "V4_full_ekf", "false_latch",
                               keys_ref)
     sweep_bias2 = sweep[(sweep["fault_kind"] == "bias")
                         & (sweep["fault_magnitude_sigma"] == 2.0)].copy()
     sweep_bias2["detected"] = sweep_bias2["sensor_fault_detected"].astype(
         float)
     keys = ["training_seed", "simulation_seed"]
-    out["H3"] = paired_clean_deltas(sweep_bias2, "V4_full_aux", "C3",
+    h3 = c3_comparison_population(sweep_bias2, ("V4_full_aux", "C3"))
+    h4 = c3_comparison_population(sweep_bias2, ("V4_full_ekf", "C3"))
+    out["H3"] = paired_clean_deltas(h3, "V4_full_aux", "C3",
                                     "detected", keys)
-    out["H4"] = paired_clean_deltas(sweep_bias2, "V4_full_ekf", "C3",
+    out["H4"] = paired_clean_deltas(h4, "V4_full_ekf", "C3",
                                     "detected", keys)
     recovery_bias = recovery[
         (recovery["fault_kind"] == "bias")].copy()
     recovery_bias["recovered"] = (
         recovery_bias["recovery_latency_s"].notna()).astype(float)
-    out["H5"] = paired_clean_deltas(recovery_bias, "V4_full_aux", "C3",
+    h5 = c3_comparison_population(recovery_bias, ("V4_full_aux", "C3"))
+    out["H5"] = paired_clean_deltas(h5, "V4_full_aux", "C3",
                                     "recovered", keys)
     sweep_bias8 = sweep[(sweep["fault_kind"] == "bias")
                         & (sweep["fault_magnitude_sigma"] == 8.0)]
     out["H6"] = paired_deltas(sweep_bias8, "B", "V4_full_aux",
                               "fault_window_rmse", keys)
-    penalty = faultfree.pivot_table(
+    h7_population = c3_comparison_population(
+        faultfree, ("B", "C3", "V4_full_aux"))
+    penalty = h7_population.pivot_table(
         index=keys_ref, columns="controller", values="overall_rmse",
         aggfunc="first")
     for controller in ("B", "C3", "V4_full_aux"):
@@ -164,9 +192,11 @@ def hypothesis_frames(faultfree: pd.DataFrame, sweep: pd.DataFrame,
                        & (sweep["load_step_Nm"] == 0.15)].copy()
     sweep_load["false_entry"] = (
         sweep_load["post_event_reliability_entries"] > 0).astype(float)
-    out["H8"] = paired_clean_deltas(sweep_load, "C3", "V4_full_aux",
+    h8 = c3_comparison_population(sweep_load, ("C3", "V4_full_aux"))
+    h9 = c3_comparison_population(sweep_load, ("C3", "V4_full_ekf"))
+    out["H8"] = paired_clean_deltas(h8, "C3", "V4_full_aux",
                                     "false_entry", keys)
-    out["H9"] = paired_clean_deltas(sweep_load, "C3", "V4_full_ekf",
+    out["H9"] = paired_clean_deltas(h9, "C3", "V4_full_ekf",
                                     "false_entry", keys)
     return out
 

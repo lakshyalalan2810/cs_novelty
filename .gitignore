@@ -1,0 +1,12 @@
+/.pytest_cache/
+/__pycache__/
+*.py[cod]
+/.venv/
+/venv/
+/env/
+.DS_Store
+Thumbs.db
+desktop.ini
+.env
+.env.*
+!.env.example

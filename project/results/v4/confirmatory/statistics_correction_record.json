@@ -1,0 +1,139 @@
+{
+  "classification": "IMPLEMENTATION INCONSISTENCY / BUG",
+  "defect": "historical bootstrap resampled individual rows within training seed and did not use simulation_seed; this split four-reference simulation clusters in H1/H2/H7",
+  "corrected_method": "resample training seeds, then simulation seeds within each selected training seed, retaining all reference rows in each sampled cluster",
+  "impacted_hypotheses": [
+    "H1",
+    "H2",
+    "H7"
+  ],
+  "unaffected_hypotheses": [
+    "H3",
+    "H4",
+    "H5",
+    "H6",
+    "H8",
+    "H9"
+  ],
+  "scientific_simulations_rerun": 0,
+  "correction_source": {
+    "path": "scripts/v4_statistics_audit.py",
+    "sha256": "40839b57c75f059f4b97bb081e0ffdbbe793a7db2237b4db6143fce8c5ab7756"
+  },
+  "holm_survivors_before": [
+    "H8",
+    "H9"
+  ],
+  "holm_survivors_after": [
+    "H8",
+    "H9"
+  ],
+  "historical_artifacts": {
+    "hypothesis_table.csv": "5e2461380aae5f2b31440f013c128a29080475bfdcbf2dbd8e11fcb2f667f765",
+    "confirmatory_summary.json": "f108f327d2640390e6dcfeaebc12697e70e806f20579e2522f1edd69232f22a5",
+    "h1_h9_detailed_report.csv": "a9758642356937f9a31146e9bc81ae4b2cbb65b5a60aafbbb35ce6aaa64d68a7",
+    "independent_verification.json": "2b5433e77d5e396c65f9974dce4686861a3d3fb8de6bd7f9d23e88ff6fc8b8d3",
+    "final_summary.json": "68a1089054077381ee59dde7379297ba12da5effe89a6aeabb27096e32372ed6"
+  },
+  "corrected_artifacts": {
+    "hypothesis_table_corrected.csv": "d992473ce809f8736fa366e1e2b160b9f316f39d180391babcb1ad07f63d44f8",
+    "confirmatory_summary_corrected.json": "ed8d747fa90171ed9dfdb17ca3046811a7d80a0a44e7fc6c6e48ff0646c59381",
+    "final_summary_corrected.json": "00dc0814722f6ecdc9b97ca9bbab7031c86dc831629c1be6fe6f5c5f383a01ba",
+    "exclusion_audit.json": "093e6b38ef7e123c74b23af95af85cf58d5c642a2d27114d4472c2305c05209f"
+  },
+  "tail_hits": {
+    "H1": 627,
+    "H2": 659,
+    "H3": 125,
+    "H4": 109,
+    "H5": 20000,
+    "H6": 110,
+    "H7": 744,
+    "H8": 0,
+    "H9": 1
+  },
+  "p_value_resolution": 0.0001,
+  "holm_recomputation": [
+    {
+      "rank": 1,
+      "hypothesis": "H8",
+      "raw_p": 0.0,
+      "multiplier": 9,
+      "candidate_adjusted_p": 0.0,
+      "monotonic_adjusted_p": 0.0,
+      "reject": true
+    },
+    {
+      "rank": 2,
+      "hypothesis": "H9",
+      "raw_p": 0.0001,
+      "multiplier": 8,
+      "candidate_adjusted_p": 0.0008,
+      "monotonic_adjusted_p": 0.0008,
+      "reject": true
+    },
+    {
+      "rank": 3,
+      "hypothesis": "H4",
+      "raw_p": 0.0109,
+      "multiplier": 7,
+      "candidate_adjusted_p": 0.0763,
+      "monotonic_adjusted_p": 0.0763,
+      "reject": false
+    },
+    {
+      "rank": 4,
+      "hypothesis": "H6",
+      "raw_p": 0.011,
+      "multiplier": 6,
+      "candidate_adjusted_p": 0.066,
+      "monotonic_adjusted_p": 0.0763,
+      "reject": false
+    },
+    {
+      "rank": 5,
+      "hypothesis": "H3",
+      "raw_p": 0.0125,
+      "multiplier": 5,
+      "candidate_adjusted_p": 0.0625,
+      "monotonic_adjusted_p": 0.0763,
+      "reject": false
+    },
+    {
+      "rank": 6,
+      "hypothesis": "H1",
+      "raw_p": 0.0627,
+      "multiplier": 4,
+      "candidate_adjusted_p": 0.2508,
+      "monotonic_adjusted_p": 0.2508,
+      "reject": false
+    },
+    {
+      "rank": 7,
+      "hypothesis": "H2",
+      "raw_p": 0.0659,
+      "multiplier": 3,
+      "candidate_adjusted_p": 0.1977,
+      "monotonic_adjusted_p": 0.2508,
+      "reject": false
+    },
+    {
+      "rank": 8,
+      "hypothesis": "H7",
+      "raw_p": 0.0744,
+      "multiplier": 2,
+      "candidate_adjusted_p": 0.1488,
+      "monotonic_adjusted_p": 0.2508,
+      "reject": false
+    },
+    {
+      "rank": 9,
+      "hypothesis": "H5",
+      "raw_p": 1.0,
+      "multiplier": 1,
+      "candidate_adjusted_p": 1.0,
+      "monotonic_adjusted_p": 1.0,
+      "reject": false
+    }
+  ]
+}

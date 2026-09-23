@@ -1,0 +1,103 @@
+{
+  "manifest_version": 2,
+  "label": "V4 H1-H9 CONFIRMATORY RESULT FREEZE WITH STATISTICAL CORRECTION",
+  "status": "CORRECTED_AND_VERIFIED",
+  "administrative_provenance": {
+    "historical_original_plan_sha256": "7e409aef24c1472382b19964927c878f1daf44f1564d23b6ef1e10f07c35b75f",
+    "administratively_refrozen_plan_sha256": "fb3e2e614b2b35dd3ae66be3c821d389b59573291140ab2a2f906a2912166ae5",
+    "core_runner_sha256": "f7ee31ae6f266aacf6a7ecc28de9e6ef2cfaac8417bbdf4e1b909b9d1632a07f",
+    "refreeze_note_sha256": "170038598acdcce2a29e2d7b98da71e1e734090a9263386daac304ef83582006",
+    "preexecution_manifest_sha256": "d19370e61d36d70b9b94d6a196a423a7b1da9477fd21142b27ae08afe2b680a2",
+    "aborted_rows_discarded_before_confirmatory_analysis": 400,
+    "clean_restart_cells": 12200
+  },
+  "scope": {
+    "original_umbrella_cells": 268910,
+    "executed_h1_h9_core_cells": 12200,
+    "deferred_umbrella_cells": 257260,
+    "canonical_label": "H1-H9 CORE SUBSETS"
+  },
+  "integrity_repair": {
+    "reason": "V4_full_ekf witness observer was uninitialized in the completed offline outputs",
+    "affected_cells": 2700,
+    "unaffected_cells_not_rerun": 9500,
+    "original_checkpoint_provenance": "7979c98f08431d51c9828bc282f706893abee75de16dc9483d948c16e6a8eed1",
+    "repaired_checkpoint_provenance": "39f1f08802baea34024ad3a323ae0b4a0c4095f13eb8a8e4752906073d2e6a50",
+    "incident_path": "results/v4/ekf_witness_integrity_repair.json",
+    "incident_sha256": "8766c62f2e8a8cd75db494de160086874f6e6b05274d5ea7bba5eb01019a9214"
+  },
+  "analysis": {
+    "status": "HISTORICAL; H1/H2/H7 BOOTSTRAP SUMMARIES SUPERSEDED",
+    "source_path": "scripts/v4_confirm_analysis.py",
+    "source_sha256": "f5a5bea644d7a5a5a865bc378783f826706f8ac7af8a4c09516f4b0dd7f7da64",
+    "bootstrap_replicates": 20000,
+    "bootstrap_base_seed": 20260930,
+    "hypothesis_seed_rule": "base seed + zero-based hypothesis index",
+    "confidence_interval": 0.95,
+    "p_value": "two-sided empirical hierarchical bootstrap",
+    "multiplicity": "Holm step-down",
+    "family_alpha": 0.05,
+    "run_count": 1
+  },
+  "verifier": {
+    "source_path": "scripts/v4_confirm_verify.py",
+    "source_sha256": "d43db237ca5afd6aa52bcec92c15b747e77693cdb0bab663c3745ceebb29ae60",
+    "status": "HISTORICAL PASS; REPRODUCED THE SAME H1/H2/H7 CLUSTERING DEFECT"
+  },
+  "statistical_correction": {
+    "classification": "IMPLEMENTATION INCONSISTENCY / BUG",
+    "impacted_hypotheses": [
+      "H1",
+      "H2",
+      "H7"
+    ],
+    "scientific_simulations_rerun": 0,
+    "holm_survivors_changed": false,
+    "source_path": "scripts/v4_statistics_audit.py",
+    "source_sha256": "40839b57c75f059f4b97bb081e0ffdbbe793a7db2237b4db6143fce8c5ab7756",
+    "correction_record_path": "results/v4/confirmatory/statistics_correction_record.json",
+    "correction_record_sha256": "52cb4b03e03ff43b7e20ce13b766a3c29b2c24610263acc95629afdcfb89ffb2",
+    "corrected_artifacts": {
+      "results/v4/confirmatory/hypothesis_table_corrected.csv": "d992473ce809f8736fa366e1e2b160b9f316f39d180391babcb1ad07f63d44f8",
+      "results/v4/confirmatory/confirmatory_summary_corrected.json": "ed8d747fa90171ed9dfdb17ca3046811a7d80a0a44e7fc6c6e48ff0646c59381",
+      "results/v4/confirmatory/final_summary_corrected.json": "00dc0814722f6ecdc9b97ca9bbab7031c86dc831629c1be6fe6f5c5f383a01ba",
+      "results/v4/confirmatory/exclusion_audit.json": "093e6b38ef7e123c74b23af95af85cf58d5c642a2d27114d4472c2305c05209f"
+    }
+  },
+  "repair_sources": {
+    "scripts/v4_closed_loop.py": "9545883fc071ff420ed6667906ac31ebeba5c3fc1e337b61c7044f7df6b7ca20",
+    "scripts/v4_repair_ekf_witness_cells.py": "3aa9c05ba4d0da3afe54f08d98daa86d9f16919d25517dd6165f4c9869d4595d"
+  },
+  "execution_environment": {
+    "python": "3.11.15 (Anaconda build)",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.13.1",
+    "torch": "2.6.0+cu124"
+  },
+  "artifacts": {
+    "results/v4/faultfree/runs.csv": "d8fbc3d7a3098ad695a25d92b33dffc7ff10e06938c5de3c9746255a0b4570cd",
+    "results/v4/faultfree/events.csv": "50290c64bb73963f59bbec9bff40ac27ae759e21dcffe5a05edc92cb32203c94",
+    "results/v4/faultfree/checkpoint.sqlite3": "4d9ebdf3b8834ff63bda3d7ae74f645fa019ccf57ce5ade5c07f9f016638fd2e",
+    "results/v4/sweep/runs.csv": "8d63e71ec05263d649eefa70309ccaa808f98eea6b7dc7cd3b1bd9c51ce481d8",
+    "results/v4/sweep/events.csv": "d020f99fe4fdc7424cba3327402ef504e08e2da97e8774339e6c34d2d253a1b4",
+    "results/v4/sweep/checkpoint.sqlite3": "797e9d3e28a223df483b72ca99a73c4305c78e9889ce4ac7cabdb24560d717cd",
+    "results/v4/recovery/runs.csv": "b09f0c37e509e02df56e08f76287010d426384a8441b1072191e89e68df6050d",
+    "results/v4/recovery/events.csv": "c6b89475c967661dd02974097623f3bae75344919da56f3ee576c8807c0a1dd4",
+    "results/v4/recovery/checkpoint.sqlite3": "eb5b380900c0dbcb2571e1a8c0326c0622cb415ec9c3e8dea37bcd3e0d115479",
+    "results/v4/core_execution_status.json": "84155339934349f16ac2c2afa1d5ff7f7efb5c9fe7c87d1565fb7dd7fc77a5e7",
+    "results/v4/ekf_witness_integrity_repair.json": "8766c62f2e8a8cd75db494de160086874f6e6b05274d5ea7bba5eb01019a9214",
+    "results/v4/confirmatory/core_subsets.json": "ef3f349d8411c162924b54ce9141a768fe030c47b0e5b389ca08562ffda6a31a",
+    "results/v4/confirmatory/preanalysis_integrity.json": "bddd97c6c6e63d72f186734409da890efc392f82e5f1bbc4e89c220d4f64561c",
+    "results/v4/confirmatory/hypothesis_table.csv": "5e2461380aae5f2b31440f013c128a29080475bfdcbf2dbd8e11fcb2f667f765",
+    "results/v4/confirmatory/confirmatory_summary.json": "f108f327d2640390e6dcfeaebc12697e70e806f20579e2522f1edd69232f22a5",
+    "results/v4/confirmatory/h1_h9_detailed_report.csv": "a9758642356937f9a31146e9bc81ae4b2cbb65b5a60aafbbb35ce6aaa64d68a7",
+    "results/v4/confirmatory/independent_verification.json": "2b5433e77d5e396c65f9974dce4686861a3d3fb8de6bd7f9d23e88ff6fc8b8d3",
+    "results/v4/confirmatory/final_summary.json": "68a1089054077381ee59dde7379297ba12da5effe89a6aeabb27096e32372ed6"
+  },
+  "result_report": {
+    "path": "results/v4/confirmatory/final_summary_corrected.json",
+    "sha256": "00dc0814722f6ecdc9b97ca9bbab7031c86dc831629c1be6fe6f5c5f383a01ba"
+  },
+  "bootstrap_output": null
+}

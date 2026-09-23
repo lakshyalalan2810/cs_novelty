@@ -5,6 +5,32 @@ numbers below reproduce from canonical saved evidence (the 275-run V3 matrix
 `results/metrics/v3_final_11scenario_runs.csv` and the Part A/Part B final
 robustness study). No threshold, seed, or artifact was changed to write it.
 
+## V4 confirmatory boundary
+
+The V4 confirmatory closeout covers only the exact 12,200-cell H1–H9 core,
+not the complete 268,910-cell umbrella. The other 257,260 cells—including
+DET-wide, additional severities, dropout, drift, combined-fault expansion,
+robustness OFAT, timing, and non-bias recovery work—remain unexecuted for V4.
+H8/H9 support a narrower statement: under clean-start pairs at the evaluated
+0.15 N·m load step, both tested V4 witnesses reduced false entries relative
+to C3. H1–H7 were not supported after Holm correction; H3/H4/H6/H7 had
+unfavorable observed contrasts and H5 was exactly null.
+
+The auxiliary witness assumes a healthy current channel; current-sensor
+faults remain outside supported tolerance claims. Drift and parameter
+mismatch remain problematic historical conditions. The evidence is entirely
+simulation-based, does not establish formal diagnosis or fault isolation, and
+does not validate HIL or hardware behavior. Existing SLSQP timing evidence
+precludes a strong real-time claim. The V4 core also retained 3,053
+slew-limit counters as safety outcomes rather than excluding them.
+Only three C3 training seeds support direct historical robustness
+comparisons, and those results are training-seed-sensitive. No formal
+stability proof or universal robustness result is claimed. The finite
+hierarchical bootstrap, administrative plan re-freeze, 2,700-cell
+outcome-independent EKF repair, and H1/H2/H7 statistical correction are
+reported as provenance limitations without weakening the supported H8/H9
+finding.
+
 ## Para 1 — Load disturbance false activation
 
 CUSUM on the single residual r1 = |y_m − ŷ₁| cannot distinguish a load step
@@ -18,12 +44,13 @@ substitution fraction 0.27; the Part B severity study confirms the mechanism
 at larger scale, with pooled substitution 0.29–0.60 and false-entry risk
 rising 0/15 → 10/15 across 0.06–0.20 N m. The architectural fix is three-way
 attribution using r2 = |y_m − ŷ₂| and r12 = |ŷ₁ − ŷ₂|: under plant
-disturbance the current-only auxiliary agrees with the physical sensor while
-the main model drifts, which positively identifies the main model (not the
-sensor) as the outlier. This fix is implemented and calibrated as the C4
+disturbance the current-only auxiliary may agree with the physical sensor while
+the main model drifts, which was intended to classify the main model as the
+outlier. This mechanism was implemented and calibrated as the C4
 `ThreeWayConsistencyAttributor` (clean-validation agreement/disagreement
 bands, entry suppression only on positively identified main-model mismatch);
-the C4 development stage gate remains NO_GO, so V3 ships with this limitation.
+the C4 development stage gate remains NO_GO, so the intended causal
+attribution is not supported and V3 retains this limitation.
 
 ## Para 2 — Sensor drift zero benefit
 

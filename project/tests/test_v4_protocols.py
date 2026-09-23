@@ -5,9 +5,14 @@ Error #15); MPC-controller cells are covered by dry-run plan tests, and
 the engine rollout is smoke-tested with PI (<=2 seeds, short horizon).
 """
 
+import hashlib
+import json
+import sqlite3
 import sys
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 import numpy as np
 import pandas as pd
@@ -18,6 +23,8 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import v4_analysis as analysis
 import v4_confirm_analysis as confirm
 import v4_protocol_faultfree as faultfree
+import v4_protocol_core as core
+import v4_protocol_common as common
 import v4_protocol_recovery as recovery
 import v4_protocol_robustness as robustness
 import v4_protocol_sweep as sweep
@@ -225,7 +232,7 @@ class StatsOracleTests(unittest.TestCase):
 
 class ConfirmPairingTests(unittest.TestCase):
     def _synthetic_inputs(self):
-        trains = [2026, 2027]
+        trains = [2026, 2027, 2028]
         sims = [71000, 71001]
         faultfree_rows = []
         for train in trains:
@@ -288,6 +295,17 @@ class ConfirmPairingTests(unittest.TestCase):
         recovery = pd.DataFrame(recovery_rows)
         return faultfree, sweep, recovery
 
+    def test_c3_comparisons_explicitly_use_common_seed_population(self):
+        faultfree, sweep, recovery = self._synthetic_inputs()
+        extra = faultfree[faultfree["controller"] != "C3"].copy()
+        extra["training_seed"] = 2029
+        frames = confirm.hypothesis_frames(
+            pd.concat([faultfree, extra], ignore_index=True), sweep, recovery)
+        self.assertEqual(set(frames["H1"]["training_seed"]),
+                         set(C3_LEGACY_SEEDS))
+        self.assertEqual(set(frames["H7"]["training_seed"]),
+                         set(C3_LEGACY_SEEDS))
+
     def test_hypothesis_signs_and_holm_integration(self):
         faultfree, sweep, recovery = self._synthetic_inputs()
         frames = confirm.hypothesis_frames(faultfree, sweep, recovery)
@@ -298,7 +316,7 @@ class ConfirmPairingTests(unittest.TestCase):
                 self.assertTrue((frame["delta"] > 0).all())
         # The pre-latched pair is excluded from clean-pair hypotheses.
         self.assertEqual(frames["H3"].attrs["n_excluded_pairs"], 1)
-        self.assertEqual(len(frames["H3"]), 3)
+        self.assertEqual(len(frames["H3"]), 5)
         table = confirm.evaluate(frames, 500)
         self.assertEqual(len(table), 9)
         self.assertTrue((table["holm_adjusted_p"] >= 0).all())
@@ -330,7 +348,8 @@ class PIEngineSmokeTests(unittest.TestCase):
         offset = traces["measured"] - traces["true_speed"]
         self.assertAlmostEqual(float(np.mean(offset)), 0.0, delta=0.1)
         biased = RunConfig(
-            controller="PI", simulation_seed=71000, reference="nominal",
+            controller="PI", simulation_seed=SMOKE_SEEDS[1],
+            reference="nominal",
             duration=2.0,
             fault=Fault(kind="bias", onset_s=1.0, end_s=2.0,
                         magnitude_rad_s=2.0, magnitude_sigma=8.0),
@@ -357,6 +376,187 @@ class PIEngineSmokeTests(unittest.TestCase):
         self.assertTrue(row["run_complete"])
         self.assertTrue(np.isfinite(row["overall_rmse"]))
         self.assertEqual(row["sample_delay"], 2)
+
+
+class EKFWitnessRegressionTests(unittest.TestCase):
+    def test_witness_initializes_on_first_post_warmup_use(self):
+        config = RunConfig(
+            controller="V4_full_ekf", training_seed=2026,
+            simulation_seed=SMOKE_SEEDS[0], duration=0.25,
+            fault=Fault(kind="none", onset_s=float("inf"), end_s=None))
+        row, _, _ = run_v4_cell(config)
+        self.assertEqual(row["observer_failures"], 0)
+
+
+class CorePlanTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.frames = core.hypothesis_cells()
+        cls.cells = core.core_cells(cls.frames)
+
+    def test_exact_hypothesis_and_union_counts(self):
+        self.assertEqual({key: len(value) for key, value in self.frames.items()},
+                         {"H1": 4800, "H2": 4800, "H3": 300,
+                          "H4": 300, "H5": 600, "H6": 1100,
+                          "H7": 7200, "H8": 300, "H9": 300})
+        self.assertEqual(len(self.cells), 12200)
+
+    def test_seed_contract_and_no_duplicate_keys(self):
+        keys = [common.scientific_key(cell) for cell in self.cells]
+        self.assertEqual(len(keys), len(set(keys)))
+        for hypothesis, cells in self.frames.items():
+            expected = (set(TRAINING_SEEDS) if hypothesis == "H6"
+                        else set(C3_LEGACY_SEEDS))
+            self.assertEqual({cell.training_seed for cell in cells}, expected)
+        self.assertTrue(all(
+            cell.simulation_seed in (set(FAULTFREE_SEEDS)
+                                     | set(SEVERITY_SEEDS))
+            for cell in self.cells))
+
+    def test_dry_run_never_executes(self):
+        plan = {
+                                   "hypothesis_cell_counts": {},
+                                   "union_count": 0,
+                                   "original_umbrella_count": 268910,
+                                   "original_umbrella_required_intersection": 0,
+                                   "original_umbrella_deferred": 268910,
+                                   "required_missing_from_original_umbrella": 0,
+                               }
+        with mock.patch.object(core, "validated_frozen_plan",
+                               return_value=(plan, [], "plan-hash")), \
+             mock.patch.object(core, "execute") as execute_mock:
+            core.main(["--dry-run"])
+        execute_mock.assert_not_called()
+
+
+class CheckpointResumeTests(unittest.TestCase):
+    @staticmethod
+    def _result(cell):
+        return ({"controller": cell.controller,
+                 "training_seed": cell.training_seed,
+                 "simulation_seed": cell.simulation_seed,
+                 "overall_rmse": float(cell.simulation_seed)},
+                [{"time_s": 1.0, "event": "test"}], None)
+
+    def test_resume_matches_uninterrupted_and_skips_completed(self):
+        cells = [RunConfig("PI", simulation_seed=seed,
+                           reference="nominal", duration=0.01)
+                 for seed in SMOKE_SEEDS]
+        calls = []
+
+        def interrupted(batch, workers=1):
+            calls.extend(cell.simulation_seed for cell in batch)
+            if len(calls) > 1:
+                raise RuntimeError("simulated interruption")
+            return [self._result(cell) for cell in batch]
+
+        with tempfile.TemporaryDirectory() as partial_dir, \
+             tempfile.TemporaryDirectory() as clean_dir, \
+             mock.patch.object(common, "_provenance_fingerprint",
+                               return_value="test-provenance"):
+            with mock.patch.object(common, "run_batch", side_effect=interrupted):
+                with self.assertRaises(RuntimeError):
+                    common.execute("test", Path(partial_dir), cells,
+                                   checkpoint_every=1, progress_interval_s=0)
+            resumed_calls = []
+
+            def resumed(batch, workers=1):
+                resumed_calls.extend(cell.simulation_seed for cell in batch)
+                return [self._result(cell) for cell in batch]
+
+            with mock.patch.object(common, "run_batch", side_effect=resumed):
+                common.execute("test", Path(partial_dir), cells,
+                               checkpoint_every=1, progress_interval_s=0)
+            self.assertEqual(resumed_calls, [SMOKE_SEEDS[1]])
+            with mock.patch.object(common, "run_batch",
+                                   side_effect=lambda batch, workers=1: [
+                                       self._result(cell) for cell in batch]):
+                common.execute("test", Path(clean_dir), cells,
+                               checkpoint_every=1, progress_interval_s=0)
+            for filename in ("runs.csv", "events.csv"):
+                self.assertEqual((Path(partial_dir) / filename).read_bytes(),
+                                 (Path(clean_dir) / filename).read_bytes())
+
+    def test_core_runner_never_mutates_frozen_plan(self):
+        cells = [RunConfig("PI", simulation_seed=seed,
+                           reference="nominal", duration=0.01)
+                 for seed in SMOKE_SEEDS]
+        plan = {
+            "generated_utc": "frozen",
+            "hypothesis_cell_counts": {},
+            "union_count": len(cells),
+            "original_umbrella_count": 268910,
+            "original_umbrella_required_intersection": len(cells),
+            "original_umbrella_deferred": 268908,
+            "required_missing_from_original_umbrella": 0,
+            "cells": [common.scientific_key(cell) for cell in cells],
+        }
+        calls = []
+
+        def interrupted(batch, workers=1):
+            calls.extend(cell.simulation_seed for cell in batch)
+            if len(calls) > 1:
+                raise RuntimeError("simulated interruption")
+            return [self._result(cell) for cell in batch]
+
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            plan_path = root / "plan.json"
+            hashes_path = root / "hashes.json"
+            status_path = root / "status.json"
+            plan_path.write_text(json.dumps(plan, indent=2) + "\n")
+            frozen_hash = hashlib.sha256(plan_path.read_bytes()).hexdigest()
+            hashes_path.write_text(json.dumps({"files": {
+                core.PLAN_RELATIVE_PATH: frozen_hash}}))
+
+            def generated_plan():
+                return ({**plan, "generated_utc": "runtime"}, cells)
+
+            def execute_smoke(name, out_dir, selected, workers=1):
+                if selected:
+                    common.execute(name, out_dir, selected, workers,
+                                   checkpoint_every=1,
+                                   progress_interval_s=0)
+
+            patches = (
+                mock.patch.object(core, "PROJECT", root),
+                mock.patch.object(core, "PLAN_PATH", plan_path),
+                mock.patch.object(core, "HASHES_PATH", hashes_path),
+                mock.patch.object(core, "STATUS_PATH", status_path),
+                mock.patch.object(core, "build_plan",
+                                  side_effect=generated_plan),
+                mock.patch.object(core, "execute",
+                                  side_effect=execute_smoke),
+                mock.patch.object(common, "_provenance_fingerprint",
+                                  return_value="test-provenance"),
+            )
+            with patches[0], patches[1], patches[2], patches[3], \
+                 patches[4], patches[5], patches[6]:
+                with mock.patch.object(common, "run_batch",
+                                       side_effect=interrupted):
+                    with self.assertRaises(RuntimeError):
+                        core.main(["--workers", "1"])
+                self.assertEqual(hashlib.sha256(plan_path.read_bytes()).hexdigest(),
+                                 frozen_hash)
+                self.assertEqual(json.loads(status_path.read_text())["state"],
+                                 "interrupted")
+
+                with mock.patch.object(common, "run_batch",
+                                       side_effect=lambda batch, workers=1: [
+                                           self._result(cell) for cell in batch]):
+                    core.main(["--workers", "1"])
+
+            self.assertEqual(hashlib.sha256(plan_path.read_bytes()).hexdigest(),
+                             frozen_hash)
+            self.assertEqual(json.loads(status_path.read_text())["state"],
+                             "complete")
+            checkpoint = root / "results" / "v4" / "faultfree" / "checkpoint.sqlite3"
+            connection = sqlite3.connect(checkpoint)
+            try:
+                self.assertEqual(connection.execute(
+                    "SELECT COUNT(*) FROM results").fetchone()[0], 2)
+            finally:
+                connection.close()
 
 
 if __name__ == "__main__":

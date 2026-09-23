@@ -1,0 +1,149 @@
+{
+  "study": "v4_calibration",
+  "training_seed": 2036,
+  "pair_id": "P2036",
+  "calibration_population": "V4 clean validation trajectories only",
+  "validation_run_ids": [
+    3,
+    11,
+    12,
+    13,
+    18,
+    20,
+    23,
+    27,
+    42,
+    44,
+    70,
+    72,
+    80,
+    81,
+    84,
+    88,
+    90,
+    92,
+    98,
+    106,
+    108,
+    114,
+    116,
+    118
+  ],
+  "sample_count": 28344,
+  "ekf_validation_failures": 0,
+  "algorithm": {
+    "instant_percentile": 99.9,
+    "cusum_percentile_grid": [
+      90.0,
+      95.0,
+      97.5,
+      99.0,
+      99.5,
+      99.9
+    ],
+    "allowance_sigma": 0.5,
+    "target_validation_false_alarm_rate": 0.001,
+    "enter_count": 3,
+    "exit_count": 5,
+    "witness_percentile": 99.9,
+    "bootstrap_replicates": 1000,
+    "bootstrap_seed": 20262956,
+    "bootstrap_unit": "whole validation trajectory"
+  },
+  "computed_values": {
+    "center": 0.009445547282098232,
+    "allowance": 0.1423196241711801,
+    "threshold": 8.552632354038078,
+    "cusum_percentile": 99.9,
+    "instant_threshold": 0.9455149815732063,
+    "aux_recovery_gate": 22.512819230876946,
+    "witness_aux_gate": 22.512819230876946,
+    "witness_ekf_gate": 29.715850332086447,
+    "enter_count": 3,
+    "exit_count": 5
+  },
+  "calibration_grid": [
+    {
+      "percentile": 90.0,
+      "cusum_threshold": 0.600685020646893,
+      "validation_false_alarm_rate": 0.084038950042337
+    },
+    {
+      "percentile": 95.0,
+      "cusum_threshold": 0.8171450709435512,
+      "validation_false_alarm_rate": 0.04350127011007621
+    },
+    {
+      "percentile": 97.5,
+      "cusum_threshold": 1.2129271674029092,
+      "validation_false_alarm_rate": 0.024626023144228057
+    },
+    {
+      "percentile": 99.0,
+      "cusum_threshold": 2.465992209166014,
+      "validation_false_alarm_rate": 0.010090318938752469
+    },
+    {
+      "percentile": 99.5,
+      "cusum_threshold": 3.4368901128715517,
+      "validation_false_alarm_rate": 0.003916172734970364
+    },
+    {
+      "percentile": 99.9,
+      "cusum_threshold": 8.552632354038078,
+      "validation_false_alarm_rate": 0.0010937058989556872
+    }
+  ],
+  "bootstrap_uncertainty": {
+    "center": {
+      "mean": 0.009491445956670256,
+      "std": 0.00504339428878384,
+      "ci_lo": 0.0008903705327281575,
+      "ci_hi": 0.020226307569188418,
+      "replicates": 1000
+    },
+    "allowance": {
+      "mean": 0.1422958067347516,
+      "std": 0.000787265452652104,
+      "ci_lo": 0.14083603079880283,
+      "ci_hi": 0.14383804155230814,
+      "replicates": 1000
+    },
+    "instant_threshold": {
+      "mean": 0.9441313802120842,
+      "std": 0.02006135738147911,
+      "ci_lo": 0.9120817994157965,
+      "ci_hi": 0.9813868672872772,
+      "replicates": 1000
+    },
+    "threshold": {
+      "mean": 7.031786792916355,
+      "std": 2.625001573749203,
+      "ci_lo": 2.56236911794609,
+      "ci_hi": 10.009026961155172,
+      "replicates": 1000
+    },
+    "aux_recovery_gate": {
+      "mean": 22.854823207201598,
+      "std": 1.6912987855477881,
+      "ci_lo": 20.532372321807237,
+      "ci_hi": 26.175906126226465,
+      "replicates": 1000
+    },
+    "witness_aux_gate": {
+      "mean": 22.854823207201598,
+      "std": 1.6912987855477881,
+      "ci_lo": 20.532372321807237,
+      "ci_hi": 26.175906126226465,
+      "replicates": 1000
+    },
+    "witness_ekf_gate": {
+      "mean": 27.862444248632542,
+      "std": 3.918253956486884,
+      "ci_lo": 20.4502752425338,
+      "ci_hi": 32.23063702614275,
+      "replicates": 1000
+    }
+  },
+  "no_fault_data_statement": "Calibration uses only clean, fault-free V4 validation trajectories; no test trajectories, fault scenarios, closed-loop results, or simulation-seed results are used."
+}

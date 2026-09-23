@@ -1,6 +1,27 @@
-# Reliability-Aware LSTM-MPC for Sensor-Fault-Tolerant DC Motor Control
+# Disturbance-Aware Witness Gating for Reliability-Aware LSTM-MPC
 
-This repository evaluates constrained LSTM model-predictive control (MPC) with virtual feedback when a DC-motor speed sensor is unreliable. The defensible contribution is improved robustness to the tested sensor faults in simulation: the preserved V1 sensor-fault improvement of 81.9% is unchanged below. The combined-fault-plus-load (combined_fault_load) result is training-initialization-dependent — the Part A hierarchical bootstrap 95% interval for paired C3−B fault-window RMSE is [−1.52, +0.29] rad/s, crossing zero, with the seed-2026 realization unfavorable while seeds 2027/2028 are favorable. Under pure load disturbance with healthy sensor, false CUSUM activation degrades tracking by 2.7× on average; three-way consistency attribution is identified as the required fix and is evaluated in the C4 extension. The evidence does not establish hardware readiness or universal superiority of adaptive MPC.
+This repository evaluates constrained LSTM model-predictive control (MPC) with virtual feedback when a DC-motor speed sensor is unreliable. The preserved V1 result shows improvement for tested sensor faults in simulation, while the combined-fault-plus-load result is training-initialization-dependent: its hierarchical-bootstrap interval crosses zero and the seed-2026 realization is unfavorable. Pure load disturbance can trigger false CUSUM entry. The C4 three-way scalar attributor failed its development gates; the later V4 witness gate instead received narrow confirmatory support for reduced false entries at the tested 0.15 N·m load step. The evidence does not establish hardware readiness or universal superiority.
+
+## V4 H1–H9 confirmatory closeout
+
+The exact 12,200-cell H1–H9 dependency core has been completed and
+independently verified; it is not the full 268,910-cell umbrella, whose
+remaining 257,260 cells are deferred. Only H8 and H9 survive the
+pre-registered Holm correction: under clean-start pairs at the tested 0.15
+N·m load step, both `V4_full_aux` and `V4_full_ekf` reduce false-entry
+probability relative to C3 by 0.217742 (95% CIs [0.138686, 0.315315]). H1/H2
+are directionally favorable but nonsignificant; H3/H4/H6/H7 are unfavorable,
+and H5 is exactly null.
+
+The earlier 400-cell attempt occurred before confirmatory analysis and was
+fully discarded; the plan was independently reconstructed 12,200/12,200 and
+the core restarted from zero. A pre-analysis integrity audit then found an
+uninitialized EKF witness in 2,700 required cells. All and only those corrupted
+cells were repaired and rerun before the one-time analysis; 9,500 valid cells
+were not rerun. See `V4_CONFIRMATORY_RESULTS.md` for the complete table,
+negative findings, deferred scope, and hashes. The historical result manifest
+is preserved; the superseding corrected result-manifest SHA256 is
+`0591d54f1e5c45fbb7c5a1910b6cd01a045424848a81ae33d9b477f021ed522e`.
 
 <!-- V3_GENERATED_START -->
 ## Frozen V3 final evidence
@@ -86,7 +107,7 @@ Complete trajectories are split before overlapping windows are made, and normali
 
 Python 3.11 or newer is recommended. Dependencies are exactly pinned in `requirements.txt` (pinned `torch==2.13.0`).
 
-Environment record: the pinned stack declares `torch==2.13.0`; the independent review ran `torch 2.14.0` with Python 3.12 and `pandas 3.0.5` (see `V4_BOOL_SERIES_REPAIR_NOTE.md` for the pandas-3 verifier fix). This V4 preparation work ran on Python 3.13.9 with `torch 2.7.1+cu118` and `pandas 2.3.3`; no scientific artifact was regenerated in this environment.
+Environment record: the pinned stack declares `torch==2.13.0`; the independent review ran `torch 2.14.0` with Python 3.12 and `pandas 3.0.5` (see `V4_BOOL_SERIES_REPAIR_NOTE.md` for the pandas-3 verifier fix). V4 preparation used the previously recorded environments. The completed V4 core checkpoint provenance and confirmatory analysis match Python 3.11.15 (Anaconda build), `torch 2.6.0+cu124`, `numpy 2.2.6`, `pandas 2.3.3`, and `scipy 1.13.1`; exact source and artifact hashes are frozen in `results/v4/confirmatory/result_manifest.json`.
 
 ```bash
 python -m venv .venv

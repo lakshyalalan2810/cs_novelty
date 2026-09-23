@@ -1,0 +1,53 @@
+{
+  "phase": "pre-analysis",
+  "core_integrity": {
+    "expected_cells": 12200,
+    "actual_unique_cells": 12200,
+    "missing": 0,
+    "unexpected": 0,
+    "duplicates": 0,
+    "protocol_counts": {
+      "faultfree": 9600,
+      "sweep": 2000,
+      "recovery": 600
+    },
+    "event_counts": {
+      "faultfree": 593,
+      "sweep": 107,
+      "recovery": 308
+    },
+    "validity_failures": 0,
+    "validity_counters": {
+      "optimizer_failures": 0,
+      "main_prediction_failures": 0,
+      "aux_prediction_failures": 0,
+      "observer_failures": 0,
+      "nonfinite_events": 0,
+      "voltage_violations": 0,
+      "slew_violations": 3053
+    },
+    "slew_note": "Recorded safety outcomes retained without exclusion; not execution corruption.",
+    "dependency_counts": {
+      "H1": 4800,
+      "H2": 4800,
+      "H3": 300,
+      "H4": 300,
+      "H5": 600,
+      "H6": 1100,
+      "H7": 7200,
+      "H8": 300,
+      "H9": 300
+    },
+    "h6_b_bias8_anchor_cells": 550,
+    "model_and_calibration_bindings": {
+      "c3_seed_bundles": 3,
+      "v4_seed_bundles": 11,
+      "status": "PASS"
+    },
+    "umbrella_cells": 268910,
+    "executed_core_cells": 12200,
+    "deferred_umbrella_cells": 257260,
+    "status": "PASS"
+  },
+  "status": "PASS"
+}

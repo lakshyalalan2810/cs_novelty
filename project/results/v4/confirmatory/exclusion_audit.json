@@ -1,0 +1,815 @@
+{
+  "rule": "exclude iff either controller has pre_event_reliability_entries != 0",
+  "outcome_fields_used": [],
+  "hypotheses": {
+    "H3": {
+      "count": 21,
+      "pair_ids": [
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72026,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72030,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72031,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72033,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72042,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72049,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72002,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72006,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72008,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72013,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72019,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72026,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72029,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72030,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72031,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72046,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72047,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72049,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72030,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72031,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72049,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        }
+      ]
+    },
+    "H4": {
+      "count": 21,
+      "pair_ids": [
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72026,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72030,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72031,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72033,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72042,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72049,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72002,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72006,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72008,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72013,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72019,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72026,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72029,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72030,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72031,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72046,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72047,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72049,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72030,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72031,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72049,
+          "V4_full_ekf_pre_entries": 0,
+          "C3_pre_entries": 1
+        }
+      ]
+    },
+    "H5": {
+      "count": 36,
+      "pair_ids": [
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72026,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72030,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72031,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72033,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72042,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72049,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72058,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72088,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72099,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72002,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72006,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72008,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72013,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72019,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72026,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72029,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72030,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72031,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72046,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72047,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72049,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72056,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72057,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72063,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72064,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72072,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72073,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72076,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72079,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72088,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72094,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72096,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72098,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72030,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72031,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72049,
+          "V4_full_aux_pre_entries": 0,
+          "C3_pre_entries": 1
+        }
+      ]
+    },
+    "H8": {
+      "count": 26,
+      "pair_ids": [
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72004,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72026,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72030,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72031,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72033,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72042,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72049,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72002,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72004,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72006,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72008,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72010,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72013,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72014,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72019,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72026,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72029,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72030,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72031,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72040,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72046,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72047,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72049,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72030,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72031,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72049,
+          "C3_pre_entries": 1,
+          "V4_full_aux_pre_entries": 0
+        }
+      ]
+    },
+    "H9": {
+      "count": 26,
+      "pair_ids": [
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72004,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72026,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72030,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72031,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72033,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72042,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2026,
+          "simulation_seed": 72049,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72002,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72004,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72006,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72008,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72010,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72013,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72014,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72019,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72026,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72029,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72030,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72031,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72040,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72046,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72047,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2027,
+          "simulation_seed": 72049,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72030,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72031,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        },
+        {
+          "training_seed": 2028,
+          "simulation_seed": 72049,
+          "C3_pre_entries": 1,
+          "V4_full_ekf_pre_entries": 0
+        }
+      ]
+    }
+  },
+  "matched_variant_sets": {
+    "H3_equals_H4": true,
+    "H8_equals_H9": true
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "model": {
+    "input_size": 2,
+    "hidden_size": 64,
+    "num_layers": 2,
+    "dropout": 0.2,
+    "output_size": 1,
+    "residual": true
+  },
+  "normalization": {
+    "input_mean": [
+      8.61020687179253,
+      40.20283936577021
+    ],
+    "input_std": [
+      3.511227400149552,
+      20.60989673498027
+    ],
+    "target_mean": [
+      40.53517124358121
+    ],
+    "target_std": [
+      20.4446595738153
+    ]
+  },
+  "features": [
+    "voltage",
+    "y_measured"
+  ],
+  "target": "y_true",
+  "window_length": 20,
+  "batch_size": 512,
+  "optimizer": "Adam",
+  "learning_rate": 0.001,
+  "training": {
+    "seed": 2036,
+    "max_epochs": 200,
+    "patience": 8,
+    "min_delta": 1e-06,
+    "best_epoch": 21,
+    "stopped_epoch": 29,
+    "stop_reason": "patience",
+    "converged": true
+  }
+}

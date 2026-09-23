@@ -7,3 +7,34 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 .mypy_cache/
+
+# V4 runtime outputs; frozen summaries and provenance remain trackable.
+results/v4/core_execution_status.json
+results/v4/*/checkpoint.sqlite3*
+results/v4/faultfree/*.csv
+results/v4/recovery/*.csv
+results/v4/sweep/*.csv
+
+# Generated V4 datasets and model artifacts.
+data/processed/v4/*.npz
+results/v4/models/*.pt
+results/v4/models/*_history.npz
+
+# Local runtime, editor, OS, and credential files.
+venv/
+env/
+*.sqlite
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.log
+*.tmp
+*.lock
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+.env
+.env.*
+!.env.example

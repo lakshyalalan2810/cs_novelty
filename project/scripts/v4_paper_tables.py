@@ -17,6 +17,7 @@ TABLES = PROJECT / "paper" / "tables"
 
 POSTHOC = PROJECT / "results" / "v4" / "posthoc"
 FROZEN = PROJECT / "results" / "final_robustness"
+CONFIRM = PROJECT / "results" / "v4" / "confirmatory"
 
 
 def esc(text: str) -> str:
@@ -98,10 +99,45 @@ def table_frozen_detection() -> None:
           "\n".join(lines) + "\n")
 
 
+def table_confirmatory() -> None:
+    """Complete corrected H1-H9 table from the superseding artifact."""
+    frame = pd.read_csv(CONFIRM / "hypothesis_table_corrected.csv")
+    endpoints = {
+        "H1": "fault-free false latch (aux)",
+        "H2": "fault-free false latch (EKF)",
+        "H3": "bias-$2\\sigma$ detection (aux)",
+        "H4": "bias-$2\\sigma$ detection (EKF)",
+        "H5": "bias-$8\\sigma$ recovery",
+        "H6": "bias-$8\\sigma$ RMSE",
+        "H7": "fault-free tracking penalty",
+        "H8": "load-0.15 false entry (aux)",
+        "H9": "load-0.15 false entry (EKF)",
+    }
+    lines = ["\\begin{tabular}{llrrrrrrl}", "\\toprule",
+             "H & endpoint & $n$ & $\\Delta$ & 95\\% CI & raw $p$ & Holm $p$ & $d_z$ & decision \\\\",
+             "\\midrule"]
+    for _, row in frame.iterrows():
+        h = row["hypothesis"]
+        raw_p = "$<0.0001$" if h == "H8" else f"{row['p_value_two_sided']:.4f}"
+        holm_p = "$<0.0009$" if h == "H8" else f"{row['holm_adjusted_p']:.4f}"
+        dz = "--" if pd.isna(row["cohens_dz"]) else f"{row['cohens_dz']:.3f}"
+        decision = "Supported" if bool(row["holm_reject"]) else "Not supported"
+        lines.append(
+            f"{h} & {endpoints[h]} & {int(row['n_pairs'])} & "
+            f"{row['observed_mean_delta']:.4f} & "
+            f"[{row['ci_lo']:.4f}, {row['ci_hi']:.4f}] & {raw_p} & "
+            f"{holm_p} & {dz} & {decision} " + r"\\")
+    lines += ["\\bottomrule", "\\end{tabular}"]
+    write("tab_h1_h9.tex",
+          "results/v4/confirmatory/hypothesis_table_corrected.csv (SUPERSEDING)",
+          "\n".join(lines) + "\n")
+
+
 def main() -> None:
     table_posthoc_per_seed()
     table_envelope_relabel()
     table_frozen_detection()
+    table_confirmatory()
 
 
 if __name__ == "__main__":

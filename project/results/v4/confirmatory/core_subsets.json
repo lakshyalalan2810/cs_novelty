@@ -1,0 +1,33 @@
+{
+  "label": "H1-H9 CORE SUBSETS",
+  "scope": "Exact canonical outputs for the executed confirmatory dependency core; not the complete original umbrella protocol",
+  "original_umbrella_cells": 268910,
+  "executed_core_cells": 12200,
+  "deferred_umbrella_cells": 257260,
+  "subsets": {
+    "faultfree": {
+      "runs": 9600,
+      "events": 593,
+      "runs_path": "results/v4/faultfree/runs.csv",
+      "runs_sha256": "d8fbc3d7a3098ad695a25d92b33dffc7ff10e06938c5de3c9746255a0b4570cd",
+      "events_path": "results/v4/faultfree/events.csv",
+      "events_sha256": "50290c64bb73963f59bbec9bff40ac27ae759e21dcffe5a05edc92cb32203c94"
+    },
+    "sweep": {
+      "runs": 2000,
+      "events": 107,
+      "runs_path": "results/v4/sweep/runs.csv",
+      "runs_sha256": "8d63e71ec05263d649eefa70309ccaa808f98eea6b7dc7cd3b1bd9c51ce481d8",
+      "events_path": "results/v4/sweep/events.csv",
+      "events_sha256": "d020f99fe4fdc7424cba3327402ef504e08e2da97e8774339e6c34d2d253a1b4"
+    },
+    "recovery": {
+      "runs": 600,
+      "events": 308,
+      "runs_path": "results/v4/recovery/runs.csv",
+      "runs_sha256": "b09f0c37e509e02df56e08f76287010d426384a8441b1072191e89e68df6050d",
+      "events_path": "results/v4/recovery/events.csv",
+      "events_sha256": "c6b89475c967661dd02974097623f3bae75344919da56f3ee576c8807c0a1dd4"
+    }
+  }
+}

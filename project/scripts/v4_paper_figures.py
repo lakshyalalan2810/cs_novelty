@@ -12,6 +12,7 @@ live in main.tex), and label boxes placed on a fixed grid with margins
 from pathlib import Path
 
 import matplotlib
+import numpy as np
 import pandas as pd
 
 matplotlib.use("Agg")
@@ -21,6 +22,8 @@ from matplotlib.patches import FancyArrowPatch, FancyBboxPatch  # noqa: E402
 PROJECT = Path(__file__).resolve().parent.parent
 FIGURES = PROJECT / "paper" / "figures"
 POSTHOC = PROJECT / "results" / "v4" / "posthoc"
+CONFIRM = PROJECT / "results" / "v4" / "confirmatory"
+SWEEP = PROJECT / "results" / "v4" / "sweep" / "runs.csv"
 
 # Okabe-Ito colorblind-safe palette.
 OI = {"blue": "#0072B2", "orange": "#E69F00", "green": "#009E73",
@@ -112,7 +115,7 @@ def fig_conditional_detection() -> None:
 
 
 def fig_architecture() -> None:
-    """Double-column block diagram of the V4 fault-tolerant loop.
+    """Double-column block diagram of the V4 reliability-gated loop.
 
     Layout was iterated against rendered previews: every label sits in
     whitespace with a white halo box, and no two text boxes overlap.
@@ -148,7 +151,7 @@ def fig_architecture() -> None:
     box(57, 34, 16, 10, "sensors:\nspeed, current")
     # Bottom row: estimators + monitor.
     box(14, 8, 14, 12, "main LSTM\nsensor")
-    box(33, 8, 14, 12, "witness\naux LSTM/EKF")
+    box(33, 8, 14, 12, "witness\naux or EKF")
     box(52, 8, 14, 12, "V4 monitor\nCUSUM +\nwitness AND")
     box(79, 19, 18, 10, "feedback\nselector")
     # Top-row signals.
@@ -171,9 +174,9 @@ def fig_architecture() -> None:
             bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.8})
     # Residuals into the monitor.
     seg(28, 14, 33, 14)
-    tag(30.5, 15.4, "$e_m$")
+    tag(30.5, 16.6, "$e_m$")
     seg(47, 14, 52, 14)
-    tag(49.5, 15.4, "$e_w$")
+    tag(49.5, 16.6, "$e_w$")
     # Monitor -> selector verdict.
     seg(66, 14, 72, 14, head=False)
     seg(72, 14, 72, 24, head=False)
@@ -201,10 +204,110 @@ def fig_architecture() -> None:
     save("fig_architecture.pdf")
 
 
+def fig_research_evolution() -> None:
+    """Failure-driven design path; labels come from frozen study verdicts."""
+    _, ax = plt.subplots(figsize=(7.16, 2.1))
+    ax.set_xlim(0, 100)
+    ax.set_ylim(0, 24)
+    ax.axis("off")
+    items = [
+        (1.0, "V1", "main LSTM\nreliability", OI["sky"]),
+        (17.5, "V2", "current-informed\naux sensor", OI["green"]),
+        (34.0, "V3", "dual-sensor\narbitration", OI["blue"]),
+        (50.5, "V3 limit", "load caused\nfalse entries", OI["orange"]),
+        (67.0, "C4", "scalar attribution\nNO_GO", OI["gray"]),
+        (83.5, "V4", "witness gating\nH8/H9 only", OI["pink"]),
+    ]
+    for x, heading, body, color in items:
+        ax.add_patch(FancyBboxPatch(
+            (x, 6), 14.5, 12, boxstyle="round,pad=0.35",
+            facecolor=color, alpha=0.22, edgecolor="black", linewidth=0.8))
+        ax.text(x + 7.25, 14.6, heading, ha="center", va="center",
+                fontsize=8, fontweight="bold")
+        ax.text(x + 7.25, 10.1, body, ha="center", va="center", fontsize=7.2)
+        if x < 83.5:
+            ax.add_patch(FancyArrowPatch((x + 14.5, 12), (x + 16.5, 12),
+                                         arrowstyle="-|>", mutation_scale=10,
+                                         linewidth=0.8, color="black"))
+    save("fig_research_evolution.pdf")
+
+
+def fig_hypothesis_effects() -> None:
+    """Corrected H1-H9 observed deltas and percentile intervals."""
+    frame = pd.read_csv(CONFIRM / "hypothesis_table_corrected.csv")
+    groups = [(["H1", "H2", "H3", "H4", "H5", "H8", "H9"],
+               "probability delta"),
+              (["H6"], "RMSE delta (rad/s)"),
+              (["H7"], "tracking-penalty delta (rad/s)")]
+    fig, axes = plt.subplots(1, 3, figsize=(7.16, 3.15),
+                             gridspec_kw={"width_ratios": [2.5, 1, 1]})
+    for ax, (ids, xlabel) in zip(axes, groups):
+        sub = frame.set_index("hypothesis").loc[ids].reset_index()
+        y = np.arange(len(sub))[::-1]
+        supported = sub["holm_reject"].astype(str).str.lower().eq("true")
+        for i, row in sub.iterrows():
+            color = OI["blue"] if supported.iloc[i] else OI["gray"]
+            marker = "o" if supported.iloc[i] else "s"
+            ax.errorbar(row["observed_mean_delta"], y[i],
+                        xerr=[[row["observed_mean_delta"] - row["ci_lo"]],
+                              [row["ci_hi"] - row["observed_mean_delta"]]],
+                        fmt=marker, color=color, markerfacecolor=(color if supported.iloc[i] else "white"),
+                        markeredgecolor=color, capsize=2.5, linewidth=1.0,
+                        markersize=4.5)
+        ax.axvline(0, color="black", linewidth=0.8, linestyle="--")
+        ax.set_yticks(y)
+        ax.set_yticklabels([f"{h}{' *' if supported.iloc[i] else ''}"
+                            for i, h in enumerate(sub["hypothesis"])])
+        ax.set_xlabel(xlabel)
+        ax.grid(axis="x", color="#dddddd", linewidth=0.5)
+    axes[0].text(0.02, -0.22, "* Holm-supported", transform=axes[0].transAxes,
+                 fontsize=8, ha="left")
+    fig.tight_layout(w_pad=1.1)
+    save("fig_hypothesis_effects.pdf")
+
+
+def fig_load_false_entries() -> None:
+    """Descriptive clean-start false-entry rates underlying H8/H9."""
+    frame = pd.read_csv(SWEEP)
+    frame = frame[(frame["fault_kind"] == "load") &
+                  (frame["load_step_Nm"] == 0.15) &
+                  frame["controller"].isin(["C3", "V4_full_aux", "V4_full_ekf"])]
+    clean_keys = []
+    for key, group in frame.groupby(["training_seed", "simulation_seed"]):
+        if int(group["pre_event_reliability_entries"].max()) == 0:
+            clean_keys.append(key)
+    clean = frame.set_index(["training_seed", "simulation_seed"]).loc[clean_keys].reset_index()
+    clean["false_entry"] = clean["post_event_reliability_entries"] > 0
+    rates = clean.groupby(["controller", "training_seed"])["false_entry"].mean()
+    seeds = sorted(clean["training_seed"].unique())
+    controllers = ["C3", "V4_full_aux", "V4_full_ekf"]
+    labels = ["C3", "V4 aux", "V4 EKF"]
+    colors = [OI["gray"], OI["blue"], OI["orange"]]
+    x = np.arange(len(seeds))
+    _, ax = plt.subplots(figsize=(3.5, 2.55))
+    for j, (controller, label, color) in enumerate(zip(controllers, labels, colors)):
+        values = [rates.loc[(controller, seed)] for seed in seeds]
+        ax.bar(x + (j - 1) * 0.23, values, width=0.23, label=label,
+               color=color, edgecolor="black", linewidth=0.6,
+               hatch="//" if j == 2 else None)
+    ax.set_xticks(x)
+    ax.set_xticklabels([str(seed) for seed in seeds])
+    ax.set_xlabel("training seed")
+    ax.set_ylabel("false-entry probability")
+    ax.set_ylim(0, 0.36)
+    ax.legend(frameon=True, ncol=3, loc="upper center")
+    ax.grid(axis="y", color="#dddddd", linewidth=0.5)
+    plt.tight_layout()
+    save("fig_load_false_entries.pdf")
+
+
 def main() -> None:
     fig_latch_timeline()
     fig_conditional_detection()
     fig_architecture()
+    fig_research_evolution()
+    fig_hypothesis_effects()
+    fig_load_false_entries()
 
 
 if __name__ == "__main__":
