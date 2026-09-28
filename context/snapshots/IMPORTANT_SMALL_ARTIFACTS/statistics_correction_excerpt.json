@@ -1,0 +1,12 @@
+{
+  "source": "../../../project/results/v4/confirmatory/statistics_correction_record.json",
+  "classification": "IMPLEMENTATION INCONSISTENCY / BUG",
+  "defect": "Historical bootstrap resampled individual rows within training seed and did not use simulation_seed, splitting four-reference simulation clusters in H1/H2/H7.",
+  "corrected_method": "Resample training seeds, then simulation seeds within each selected training seed, retaining all reference rows in each sampled cluster.",
+  "impacted_hypotheses": ["H1", "H2", "H7"],
+  "unaffected_hypotheses": ["H3", "H4", "H5", "H6", "H8", "H9"],
+  "scientific_simulations_rerun": 0,
+  "holm_survivors_before": ["H8", "H9"],
+  "holm_survivors_after": ["H8", "H9"],
+  "correction_source_sha256": "40839b57c75f059f4b97bb081e0ffdbbe793a7db2237b4db6143fce8c5ab7756"
+}

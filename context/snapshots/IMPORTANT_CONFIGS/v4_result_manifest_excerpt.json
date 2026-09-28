@@ -1,0 +1,35 @@
+{
+  "source": "../../../project/results/v4/confirmatory/result_manifest.json",
+  "source_sha256_recomputed_2026_09_28": "58c2ece8410574de388b0933e17a0b8295e65834f74858edf7d21956e9ce3ff8",
+  "status": "CORRECTED_AND_VERIFIED",
+  "scope": {
+    "original_umbrella_cells": 268910,
+    "executed_h1_h9_core_cells": 12200,
+    "executed_core_cells_from_original_umbrella": 11650,
+    "supplemental_h6_b_anchor_cells": 550,
+    "deferred_umbrella_cells": 257260
+  },
+  "administrative_provenance": {
+    "historical_original_plan_sha256": "7e409aef24c1472382b19964927c878f1daf44f1564d23b6ef1e10f07c35b75f",
+    "administratively_refrozen_plan_sha256": "fb3e2e614b2b35dd3ae66be3c821d389b59573291140ab2a2f906a2912166ae5",
+    "aborted_rows_discarded": 400,
+    "clean_restart_cells": 12200
+  },
+  "integrity_repair": {
+    "affected_cells": 2700,
+    "unaffected_cells_not_rerun": 9500,
+    "incident_sha256": "8766c62f2e8a8cd75db494de160086874f6e6b05274d5ea7bba5eb01019a9214"
+  },
+  "statistical_correction": {
+    "impacted_hypotheses": ["H1", "H2", "H7"],
+    "scientific_simulations_rerun": 0,
+    "source_sha256": "40839b57c75f059f4b97bb081e0ffdbbe793a7db2237b4db6143fce8c5ab7756"
+  },
+  "execution_environment": {
+    "python": "3.11.15 (Anaconda build)",
+    "numpy": "2.2.6",
+    "pandas": "2.3.3",
+    "scipy": "1.13.1",
+    "torch": "2.6.0+cu124"
+  }
+}

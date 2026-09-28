@@ -1,0 +1,35 @@
+{
+  "source": "../../../project/V4_PREREGISTRATION.md and ../../../project/results/v4/prereg/seed_manifest.json",
+  "dataset_seed": 62026,
+  "training_seeds": [2026, 2027, 2028, 2029, 2030, 2031, 2032, 2033, 2034, 2035, 2036],
+  "faultfree": {
+    "seed_first": 71000,
+    "seed_last": 71199,
+    "count": 200,
+    "umbrella_cells": 72800
+  },
+  "severity": {
+    "seed_first": 72000,
+    "seed_last": 72099,
+    "count": 100,
+    "umbrella_cells": 107200
+  },
+  "recovery": {
+    "count": 100,
+    "umbrella_cells": 24000
+  },
+  "robustness_umbrella_cells": 64000,
+  "timing_umbrella_cells": 910,
+  "analysis_bootstrap_base_seed": 20260930,
+  "bootstrap_replicates": 20000,
+  "reserved_or_forbidden_blocks": [
+    "12026-12030",
+    "19026-19030",
+    "29026-29030",
+    "39026-39030 forbidden",
+    "49026-49030",
+    "59026-59030",
+    "91000-91059",
+    "99001, 99101, 99102"
+  ]
+}

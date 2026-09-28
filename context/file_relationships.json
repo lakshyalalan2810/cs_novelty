@@ -1,0 +1,284 @@
+{
+  "generated_on": "2026-09-28",
+  "scope": "Important source, protocol, analysis, artifact, and paper relationships",
+  "nodes": [
+    {
+      "path": "project/src/motor_model.py",
+      "role": "Nonlinear PMDC plant and numerical simulation",
+      "depends_on": [],
+      "used_by": [
+        "project/src/data_utils.py",
+        "project/scripts/v4_closed_loop.py",
+        "project/scripts/evaluate_v3_closed_loop.py",
+        "project/scripts/v4_generate_dataset.py"
+      ],
+      "writes": []
+    },
+    {
+      "path": "project/src/data_utils.py",
+      "role": "Trajectory generation, split, normalization, and windows",
+      "depends_on": ["project/src/motor_model.py"],
+      "used_by": [
+        "project/scripts/v4_generate_dataset.py",
+        "project/scripts/v4_train_models.py",
+        "project/src/lstm_model.py"
+      ],
+      "writes": ["project/data/processed/v4/dc_motor_v4_dataset.npz"]
+    },
+    {
+      "path": "project/src/lstm_model.py",
+      "role": "Main residual LSTM predictor",
+      "depends_on": [],
+      "used_by": [
+        "project/scripts/v4_train_models.py",
+        "project/scripts/v4_closed_loop.py",
+        "project/scripts/evaluate_v3_closed_loop.py"
+      ],
+      "writes": []
+    },
+    {
+      "path": "project/src/auxiliary_sensor_model.py",
+      "role": "Voltage/current-only auxiliary LSTM",
+      "depends_on": [],
+      "used_by": [
+        "project/scripts/v4_train_models.py",
+        "project/scripts/v4_closed_loop.py",
+        "project/scripts/evaluate_v3_closed_loop.py"
+      ],
+      "writes": []
+    },
+    {
+      "path": "project/src/ekf_observer.py",
+      "role": "Augmented current/speed/load EKF",
+      "depends_on": ["project/src/motor_model.py"],
+      "used_by": [
+        "project/scripts/v4_closed_loop.py",
+        "project/scripts/evaluate_ekf_closed_loop.py",
+        "project/src/baselines_v4.py"
+      ],
+      "writes": []
+    },
+    {
+      "path": "project/src/reliability.py",
+      "role": "V1/V2/V3 monitor, arbitration, and C4 helpers",
+      "depends_on": [],
+      "used_by": [
+        "project/scripts/evaluate_v3_closed_loop.py",
+        "project/scripts/evaluate_ekf_closed_loop.py",
+        "project/scripts/verify_c4_results.py"
+      ],
+      "writes": []
+    },
+    {
+      "path": "project/src/reliability_v4.py",
+      "role": "V4 warmup, clamp, and witness-gated monitor",
+      "depends_on": [],
+      "used_by": [
+        "project/scripts/v4_closed_loop.py",
+        "project/scripts/v4_confirm_verify.py"
+      ],
+      "writes": []
+    },
+    {
+      "path": "project/src/mpc.py",
+      "role": "LSTM-MPC and PI fallback",
+      "depends_on": ["project/src/lstm_model.py"],
+      "used_by": [
+        "project/scripts/v4_closed_loop.py",
+        "project/scripts/evaluate_v3_closed_loop.py",
+        "project/scripts/verify_results.py"
+      ],
+      "writes": []
+    },
+    {
+      "path": "project/scripts/v4_closed_loop.py",
+      "role": "V4 ControllerStack and one-cell execution",
+      "depends_on": [
+        "project/src/motor_model.py",
+        "project/src/lstm_model.py",
+        "project/src/auxiliary_sensor_model.py",
+        "project/src/ekf_observer.py",
+        "project/src/mpc.py",
+        "project/src/reliability_v4.py",
+        "project/scripts/v4_detector_configs.py"
+      ],
+      "used_by": [
+        "project/scripts/v4_protocol_common.py",
+        "project/scripts/v4_protocol_core.py",
+        "project/scripts/v4_protocol_faultfree.py",
+        "project/scripts/v4_protocol_sweep.py",
+        "project/scripts/v4_protocol_recovery.py"
+      ],
+      "writes": ["V4 run rows and event rows through the protocol writer"]
+    },
+    {
+      "path": "project/scripts/v4_protocol_common.py",
+      "role": "V4 seeds, RunConfig, keying, and checkpoint/output writer",
+      "depends_on": ["project/scripts/v4_closed_loop.py"],
+      "used_by": [
+        "project/scripts/v4_protocol_core.py",
+        "project/scripts/v4_protocol_faultfree.py",
+        "project/scripts/v4_protocol_sweep.py",
+        "project/scripts/v4_protocol_recovery.py"
+      ],
+      "writes": [
+        "project/results/v4/faultfree",
+        "project/results/v4/sweep",
+        "project/results/v4/recovery"
+      ]
+    },
+    {
+      "path": "project/scripts/v4_protocol_core.py",
+      "role": "Exact H1-H9 core planner/runner",
+      "depends_on": ["project/scripts/v4_protocol_common.py"],
+      "used_by": ["project/results/v4/confirmatory/preanalysis_integrity.json"],
+      "writes": ["project/results/v4/core_execution_status.json"]
+    },
+    {
+      "path": "project/scripts/v4_confirm_analysis.py",
+      "role": "Historical H1-H9 analysis with clustering defect",
+      "depends_on": [
+        "project/results/v4/faultfree",
+        "project/results/v4/sweep",
+        "project/results/v4/recovery"
+      ],
+      "used_by": ["project/results/v4/confirmatory/final_summary.json"],
+      "writes": [
+        "project/results/v4/confirmatory/hypothesis_table.csv",
+        "project/results/v4/confirmatory/final_summary.json"
+      ]
+    },
+    {
+      "path": "project/scripts/v4_statistics_audit.py",
+      "role": "Corrected hierarchical bootstrap",
+      "depends_on": [
+        "project/results/v4/faultfree",
+        "project/results/v4/sweep",
+        "project/results/v4/recovery"
+      ],
+      "used_by": [
+        "project/results/v4/confirmatory/hypothesis_table_corrected.csv",
+        "project/results/v4/confirmatory/statistics_correction_record.json"
+      ],
+      "writes": [
+        "project/results/v4/confirmatory/hypothesis_table_corrected.csv",
+        "project/results/v4/confirmatory/final_summary_corrected.json"
+      ]
+    },
+    {
+      "path": "project/scripts/v4_confirm_verify.py",
+      "role": "Historical integrity/verifier; reproduced the statistical grouping defect",
+      "depends_on": [
+        "project/results/v4/confirmatory/result_manifest.json",
+        "project/results/v4/confirmatory/preanalysis_integrity.json"
+      ],
+      "used_by": ["project/tests/test_v4_confirmatory_freeze.py"],
+      "writes": []
+    },
+    {
+      "path": "project/results/v4/confirmatory/result_manifest.json",
+      "role": "Artifact binding, environment, repair, and correction provenance",
+      "depends_on": [
+        "project/results/v4/confirmatory/core_subsets.json",
+        "project/results/v4/confirmatory/preanalysis_integrity.json",
+        "project/results/v4/ekf_witness_integrity_repair.json"
+      ],
+      "used_by": [
+        "project/paper/main.tex",
+        "project/tests/test_v4_confirmatory_freeze.py",
+        "context/SOURCE_OF_TRUTH.md"
+      ],
+      "writes": []
+    },
+    {
+      "path": "project/results/v4/confirmatory/hypothesis_table_corrected.csv",
+      "role": "Authoritative corrected H1-H9 numeric table",
+      "depends_on": [
+        "project/scripts/v4_statistics_audit.py",
+        "project/results/v4/faultfree",
+        "project/results/v4/sweep",
+        "project/results/v4/recovery"
+      ],
+      "used_by": [
+        "project/paper/tables/tab_h1_h9.tex",
+        "project/paper/FIGURE_MANIFEST.md",
+        "project/paper/main.tex"
+      ],
+      "writes": []
+    },
+    {
+      "path": "project/paper/main.tex",
+      "role": "Current manuscript",
+      "depends_on": [
+        "project/paper/tables/tab_h1_h9.tex",
+        "project/paper/FIGURE_MANIFEST.md",
+        "project/paper/references.bib",
+        "project/results/v4/confirmatory/final_summary_corrected.json"
+      ],
+      "used_by": ["project/PAPER_FINAL_AUDIT.md"],
+      "writes": []
+    }
+  ],
+  "io_notes": [
+    {
+      "path": "project/src/motor_model.py",
+      "reads": ["motor parameters", "state", "voltage", "load torque"],
+      "writes": ["in-memory plant state and trajectories"]
+    },
+    {
+      "path": "project/src/lstm_model.py",
+      "reads": ["normalized voltage/speed windows", "model weights"],
+      "writes": ["one-step speed predictions"]
+    },
+    {
+      "path": "project/src/auxiliary_sensor_model.py",
+      "reads": ["voltage/current windows", "model weights"],
+      "writes": ["physical-unit speed witness predictions"]
+    },
+    {
+      "path": "project/src/ekf_observer.py",
+      "reads": ["applied voltage", "measured current", "Q/R/P0 config"],
+      "writes": ["speed/load witness estimate and diagnostics"]
+    },
+    {
+      "path": "project/src/mpc.py",
+      "reads": ["reference", "feedback speed", "model", "MPCConfig"],
+      "writes": ["bounded voltage commands", "timing", "fallback state"]
+    },
+    {
+      "path": "project/scripts/v4_closed_loop.py",
+      "reads": ["models", "calibration", "RunConfig", "fault/scenario configuration"],
+      "writes": ["in-memory run summary and entry/recovery events"]
+    },
+    {
+      "path": "project/scripts/v4_protocol_common.py",
+      "reads": ["RunConfig", "source/config/model hashes", "cell output"],
+      "writes": ["SQLite checkpoints", "runs.csv", "events.csv"]
+    },
+    {
+      "path": "project/scripts/v4_statistics_audit.py",
+      "reads": ["frozen run/event rows", "historical summary"],
+      "writes": ["corrected hypothesis table", "corrected summary", "correction record"]
+    },
+    {
+      "path": "project/scripts/v4_paper_tables.py",
+      "reads": ["corrected JSON/CSV", "paper table templates"],
+      "writes": ["paper/tables/*.tex"]
+    },
+    {
+      "path": "project/scripts/v4_paper_figures.py",
+      "reads": ["corrected summaries", "post-hoc CSVs", "figure manifest inputs"],
+      "writes": ["paper/figures/*.pdf"]
+    }
+  ],
+  "context_edges": [
+    ["context/START_HERE.md", "context/SOURCE_OF_TRUTH.md"],
+    ["context/SOURCE_OF_TRUTH.md", "context/RESULTS_AUTHORITY.md"],
+    ["context/ARCHITECTURE.md", "context/DATA_FLOW.md"],
+    ["context/DATA_FLOW.md", "context/CODE_CONNECTIONS.md"],
+    ["context/V4_CONFIRMATORY.md", "context/STATISTICS.md"],
+    ["context/PROVENANCE.md", "context/REPRODUCIBILITY.md"],
+    ["context/AI_HANDOFF.md", "context/DO_NOT_TOUCH.md"],
+    ["context/FILE_INDEX.md", "context/REPOSITORY_MAP.md"]
+  ]
+}

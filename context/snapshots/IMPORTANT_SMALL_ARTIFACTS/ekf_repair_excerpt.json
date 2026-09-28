@@ -1,0 +1,16 @@
+{
+  "source": "../../../project/results/v4/ekf_witness_integrity_repair.json",
+  "status": "repair_complete",
+  "affected_controller": "V4_full_ekf",
+  "affected_cells": 2700,
+  "affected_protocol_split": {
+    "faultfree": 2400,
+    "sweep": 300,
+    "recovery": 0
+  },
+  "unaffected_valid_cells_not_rerun": 9500,
+  "failure_signature": "uninitialized step() before observer init; 581 failures per affected 6-second cell",
+  "selection_basis": "controller identity, checkpoint provenance, and deterministic failure signature; not endpoint outcome",
+  "repair_source_sha256": "9545883fc071ff420ed6667906ac31ebeba5c3fc1e337b61c7044f7df6b7ca20",
+  "incident_sha256": "8766c62f2e8a8cd75db494de160086874f6e6b05274d5ea7bba5eb01019a9214"
+}
