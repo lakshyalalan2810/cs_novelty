@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite it as below."
+title: "Disturbance-Aware Witness Gating for Reliability-Aware LSTM-MPC of a Nonlinear DC Motor"
+authors:
+  - family-names: Lalan
+    given-names: Lakshya
+    affiliation: "Vellore Institute of Technology, Vellore"
+  - family-names: Kansal
+    given-names: Shashwat
+    affiliation: "Vellore Institute of Technology, Vellore"
+version: "1.0.0"
+date-released: "2026-09-29"
+repository-code: "https://github.com/lakshyalalan2810/cs_novelty"
+license: MIT
+keywords:
+  - lstm
+  - mpc
+  - fault-detection
+  - dc-motor
+  - virtual-sensor
+  - reliability
+  - python

@@ -1,5 +1,9 @@
 # Disturbance-Aware Witness Gating for Reliability-Aware LSTM-MPC of a Nonlinear DC Motor
 
+![Python](https://img.shields.io/badge/python-3.10+-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Tests](https://img.shields.io/badge/tests-87%20passed-brightgreen)
+![Status](https://img.shields.io/badge/status-paper%20ready-orange)
 > Simulation research on reliability-aware learned MPC, virtual sensing, observer-based witness gating, and preregistered evaluation of speed-sensor fault handling in a nonlinear permanent-magnet DC motor.
 
 This repository contains the complete research path from the original reliability-aware LSTM-MPC controller through auxiliary virtual sensing, dual-sensor arbitration, negative ablations, an EKF comparator, robustness studies, and the final preregistered V4 confirmatory evaluation.
