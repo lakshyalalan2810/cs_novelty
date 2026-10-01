@@ -24,7 +24,7 @@ The V4 result manifest records:
 - SciPy 1.13.1;
 - PyTorch 2.6.0+cu124.
 
-Current project/requirements.txt pins a different set, including pandas 3.0.5 and torch 2.13.0. The repository therefore provides provenance for the historical execution but not a guarantee that installing the current requirements reproduces identical floats, model bytes, or hashes.
+`project/requirements-frozen-v4.txt` records those manifest versions. `project/requirements.txt` instead defines the supported reconstruction/development environment. The archival file is necessarily partial because the manifest did not capture the full OS, CUDA driver, solver, BLAS, or transitive-package state; it therefore does not guarantee identical floats, model bytes, or hashes.
 
 ## Reproduction order
 
@@ -63,7 +63,7 @@ preregistration -> frozen plan -> protocol core -> checkpoint
 
 ## Explicit answer for a future AI
 
-Saved-evidence verification is supported: inspect the bound raw artifacts, hashes, integrity report, repair record, corrected statistics, verifiers, and paper table/figure inputs in the order above. A fresh bit-for-bit scientific re-execution is not established under the current checkout because the recorded V4 environment differs from project/requirements.txt and large runtime artifacts are locally ignored. Treat those as two different goals; do not report the second merely because the first succeeds.
+Saved-evidence verification is supported: inspect the bound raw artifacts, hashes, integrity report, repair record, corrected statistics, verifiers, and paper table/figure inputs in the order above. A fresh bit-for-bit scientific re-execution is not established because the environment record is partial and large runtime artifacts are locally ignored. Treat those as two different goals; do not report the second merely because the first succeeds.
 
 ## Expensive operations
 

@@ -15,7 +15,7 @@ When files disagree, use this order.
 
 | Path | Status | Reason | Supersession |
 |---|---|---|---|
-| project/results/v4/confirmatory/result_manifest.json | current artifact-binding file; cited superseding SHA 0591d54f1e5c45fbb7c5a1910b6cd01a045424848a81ae33d9b477f021ed522e, recomputed current SHA documented below | binds raw V4 rows, environment, repairs, and corrected report | supersedes the historical V4 result manifest |
+| project/results/v4/confirmatory/result_manifest.json | current artifact-binding file; archival Git-blob SHA 0591d54f1e5c45fbb7c5a1910b6cd01a045424848a81ae33d9b477f021ed522e | binds raw V4 rows, environment, repairs, and corrected report | supersedes the historical V4 result manifest |
 | project/results/v4/confirmatory/hypothesis_table_corrected.csv | authoritative numeric H1–H9 table | corrected hierarchy and current p/Holm values | supersedes hypothesis_table.csv |
 | project/results/v4/confirmatory/final_summary_corrected.json | authoritative narrative | corrected manuscript-facing interpretation | supersedes final_summary.json |
 | project/results/v4/confirmatory/statistics_correction_record.json | authoritative correction record | documents H1/H2/H7 bug and no rerun | supersedes no scientific rows; supersedes old bootstrap summaries |
@@ -29,7 +29,7 @@ When files disagree, use this order.
 | project/results/v4/confirmatory/final_summary.json | historical | old H1/H2/H7 summary | final_summary_corrected.json |
 | project/results/v4/confirmatory/independent_verification.json | historical | verifier passed while reproducing the same clustering defect | corrected statistical audit |
 | project/FINAL_REPO_AUDIT.md | historical pre-fix audit | predates corrected timing/configuration | FINAL_REPO_AUDIT_POSTFIX.md plus current V4 authority |
-| project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md | untracked/stale overview | predates final V4 closeout | current README and corrected artifacts |
+| project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md | tracked historical review | predates final V4 cleanup | current README and corrected artifacts |
 
 ## HISTORICAL BUT VALID ARTIFACTS
 
@@ -45,7 +45,7 @@ V1 final-matrix artifacts, V3 275-run artifacts, the C2 equality analysis, the t
 
 ## DO NOT USE FOR CURRENT PAPER NUMBERS
 
-Do not use old H1/H2/H7 p-values 0.0719, 0.0711, and 0.0768, their old Holm values, the pre-fix V1 timing narrative, stale V2/C2 positive interpretation, or the stale untracked overview for current paper claims. Use the corrected CSV/JSON and name the endpoint and scope.
+Do not use old H1/H2/H7 p-values 0.0719, 0.0711, and 0.0768, their old Holm values, the pre-fix V1 timing narrative, stale V2/C2 positive interpretation, or the historical overview for current paper claims. Use the corrected CSV/JSON and name the endpoint and scope.
 
 ## Current V4 authority bundle
 
@@ -60,9 +60,9 @@ Do not use old H1/H2/H7 p-values 0.0719, 0.0711, and 0.0768, their old Holm valu
 
 The scope fields have a deliberate accounting distinction: 11,650 executed cells belong to the original 268,910-cell umbrella, 550 supplemental H6 B-anchor cells were added outside that umbrella, and 257,260 original-umbrella cells remain deferred. Do not calculate deferred scope as umbrella minus total executed core.
 
-## Manifest caveat
+## Manifest hash reconciliation
 
-The current file project/results/v4/confirmatory/result_manifest.json is the provenance binding for the V4 artifact set. Existing paper text and project/tests/test_v4_confirmatory_freeze.py cite a superseding-manifest SHA of 0591d54f1e5c45fbb7c5a1910b6cd01a045424848a81ae33d9b477f021ed522e. A fresh SHA-256 over the current filesystem bytes on 2026-09-28 is 58c2ece8410574de388b0933e17a0b8295e65834f74858edf7d21956e9ce3ff8. This mismatch is a current repository consistency issue. Do not silently declare the test constant or the recomputed hash authoritative without reconciling the artifact bytes; use the current file contents and its bound artifact hashes for scientific interpretation.
+The paper/test hash `0591d54f…` is the SHA-256 of the exact committed Git blob: 6,156 bytes with 103 LF endings. The former filesystem hash `58c2ece8…` came from a Windows checkout with `core.autocrlf=true`, which expanded those 103 lines to CRLF and added exactly 103 bytes. Normalizing those working bytes to LF reproduces `0591d54f…`; JSON semantics and scientific fields are identical. `.gitattributes` now marks this frozen file `-text`. See `project/MANIFEST_HASH_RECONCILIATION.md`.
 
 ## Historical evidence rule
 

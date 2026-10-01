@@ -1,5 +1,7 @@
 # Project Pipeline and Status
 
+> **HISTORICAL DOCUMENT (V1–V3).** For current V4 results and publication status, see `V4_CONFIRMATORY_RESULTS.md`, the root `README.md`, and `context/START_HERE.md`.
+
 ## Scope and current status
 
 The project evaluates a nonlinear DC-motor plant controlled by constrained LSTM-MPC, with a residual/CUSUM sensor monitor that substitutes LSTM virtual feedback when the measured speed is suspect. The final claim is deliberately narrow: the tested reliability-aware controller improves simulated sensor-fault robustness. Hardware readiness and universal adaptive-MPC superiority are not claimed.

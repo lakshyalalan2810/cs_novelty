@@ -8,8 +8,6 @@ authors:
   - family-names: Kansal
     given-names: Shashwat
     affiliation: "Vellore Institute of Technology, Vellore"
-version: "1.0.0"
-date-released: "2026-09-29"
 repository-code: "https://github.com/lakshyalalan2810/cs_novelty"
 license: MIT
 keywords:

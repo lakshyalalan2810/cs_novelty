@@ -1,6 +1,6 @@
 # Project snapshot
 
-Observation date: 2026-09-28. Source of evidence: current checkout, current saved artifacts, current paper/audit documents, and read-only subagent traces. No simulation, training, or result regeneration was performed.
+Observation date: 2026-10-01. Source of evidence: current checkout, saved artifacts, paper/audit documents, and read-only checks. No scientific protocol, training, calibration, or result regeneration was performed; one existing unit test generated a six-trajectory fixture in a temporary directory and retained nothing.
 
 ## Identity
 
@@ -9,7 +9,7 @@ Observation date: 2026-09-28. Source of evidence: current checkout, current save
 | Repository | cs_novelty |
 | Research root | project/ |
 | Branch | main |
-| HEAD observed | 623cba9a95bc7fb72b28a561afd84891caa9f65b |
+| Baseline HEAD observed | 2a6933d8ddaa7d45d9175f7ce0558fbd52a454e4 |
 | Language/tooling | Python scripts/notebooks, PyTorch, NumPy/SciPy/pandas, Matplotlib, LaTeX manuscript |
 | Recorded libraries | Python 3.11.15, NumPy 2.2.6, pandas 2.3.3, SciPy 1.13.1, PyTorch 2.6.0+cu124 |
 | Paper title | Disturbance-Aware Witness Gating for Reliability-Aware LSTM-MPC of a Nonlinear DC Motor |
@@ -18,7 +18,7 @@ Observation date: 2026-09-28. Source of evidence: current checkout, current save
 | Recorded final test status | Paper audit reports 87 tests / 13,746 subtests passed; not rerun in this context build |
 | Hardware status | No HIL or hardware evidence |
 | Real-time status | Reliable 20 Hz end-to-end execution NOT ESTABLISHED |
-| Major assumptions | Simulated plant, healthy/noiseless current channel in V4 dataset, frozen calibration/model bindings |
+| Major assumptions | Simulated plant, uncorrupted/noiseless/unquantized armature-current channel in V4, frozen calibration/model bindings |
 
 ## Current status board
 
@@ -71,11 +71,11 @@ The deltas are endpoint-specific; see [STATISTICS.md](STATISTICS.md) for definit
 
 ## Environment evidence
 
-The completed V4 manifest records Python 3.11.15, NumPy 2.2.6, pandas 2.3.3, SciPy 1.13.1, and PyTorch 2.6.0+cu124. Current project/requirements.txt instead pins NumPy 2.4.6, SciPy 1.17.1, pandas 3.0.5, matplotlib 3.11.1, torch 2.13.0, scikit-learn 1.9.0, JupyterLab 4.6.3, ipykernel 7.3.0, and IPython 9.17.1. Bitwise reproduction under the current requirements file is therefore NOT ESTABLISHED.
+The completed V4 manifest records Python 3.11.15, NumPy 2.2.6, pandas 2.3.3, SciPy 1.13.1, and PyTorch 2.6.0+cu124. `project/requirements-frozen-v4.txt` preserves those recorded versions, while `project/requirements.txt` remains the supported reconstruction/development stack. The manifest is not a complete OS, driver, BLAS, solver, or transitive-package lock, so bitwise reproduction remains NOT ESTABLISHED.
 
 ## Working tree note
 
-The pre-existing untracked project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md was preserved. No original file was intentionally modified by building this package.
+The tracked `project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md` is preserved with a historical-document banner. Frozen scientific artifacts were not modified.
 
 ## CURRENT AUTHORITATIVE CONCLUSION
 
@@ -87,6 +87,6 @@ The repository does not establish general fault tolerance, improved detection or
 
 ## CURRENT NEXT LOGICAL RESEARCH STEP
 
-If new work is authorized, independent external validation is more valuable than inventing another detector branch: first reconcile the manifest/environment packaging, then consider an independently implemented plant (for example Simulink or co-simulation), HIL, or physical-motor validation with an explicit new protocol. This is a recommendation, not a current result.
+If new work is authorized, independent external validation is more valuable than inventing another detector branch: consider an independently implemented plant (for example Simulink or co-simulation), HIL, or physical-motor validation with an explicit new protocol. This is a recommendation, not a current result.
 
 Related: [V4_CONFIRMATORY.md](V4_CONFIRMATORY.md), [PROVENANCE.md](PROVENANCE.md), [LIMITATIONS.md](LIMITATIONS.md).

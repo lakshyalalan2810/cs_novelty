@@ -1,0 +1,8 @@
+# Archival V4 execution versions recorded in result_manifest.json.
+# Python 3.11.15 (Anaconda build); CUDA 12.4 PyTorch wheel.
+# This partial record does not guarantee byte-identical environment recovery.
+--extra-index-url https://download.pytorch.org/whl/cu124
+numpy==2.2.6
+pandas==2.3.3
+scipy==1.13.1
+torch==2.6.0+cu124

@@ -111,7 +111,7 @@ The historical verifier checks plan, pairing, hashes, and result structure, but 
 
 ## What the data flow does not prove
 
-- A clean current channel is assumed by the auxiliary and EKF witnesses.
+- The frozen V4 dataset supplies an uncorrupted, noiseless simulated current channel with no quantization to the auxiliary and EKF witnesses.
 - A witness disagreement is not a causal diagnosis of sensor versus plant failure.
 - A debounced entry rate is not equivalent to conditional post-fault detection.
 - The broad umbrella count is a plan scope, not an execution count.

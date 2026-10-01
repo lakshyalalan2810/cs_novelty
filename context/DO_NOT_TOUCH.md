@@ -24,7 +24,7 @@ Preserve paper/tables/tab_h1_h9.tex, FIGURE_MANIFEST.md, figure sources, and PAP
 
 ## HASH MANIFESTS
 
-Preserve result_manifest.json and all recorded SHA-256 values. The current cited/recomputed manifest mismatch is itself a provenance question and must not be hidden by editing a constant.
+Preserve result_manifest.json and all recorded SHA-256 values. The archival LF-byte hash is `0591d54f…`; the former `58c2ece8…` Windows working-tree hash was caused only by CRLF checkout conversion and is documented in `project/MANIFEST_HASH_RECONCILIATION.md`.
 
 ## Do not modify
 
@@ -37,7 +37,7 @@ Unless the user explicitly requests a scoped code or paper change, leave these u
 - project/data/processed/ datasets and manifests;
 - project/paper/ figures, tables, bibliography, and main.tex;
 - historical reports, prefix snapshots, old audits, and superseded summaries;
-- project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md, the pre-existing untracked file.
+- project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md, a tracked historical review document.
 
 ## Do not run for orientation
 

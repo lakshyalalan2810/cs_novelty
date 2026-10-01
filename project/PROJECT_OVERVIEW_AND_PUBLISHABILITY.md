@@ -1,5 +1,7 @@
 # Project overview and journal publishability
 
+> **HISTORICAL REVIEW DOCUMENT.** It predates the final V4 cleanup; use the root `README.md`, `V4_CONFIRMATORY_RESULTS.md`, and `context/START_HERE.md` for current claims.
+
 This note consolidates two reviews of the repository: what the codebase is, and whether it is journal-publishable. It is a read/analysis document. It does not change frozen evidence, thresholds, seeds, or controllers.
 
 ---

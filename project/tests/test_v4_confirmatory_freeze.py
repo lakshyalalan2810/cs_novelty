@@ -11,8 +11,13 @@ MANIFEST = ROOT / "results" / "v4" / "confirmatory" / "result_manifest.json"
 MANIFEST_SHA256 = "0591d54f1e5c45fbb7c5a1910b6cd01a045424848a81ae33d9b477f021ed522e"
 
 
-def sha256(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def assert_sha256(test: unittest.TestCase, path: Path, expected: str) -> None:
+    """Accept exact archival bytes or only Git's CRLF checkout transform."""
+    raw = path.read_bytes()
+    actual = hashlib.sha256(raw).hexdigest()
+    if actual != expected:
+        actual = hashlib.sha256(raw.replace(b"\r\n", b"\n")).hexdigest()
+    test.assertEqual(actual, expected, str(path))
 
 
 class ConfirmatoryFreezeTests(unittest.TestCase):
@@ -21,29 +26,27 @@ class ConfirmatoryFreezeTests(unittest.TestCase):
         cls.manifest = json.loads(MANIFEST.read_text())
 
     def test_manifest_and_all_bound_artifacts_are_unchanged(self):
-        self.assertEqual(sha256(MANIFEST), MANIFEST_SHA256)
+        assert_sha256(self, MANIFEST, MANIFEST_SHA256)
         for relative, expected in self.manifest["artifacts"].items():
             with self.subTest(path=relative):
-                self.assertEqual(sha256(ROOT / relative), expected)
+                assert_sha256(self, ROOT / relative, expected)
         correction = self.manifest["statistical_correction"]
-        self.assertEqual(sha256(ROOT / correction["source_path"]),
-                         correction["source_sha256"])
-        self.assertEqual(
-            sha256(ROOT / correction["correction_record_path"]),
-            correction["correction_record_sha256"])
+        assert_sha256(self, ROOT / correction["source_path"],
+                      correction["source_sha256"])
+        assert_sha256(self, ROOT / correction["correction_record_path"],
+                      correction["correction_record_sha256"])
         for relative, expected in correction["corrected_artifacts"].items():
             with self.subTest(path=relative):
-                self.assertEqual(sha256(ROOT / relative), expected)
+                assert_sha256(self, ROOT / relative, expected)
 
     def test_provenance_and_analysis_settings(self):
         provenance = self.manifest["administrative_provenance"]
-        self.assertEqual(
-            provenance["administratively_refrozen_plan_sha256"],
-            sha256(ROOT / "results/v4/prereg/h1_h9_execution_plan.json"))
-        self.assertEqual(provenance["core_runner_sha256"],
-                         sha256(ROOT / "scripts/v4_protocol_core.py"))
-        self.assertEqual(provenance["preexecution_manifest_sha256"],
-                         sha256(ROOT / "results/v4/prereg/preexecution_hashes.json"))
+        assert_sha256(self, ROOT / "results/v4/prereg/h1_h9_execution_plan.json",
+                      provenance["administratively_refrozen_plan_sha256"])
+        assert_sha256(self, ROOT / "scripts/v4_protocol_core.py",
+                      provenance["core_runner_sha256"])
+        assert_sha256(self, ROOT / "results/v4/prereg/preexecution_hashes.json",
+                      provenance["preexecution_manifest_sha256"])
         self.assertEqual(self.manifest["analysis"]["bootstrap_replicates"],
                          20000)
         self.assertEqual(self.manifest["analysis"]["family_alpha"], 0.05)

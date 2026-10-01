@@ -9,7 +9,9 @@ independently verified; it is not the full 268,910-cell umbrella, whose
 remaining 257,260 cells are deferred. Only H8 and H9 survive the
 pre-registered Holm correction: under clean-start pairs at the tested 0.15
 N·m load step, both `V4_full_aux` and `V4_full_ekf` reduce false-entry
-probability relative to C3 by 0.217742 (95% CIs [0.138686, 0.315315]). H1/H2
+probability relative to C3 by 0.217742 (95% CIs [0.138686, 0.315315]). The
+endpoint retained 124 of 150 pairs and excluded 26 under the preregistered
+pre-latch rule. H1/H2
 are directionally favorable but nonsignificant; H3/H4/H6/H7 are unfavorable,
 and H5 is exactly null.
 
@@ -95,9 +97,9 @@ For the finite bias/dropout cases, accumulated CUSUM evidence did not fully disc
 
 Reliability thresholds were calibrated on the clean validation operating distribution and may not transfer to substantially different operating points. The five final closed-loop seeds test robustness to simulation noise/randomness. (Historical V1 note, now superseded: at V1 time training-seed robustness was not tested because the single frozen LSTM was not retrained. A later study trained matched model pairs for seeds 2027/2028 under frozen procedures; see `TRAINING_SEED_ROBUSTNESS.md` and `FINAL_ROBUSTNESS_AND_SEVERITY_STUDY.md`. The combined-fault-plus-load result is training-initialization-dependent as summarized at the top of this README.)
 
-## LSTM evidence
+## Historical V1/V3 LSTM evidence
 
-- Held-out one-step RMSE: `0.140873 rad/s`; MAE: `0.113106 rad/s`; R²: `0.999906`.
+- Historical seed-2026 held-out one-step RMSE: `0.140873 rad/s`; MAE: `0.113106 rad/s`; R²: `0.999906`.
 - Persistence RMSE: `0.289778 rad/s`.
 - Recursive endpoint RMSE at H=5/10/15: `0.210952/0.336461/0.487796 rad/s`.
 
@@ -105,9 +107,9 @@ Complete trajectories are split before overlapping windows are made, and normali
 
 ## Reproduce
 
-Python 3.11 or newer is recommended. Dependencies are exactly pinned in `requirements.txt` (pinned `torch==2.13.0`).
+Python 3.11 is recommended. `requirements.txt` is the supported reconstruction/development environment. `requirements-frozen-v4.txt` records the five versions captured by the frozen V4 result manifest; it is an archival record, not a guarantee of byte-identical re-execution.
 
-Environment record: the pinned stack declares `torch==2.13.0`; the independent review ran `torch 2.14.0` with Python 3.12 and `pandas 3.0.5` (see `V4_BOOL_SERIES_REPAIR_NOTE.md` for the pandas-3 verifier fix). V4 preparation used the previously recorded environments. The completed V4 core checkpoint provenance and confirmatory analysis match Python 3.11.15 (Anaconda build), `torch 2.6.0+cu124`, `numpy 2.2.6`, `pandas 2.3.3`, and `scipy 1.13.1`; exact source and artifact hashes are frozen in `results/v4/confirmatory/result_manifest.json`.
+The completed V4 core records Python 3.11.15 (Anaconda build), `torch 2.6.0+cu124`, `numpy 2.2.6`, `pandas 2.3.3`, and `scipy 1.13.1`; exact source and artifact hashes are frozen in `results/v4/confirmatory/result_manifest.json`. See `REPRODUCIBILITY.md` for scope and CUDA limitations.
 
 ```bash
 python -m venv .venv

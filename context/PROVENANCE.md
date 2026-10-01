@@ -43,7 +43,8 @@ Scope accounting is recorded as 11,650 original-umbrella cells used by the core 
 | Corrected H1–H9 CSV | d992473ce809f8736fa366e1e2b160b9f316f39d180391babcb1ad07f63d44f8 |
 | Corrected final summary | 00dc0814722f6ecdc9b97ca9bbab7031c86dc831629c1be6fe6f5c5f383a01ba |
 | Statistical correction record | 52cb4b03e03ff43b7e20ce13b766a3c29b2c24610263acc95629afdcfb89ffb2 |
-| Current filesystem hash of result_manifest.json | 58c2ece8410574de388b0933e17a0b8295e65834f74858edf7d21956e9ce3ff8 |
+| Archival Git-blob hash of result_manifest.json | 0591d54f1e5c45fbb7c5a1910b6cd01a045424848a81ae33d9b477f021ed522e |
+| Historical Windows CRLF checkout hash | 58c2ece8410574de388b0933e17a0b8295e65834f74858edf7d21956e9ce3ff8 |
 
 ## Repair provenance
 
@@ -57,9 +58,9 @@ The historical source project/scripts/v4_confirm_analysis.py has hash f5a5bea644
 
 ## Environment and working state
 
-The V4 manifest records Python 3.11.15 (Anaconda), NumPy 2.2.6, pandas 2.3.3, SciPy 1.13.1, and PyTorch 2.6.0+cu124. project/requirements.txt is a newer/different exact-pin set. A fresh environment must be treated as a reconstruction attempt, not assumed bitwise identical.
+The V4 manifest records Python 3.11.15 (Anaconda), NumPy 2.2.6, pandas 2.3.3, SciPy 1.13.1, and PyTorch 2.6.0+cu124. `project/requirements-frozen-v4.txt` preserves that partial archival record; `project/requirements.txt` is the supported reconstruction/development stack. A fresh environment must be treated as a reconstruction attempt, not assumed bitwise identical.
 
-The outer git HEAD observed was 623cba9a95bc7fb72b28a561afd84891caa9f65b. The pre-existing untracked project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md was preserved.
+The final-cleanup baseline HEAD observed was `2a6933d8ddaa7d45d9175f7ce0558fbd52a454e4`. The tracked historical review `project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md` was preserved and labeled.
 
 ## Figure and paper provenance
 
@@ -67,6 +68,6 @@ project/paper/FIGURE_MANIFEST.md binds six deterministic vector PDFs to their so
 
 project/PAPER_FINAL_AUDIT.md records the integrated manuscript audit, 87 tests / 13,746 subtests, figure/table/reference checks, and readiness for final human read-through. It also records that LaTeX compilation was not run because no latexmk, pdflatex, or xelatex executable was available.
 
-The paper and test suite cite 0591d54f1e5c45fbb7c5a1910b6cd01a045424848a81ae33d9b477f021ed522e as the superseding manifest SHA; a fresh hash of the current file is 58c2ece8410574de388b0933e17a0b8295e65834f74858edf7d21956e9ce3ff8. This unresolved byte-level inconsistency is preserved rather than normalized.
+The paper and test suite correctly cite `0591d54f…`, the committed LF-byte manifest hash. The former `58c2ece8…` filesystem hash was a CRLF checkout representation created by Windows `core.autocrlf=true`; `.gitattributes` now preserves the archival bytes. No scientific or metadata field differed.
 
 Related: [V4_CONFIRMATORY.md](V4_CONFIRMATORY.md), [RESULTS_AUTHORITY.md](RESULTS_AUTHORITY.md), [REPRODUCIBILITY.md](REPRODUCIBILITY.md).

@@ -1,8 +1,8 @@
 # Research context package
 
-This folder is the orientation layer for the repository at the parent level. It is intentionally additive: the original research tree was not edited, moved, deleted, or regenerated while this package was built.
+This folder is the orientation layer for the repository at the parent level. It summarizes authority, provenance, limitations, and safe handoff without duplicating large scientific artifacts.
 
-Read this package before reading the implementation. It records the current repository evidence as observed on 2026-09-28, including the bounded scientific conclusion, the V4 provenance chain, known historical/superseded artifacts, and the one manifest-hash inconsistency that remains in the current checkout.
+Read this package before reading the implementation. It records the repository evidence as rechecked on 2026-10-01, including the bounded scientific conclusion, the V4 provenance chain, known historical/superseded artifacts, and the resolved manifest line-ending issue.
 
 ## Five-minute reading order
 
@@ -15,7 +15,7 @@ Read this package before reading the implementation. It records the current repo
 
 ## Current one-paragraph conclusion
 
-The repository studies reliability-aware LSTM-MPC for a simulated nonlinear PMDC motor. V1 established a bounded isolated abrupt-sensor-fault result; V2/C2 was a negative recovery ablation; V3 became the strongest frozen architecture but exposed load-induced false latches; C4 was a development-only NO_GO branch; the EKF is BASELINE_ONLY; training-seed and severity studies narrow the claims. V4 executed the exact confirmatory dependency core of 12,200 cells from a 268,910-cell umbrella: 9,600 fault-free, 2,000 sweep, and 600 recovery cells, with 257,260 cells deferred. After outcome-independent EKF witness repair and a post-run hierarchical-bootstrap correction, only H8 and H9 survive Holm correction. The supported claim is narrow: at the tested 0.15 N·m load step and clean-start pairing, both V4 witness variants reduced false sensor-fault entries relative to frozen V3 C3. General fault tolerance, improved detection/recovery/tracking, hardware validity, current-channel robustness, causal fault isolation, and reliable 20 Hz execution are not established.
+The repository studies reliability-aware LSTM-MPC for a simulated nonlinear PMDC motor. V1 established a bounded isolated abrupt-sensor-fault result; V2/C2 was a negative recovery ablation; V3 became the strongest frozen architecture but exposed load-induced false latches; C4 was a development-only NO_GO branch; the EKF is BASELINE_ONLY; training-seed and severity studies narrow the claims. V4 executed the exact confirmatory dependency core of 12,200 cells from a 268,910-cell umbrella: 9,600 fault-free, 2,000 sweep, and 600 recovery cells, with 257,260 cells deferred. After outcome-independent EKF witness repair and a post-run hierarchical-bootstrap correction, only H8 and H9 survive Holm correction. The supported claim is narrow: at the tested 0.15 N·m load step, both V4 witnesses reduced false sensor-fault entries on 124 retained clean-start pairs; 26 of 150 pairs were excluded under the preregistered pre-latch rule. General fault tolerance, improved detection/recovery/tracking, hardware validity, current-channel robustness, causal fault isolation, and reliable 20 Hz execution are not established.
 
 ## Navigation
 

@@ -1,16 +1,17 @@
 # Disturbance-Aware Witness Gating for Reliability-Aware LSTM-MPC of a Nonlinear DC Motor
 
-![Python](https://img.shields.io/badge/python-3.10+-blue)
+![Python](https://img.shields.io/badge/python-3.11-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Tests](https://img.shields.io/badge/tests-87%20passed-brightgreen)
 ![Status](https://img.shields.io/badge/status-paper%20ready-orange)
 > Simulation research on reliability-aware learned MPC, virtual sensing, observer-based witness gating, and preregistered evaluation of speed-sensor fault handling in a nonlinear permanent-magnet DC motor.
+
+> **For AI/research handoff, start with [`context/START_HERE.md`](context/START_HERE.md).**
 
 This repository contains the complete research path from the original reliability-aware LSTM-MPC controller through auxiliary virtual sensing, dual-sensor arbitration, negative ablations, an EKF comparator, robustness studies, and the final preregistered V4 confirmatory evaluation.
 
 The central result is intentionally narrow:
 
-> **Under the preregistered 0.15 N·m load-disturbance condition, both V4 witness-gating variants significantly reduced load-induced false sensor-fault entries relative to the frozen V3 C3 controller after Holm correction. Broader improvements in fault detection, recovery, and tracking were not established.**
+> **Under the preregistered 0.15 N·m load-disturbance condition, both V4 witness-gating variants reduced load-induced false sensor-fault entries relative to the frozen V3 C3 controller after Holm correction. This clean-start endpoint retained 124 of 150 pairs and excluded 26 under the preregistered pre-latch rule; H8 and H9 were the only multiplicity-supported results. Broader improvements in fault detection, recovery, and tracking were not established.**
 
 The project is **simulation-only**. It does not claim universal fault tolerance, formal fault isolation, certified stability, hardware/HIL validation, current-sensor fault tolerance, or reliable real-time execution at 20 Hz.
 
@@ -95,6 +96,8 @@ At the tested **0.15 N·m load step**, both:
 - the EKF witness variant
 
 reduced false entry into sensor-fault handling relative to C3.
+
+This endpoint used **124 retained clean-start pairs**; **26 of 150 pairs were excluded** because either controller pre-latched, as specified by the preregistered exclusion rule.
 
 The result supports a specific mechanism: **witness gating can protect reliability-entry logic against this tested load-disturbance confound**.
 
@@ -228,9 +231,9 @@ with voltage and armature current as online inputs. It is retained as a classica
 
 ---
 
-## Main LSTM evidence
+## Historical V1/V3 main LSTM evidence
 
-The frozen seed-2026 main predictor uses two LSTM layers, hidden size 64, dropout 0.2, a 20-sample history, and residual prediction.
+The frozen historical V1/V3 seed-2026 predictor uses two LSTM layers, hidden size 64, dropout 0.2, a 20-sample history, and residual prediction. These are not the V4 retraining metrics; V4 model metrics are stored separately under `project/results/v4/models/`.
 
 | Metric | Frozen result |
 |---|---:|
@@ -327,7 +330,7 @@ cs_novelty/
     └── requirements.txt
 ```
 
-Large runtime checkpoints, generated datasets, model binaries, and raw V4 run matrices are intentionally kept out of Git. Reproducibility is preserved through source code, configurations, small summaries, manifests, hashes, and audit records.
+Large runtime checkpoints, generated datasets, model binaries, and raw V4 run matrices are intentionally kept out of Git. See [`project/ARCHIVAL_ARTIFACTS.md`](project/ARCHIVAL_ARTIFACTS.md) for their release strategy and [`project/REPRODUCIBILITY.md`](project/REPRODUCIBILITY.md) for the supported versus frozen environments.
 
 ---
 
@@ -398,7 +401,7 @@ The final evidence remains bounded by:
 - no formal stability guarantee;
 - no formal fault-isolation proof;
 - no supported current-sensor-fault tolerance;
-- both current-informed witnesses assume a healthy current channel;
+- both current-informed witnesses assume an uncorrupted, noiseless simulated armature-current measurement with no quantization in the frozen V4 dataset;
 - V4 dropout, drift, combined-fault expansion, robustness OFAT, timing, other sweep severities, and non-bias recovery studies remain deferred;
 - gradual drift and parameter mismatch remain important historical weaknesses;
 - direct historical robustness comparisons include only three C3 training seeds and show training-seed sensitivity;
@@ -419,6 +422,8 @@ For the shortest path through the final project:
 - **[V4_STATISTICAL_AND_REPAIR_AUDIT.md](project/V4_STATISTICAL_AND_REPAIR_AUDIT.md)** — bootstrap correction and EKF repair provenance.
 - **[V4_EXECUTION_PLAN_REFREEZE_NOTE.md](project/V4_EXECUTION_PLAN_REFREEZE_NOTE.md)** — administrative re-freeze record.
 - **[LIMITATIONS.md](project/LIMITATIONS.md)** — measured limitations and mechanistic explanations.
+- **[REPRODUCIBILITY.md](project/REPRODUCIBILITY.md)** — supported and frozen environment records.
+- **[ARCHIVAL_ARTIFACTS.md](project/ARCHIVAL_ARTIFACTS.md)** — local-only artifact inventory and future storage plan.
 - **[paper/FIGURE_MANIFEST.md](project/paper/FIGURE_MANIFEST.md)** — figure provenance.
 - **[V4_PREREGISTRATION.md](project/V4_PREREGISTRATION.md)** — preregistered V4 design.
 - **[FINAL_ROBUSTNESS_AND_SEVERITY_STUDY.md](project/FINAL_ROBUSTNESS_AND_SEVERITY_STUDY.md)** — historical V3 robustness boundary study.

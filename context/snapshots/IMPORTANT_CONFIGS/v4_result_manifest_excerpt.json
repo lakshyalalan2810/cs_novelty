@@ -1,6 +1,7 @@
 {
   "source": "../../../project/results/v4/confirmatory/result_manifest.json",
-  "source_sha256_recomputed_2026_09_28": "58c2ece8410574de388b0933e17a0b8295e65834f74858edf7d21956e9ce3ff8",
+  "source_archival_git_blob_sha256": "0591d54f1e5c45fbb7c5a1910b6cd01a045424848a81ae33d9b477f021ed522e",
+  "historical_windows_crlf_checkout_sha256": "58c2ece8410574de388b0933e17a0b8295e65834f74858edf7d21956e9ce3ff8",
   "status": "CORRECTED_AND_VERIFIED",
   "scope": {
     "original_umbrella_cells": 268910,

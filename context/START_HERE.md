@@ -38,7 +38,7 @@ Everything else is more qualified:
 
 ## Main positive result
 
-H8 and H9 support reduced load-disturbance-induced false sensor-fault entries at 0.15 N·m on the retained clean-start endpoint. They are the only multiplicity-supported results.
+H8 and H9 support reduced load-disturbance-induced false sensor-fault entries at 0.15 N·m on 124 retained clean-start pairs; 26 of 150 pairs were excluded by the preregistered pre-latch rule. They are the only multiplicity-supported results.
 
 ## Major negative/null results
 
@@ -96,11 +96,11 @@ Do not infer:
 
 ## Current repository status
 
-The only pre-existing change observed before this context package was the untracked file project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md. It was not modified. The context package itself is the only intended new tree.
+The final cleanup was based on clean `main` at `2a6933d8ddaa7d45d9175f7ce0558fbd52a454e4`. `project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md` is tracked and explicitly labeled historical.
 
 ## Authoritative artifacts
 
-Use project/results/v4/confirmatory/hypothesis_table_corrected.csv, final_summary_corrected.json, statistics_correction_record.json, preanalysis_integrity.json, core_subsets.json, ekf_witness_integrity_repair.json, and result_manifest.json. The precedence and manifest hash caveat are in [RESULTS_AUTHORITY.md](RESULTS_AUTHORITY.md).
+Use project/results/v4/confirmatory/hypothesis_table_corrected.csv, final_summary_corrected.json, statistics_correction_record.json, preanalysis_integrity.json, core_subsets.json, ekf_witness_integrity_repair.json, and result_manifest.json. The precedence and resolved manifest hash reconciliation are in [RESULTS_AUTHORITY.md](RESULTS_AUTHORITY.md).
 
 ## What not to modify
 

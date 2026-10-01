@@ -40,7 +40,7 @@ Read priority:
 | README.md | outer repository orientation; current title and bounded story |
 | project/README.md | project-level pipeline/status and older-stage details |
 | project/PROJECT_PIPELINE_AND_STATUS.md | V1–V3 historical pipeline |
-| project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md | pre-existing untracked overview; stale and not authoritative |
+| project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md | tracked historical review; not authoritative for current V4 claims |
 
 ## V4 protocol and provenance
 

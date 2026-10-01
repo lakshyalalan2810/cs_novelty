@@ -69,7 +69,7 @@ Do not invent V5 casually. Another detector branch would repeat already explored
 - [ ] Add clean-start, condition, and sample-scope qualifiers where needed.
 - [ ] Preserve C4 NO_GO, EKF BASELINE_ONLY, and training-seed sensitivity.
 - [ ] Keep hardware, causal isolation, formal stability, and strong 20 Hz claims out.
-- [ ] Check figure/table provenance and the manifest-hash caveat.
+- [ ] Check figure/table provenance and the resolved manifest-hash record.
 
 ## Before recomputing statistics
 
@@ -84,7 +84,7 @@ Do not invent V5 casually. Another detector branch would repeat already explored
 - [ ] Confirm only intended files changed.
 - [ ] Confirm no model, dataset, checkpoint, raw CSV, or paper artifact was overwritten.
 - [ ] Recheck hashes and scope counts.
-- [ ] Keep the pre-existing untracked overview file untouched unless explicitly requested.
+- [ ] Treat the tracked overview as historical, not current authority.
 - [ ] Do not commit or push unless the user asks.
 
 ## Claims to preserve
@@ -97,21 +97,12 @@ Do not invent V5 casually. Another detector branch would repeat already explored
 - C4 = NO_GO.
 - EKF = BASELINE_ONLY.
 - V3 broader robustness = TRAINING-SEED-SENSITIVE.
-- Simulation-only; healthy current is assumed in the main V4 evidence.
+- Simulation-only; V4 assumes uncorrupted, noiseless, unquantized simulated armature current.
 - No reliable 20 Hz or hardware claim.
 
-## Known paper-review flags
+## Paper-review status
 
-The read-only paper audit found issues that should be handled before submission, but they are outside this additive orientation task:
-
-- E2 is described as using EKF innovation while implementation applies CUSUM to measured-speed minus EKF-speed; current innovation is recorded only.
-- Some manuscript model metrics come from legacy V1/V2 artifacts rather than current V4 seed-2026 model metrics.
-- H8/H9 wording should include the 124 retained clean-start pairs and 26 exclusions.
-- The current-current-channel limitation should say the V4 dataset uses noiseless, uncorrupted simulated current.
-- Broad opening/conclusion wording should be narrowed to the tested load false-entry endpoint.
-- Bounded-recovery wording should clarify CUSUM clamping and recovery_boost = 0.
-
-These are review findings, not changes made here.
+The final cleanup corrected the E2 residual description, labeled the historical V1/V3 model metrics, added the H8/H9 124-retained/26-excluded qualifier, stated the noiseless/unquantized current assumption, and reconciled the manifest hash. LaTeX compilation remains external because no engine is installed.
 
 ## If asked to run something
 
@@ -122,7 +113,7 @@ Do not run the expensive protocol, training, calibration, repair, or broad verif
 - [ ] Read current context package.
 - [ ] Confirm working tree before editing.
 - [ ] Keep original files unchanged unless explicitly authorized.
-- [ ] Treat current result manifest/hash mismatch as an open packaging issue.
+- [ ] Preserve `project/MANIFEST_HASH_RECONCILIATION.md` and `.gitattributes`.
 - [ ] Label historical and current artifacts correctly.
 - [ ] Report what was not run.
 

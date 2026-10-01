@@ -56,7 +56,7 @@ The current audit records 87 tests and 13,746 subtests, figures and structural c
 ## Publication status and final human-read tasks
 
 - Publication status: ready for final human read-through, not yet a published or compiler-verified PDF.
-- Author metadata: intentionally anonymous authors; no affiliation, venue, DOI, or submission record is present.
-- Final human checks: resolve the E2 wording, label or replace legacy model metrics, add the clean-start sample qualifier to H8/H9 prose, state the noiseless simulated-current assumption, reconcile the manifest hash, and run an external LaTeX build.
+- Author metadata: Lakshya Lalan and Shashwat Kansal, Vellore Institute of Technology; no venue, DOI, or submission record is present.
+- Final human checks: run an external LaTeX build, visually inspect the PDF, and adapt venue formatting if needed. The E2 wording, metric provenance, H8/H9 sample qualifier, current-channel assumption, and manifest hash were resolved in the 2026-10-01 cleanup.
 
 Related: [RESULTS_AUTHORITY.md](RESULTS_AUTHORITY.md), [LIMITATIONS.md](LIMITATIONS.md), [REPRODUCIBILITY.md](REPRODUCIBILITY.md).

@@ -31,7 +31,7 @@ state endpoint, sample unit, and scope
 3. Scope/completeness: preanalysis_integrity.json and core_subsets.json.
 4. Repair provenance: ekf_witness_integrity_repair.json.
 5. Statistical correction: statistics_correction_record.json and scripts/v4_statistics_audit.py.
-6. Artifact binding: result_manifest.json, subject to the current SHA mismatch documented in [RESULTS_AUTHORITY.md](RESULTS_AUTHORITY.md).
+6. Artifact binding: result_manifest.json; its archival LF-byte SHA and prior Windows CRLF checkout SHA are reconciled in [RESULTS_AUTHORITY.md](RESULTS_AUTHORITY.md).
 7. Paper-facing consistency: paper/tables/tab_h1_h9.tex, PAPER_FINAL_AUDIT.md, and FIGURE_MANIFEST.md.
 
 ## Experiment-specific authority
@@ -66,4 +66,3 @@ Use these words precisely:
 Read the current artifacts first, record the conflict in [OPEN_QUESTIONS.md](OPEN_QUESTIONS.md), and do not edit the old README merely to make this context package look cleaner. This package is an orientation aid, not a retroactive rewrite of the research history.
 
 Related: [RESULTS_AUTHORITY.md](RESULTS_AUTHORITY.md), [PROJECT_SNAPSHOT.md](PROJECT_SNAPSHOT.md), [OPEN_QUESTIONS.md](OPEN_QUESTIONS.md).
-

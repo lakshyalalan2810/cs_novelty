@@ -14,7 +14,7 @@ V3 load disturbances could trigger false sensor-fault entries and worsen closed-
 
 ## Sensor and model assumptions
 
-- The auxiliary LSTM and EKF depend on a healthy measured-current channel.
+- The frozen V4 dataset gives the auxiliary LSTM and EKF an uncorrupted, noiseless simulated current measurement with no quantization; realistic current-sensor behavior is not established.
 - Current corruption degraded both C3 and EKF in the boundary study.
 - A one-speed-sensor residual cannot always distinguish sensor corruption from plant/model mismatch.
 - Witness disagreement is not causal fault isolation.
@@ -43,12 +43,12 @@ V3 load disturbances could trigger false sensor-fault entries and worsen closed-
 
 - LaTeX compilation was not run because latexmk, pdflatex, and xelatex were unavailable.
 - The paper audit reports structural checks, vector figure regeneration, references, labels, and 87 tests / 13,746 subtests passing; it is not a compiler proof.
-- The current result_manifest.json hash disagrees with the SHA cited in paper/tests; this packaging inconsistency needs reconciliation before calling the repository bit-for-bit frozen.
+- The result-manifest hash mismatch was a Windows CRLF checkout transformation; `.gitattributes` now preserves the archival LF bytes. This does not establish bitwise reproduction of the full execution environment.
 
 ## Operational limits
 
 - Do not launch the umbrella protocols, retraining, repair scripts, or expensive verifiers while merely orienting.
 - Do not tune thresholds, select seeds, or add a new architecture to improve the current story without a new preregistration decision.
-- Do not use the untracked project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md as authority merely because it exists.
+- Do not use the historical `project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md` as current authority.
 
 Related: [PROJECT_SNAPSHOT.md](PROJECT_SNAPSHOT.md), [STATISTICS.md](STATISTICS.md), [DO_NOT_TOUCH.md](DO_NOT_TOUCH.md), [OPEN_QUESTIONS.md](OPEN_QUESTIONS.md).
