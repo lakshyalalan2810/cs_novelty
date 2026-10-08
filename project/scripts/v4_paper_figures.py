@@ -100,10 +100,10 @@ def fig_conditional_detection() -> None:
     x = __import__("numpy").arange(len(families))
     _, ax = plt.subplots(figsize=(3.5, 2.4))
     ax.bar(x - 0.2, pooled, width=0.4, color=OI["blue"], edgecolor="black",
-           linewidth=0.7, label="pooled (preregistered)")
+           linewidth=0.7, label="pooled (frozen)")
     ax.bar(x + 0.2, conditional, width=0.4, color=OI["orange"],
            edgecolor="black", linewidth=0.7, hatch="///",
-           label="conditional on clean start (post-hoc)")
+           label="clean start (post-hoc)")
     ax.set_xticks(x)
     ax.set_xticklabels(labels)
     ax.set_ylabel("detection probability")
@@ -161,31 +161,37 @@ def fig_architecture() -> None:
     tag(34.5, 40.6, "u")
     seg(52, 39, 57, 39)
     tag(54.5, 40.6, "y, i")
-    # Sensors -> main estimator bus.
-    seg(62, 34, 62, 24, head=False)
-    seg(62, 24, 25, 24, head=False)
-    seg(25, 24, 25, 20)
-    tag(43.5, 25.6, "y, V, i")
-    # Sensors -> witness bus.
+    # Applied voltage reaches both estimators; selected feedback reaches main only.
+    seg(34.5, 39, 34.5, 30, head=False)
+    seg(34.5, 30, 25, 30, head=False)
+    seg(25, 30, 25, 20)
+    seg(34.5, 30, 40, 30, head=False)
+    seg(40, 30, 40, 20)
+    tag(29.5, 31.6, "V")
+    tag(40, 28, "V")
+    seg(13, 47, 13, 24, head=False)
+    seg(13, 24, 18, 24, head=False)
+    seg(18, 24, 18, 20)
+    tag(12, 28, "feedback", ha="right")
+    # Healthy current reaches the witness.
     seg(68, 34, 68, 22, head=False)
-    seg(68, 22, 40, 22, head=False)
-    seg(40, 22, 40, 20)
-    ax.text(66.8, 28, "V, i", ha="right", va="center", fontsize=8,
+    seg(68, 22, 44, 22, head=False)
+    seg(44, 22, 44, 20)
+    ax.text(66.8, 28, "i", ha="right", va="center", fontsize=8,
             bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.8})
     # Residuals into the monitor.
-    seg(28, 14, 33, 14)
-    tag(30.5, 16.6, "$e_m$")
+    seg(28, 10, 30, 10, head=False)
+    seg(30, 10, 30, 6, head=False)
+    seg(30, 6, 56, 6, head=False)
+    seg(56, 6, 56, 8)
+    tag(43, 6, "$e_m$")
     seg(47, 14, 52, 14)
     tag(49.5, 16.6, "$e_w$")
     # Monitor -> selector verdict.
     seg(66, 14, 72, 14, head=False)
     seg(72, 14, 72, 24, head=False)
     seg(72, 24, 79, 24)
-    ax.text(74, 16, "suspect", ha="left", va="center", fontsize=8,
-            bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.8})
-    # Main estimate up to MPC.
-    seg(21, 20, 21, 34)
-    ax.text(19.8, 27, "y hat", ha="right", va="center", fontsize=8,
+    ax.text(74, 16, "substitute", ha="left", va="center", fontsize=8,
             bbox={"facecolor": "white", "edgecolor": "none", "pad": 0.8})
     # Healthy measurement to the selector.
     seg(73, 39, 88, 39, head=False)
@@ -198,7 +204,7 @@ def fig_architecture() -> None:
     tag(57, 4.4, "y hat")
     # Selector verdict + feedback to MPC.
     seg(92, 29, 92, 47, head=False)
-    seg(92, 47, 24.5, 47, head=False)
+    seg(92, 47, 13, 47, head=False)
     seg(24.5, 47, 24.5, 44)
     tag(58, 48.2, "feedback")
     save("fig_architecture.pdf")
@@ -238,7 +244,7 @@ def fig_hypothesis_effects() -> None:
     groups = [(["H1", "H2", "H3", "H4", "H5", "H8", "H9"],
                "probability delta"),
               (["H6"], "RMSE delta (rad/s)"),
-              (["H7"], "tracking-penalty delta (rad/s)")]
+              (["H7"], "tracking penalty (rad/s)")]
     fig, axes = plt.subplots(1, 3, figsize=(7.16, 3.15),
                              gridspec_kw={"width_ratios": [2.5, 1, 1]})
     for ax, (ids, xlabel) in zip(axes, groups):

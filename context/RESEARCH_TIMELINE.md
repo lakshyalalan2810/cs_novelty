@@ -45,7 +45,7 @@ H8/H9 only -> bounded paper claim
 | EKF integrity repair | Fix uninitialized V4 witness path | All and only 2,700 affected cells rerun | Outcome-independent infrastructure repair |
 | V4 confirmatory core | Execute H1–H9 dependency set | 12,200 exact cells | H8/H9 only supported |
 | Statistical correction | Restore simulation-seed cluster hierarchy | H1/H2/H7 corrected, no simulations rerun | Corrected summaries supersede historical |
-| Paper integration | Align text, tables, figures, provenance | Final paper audit: 87 tests / 13,746 subtests | Ready for human read-through; compile unverified |
+| Paper integration | Align text, tables, figures, provenance | Final paper audit: 87 tests / 13,746 subtests | Historical Oct-1 precompiler audit; build/visual QA superseded by 2026-10-08 finalization |
 
 ## Supersession rules
 

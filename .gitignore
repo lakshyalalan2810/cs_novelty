@@ -10,5 +10,6 @@ desktop.ini
 .env
 .env.*
 !.env.example
+/tmp/
 .ipynb_checkpoints/
 **/.ipynb_checkpoints/

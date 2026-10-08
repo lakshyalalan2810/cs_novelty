@@ -1,6 +1,6 @@
 # Project snapshot
 
-Observation date: 2026-10-01. Source of evidence: current checkout, saved artifacts, paper/audit documents, and read-only checks. No scientific protocol, training, calibration, or result regeneration was performed; one existing unit test generated a six-trajectory fixture in a temporary directory and retained nothing.
+Scientific snapshot date: 2026-10-01; current publication-status update: 2026-10-08. The finalization baseline HEAD/origin was 4b7c51d; the earlier observed HEAD below remains historical. Observation date: 2026-10-01. Source of evidence: current checkout, saved artifacts, paper/audit documents, and read-only checks. No scientific protocol, training, calibration, or result regeneration was performed; one existing unit test generated a six-trajectory fixture in a temporary directory and retained nothing.
 
 ## Identity
 
@@ -14,7 +14,7 @@ Observation date: 2026-10-01. Source of evidence: current checkout, saved artifa
 | Recorded libraries | Python 3.11.15, NumPy 2.2.6, pandas 2.3.3, SciPy 1.13.1, PyTorch 2.6.0+cu124 |
 | Paper title | Disturbance-Aware Witness Gating for Reliability-Aware LSTM-MPC of a Nonlinear DC Motor |
 | Primary manuscript | project/paper/main.tex |
-| Current paper status | Ready for final human read-through; LaTeX compilation unverified |
+| Current paper status | 2026-10-08 compiled/visually reviewed; venue format, public archive and human metadata pending |
 | Recorded final test status | Paper audit reports 87 tests / 13,746 subtests passed; not rerun in this context build |
 | Hardware status | No HIL or hardware evidence |
 | Real-time status | Reliable 20 Hz end-to-end execution NOT ESTABLISHED |
@@ -32,7 +32,7 @@ Observation date: 2026-10-01. Source of evidence: current checkout, saved artifa
 | Training-seed study | TRAINING-SEED-SENSITIVE | Combined-fault behavior changes by learned-weight seed |
 | Severity study | COMPLETE; NO SUPPORTED OPERATING POINT | Tested conditions are LIMITED or UNSUPPORTED |
 | V4 | CORRECTED_AND_VERIFIED | Exact 12,200-cell core audited; only H8/H9 supported |
-| Manuscript | READY FOR HUMAN READ-THROUGH | Structural/evidence audit passed; compiler absent |
+| Manuscript (historical Oct 1) | READY FOR HUMAN READ-THROUGH | Historical structural/evidence audit passed; compiler was absent then |
 
 ## V4 scope
 

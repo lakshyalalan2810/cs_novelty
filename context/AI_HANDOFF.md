@@ -102,7 +102,7 @@ Do not invent V5 casually. Another detector branch would repeat already explored
 
 ## Paper-review status
 
-The final cleanup corrected the E2 residual description, labeled the historical V1/V3 model metrics, added the H8/H9 124-retained/26-excluded qualifier, stated the noiseless/unquantized current assumption, and reconciled the manifest hash. LaTeX compilation remains external because no engine is installed.
+The final cleanup corrected the E2 residual description, labeled the historical V1/V3 model metrics, added the H8/H9 124-retained/26-excluded qualifier, stated the noiseless/unquantized current assumption, and reconciled the manifest hash. A portable Tectonic/XeTeX + BibTeX build and complete visual QA were performed on 2026-10-08; see project/PAPER_FINAL_AUDIT.md. Original ignored artifacts were restored and packaged locally, with no public deposit/DOI. Submission still requires venue formatting and human metadata.
 
 ## If asked to run something
 

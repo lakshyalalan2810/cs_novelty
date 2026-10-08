@@ -51,12 +51,12 @@ The paper-facing H1–H9 table is project/paper/tables/tab_h1_h9.tex. Check it a
 
 ## Build status
 
-The current audit records 87 tests and 13,746 subtests, figures and structural checks passing. No LaTeX engine was available, so compilation is unverified. Keep the source open to a human/compiler review rather than reporting “paper complete” as “PDF built.”
+The historical Oct-1 audit recorded 87 tests and 13,746 subtests. The 2026-10-08 finalization produced a real Tectonic/XeTeX + BibTeX PDF and inspected every page. Current tests, font/box diagnostics, independent audits, and the final PDF identifier are in project/PAPER_FINAL_AUDIT.md; the historical total is not the current run count.
 
 ## Publication status and final human-read tasks
 
-- Publication status: ready for final human read-through, not yet a published or compiler-verified PDF.
+- Publication status: compiled and visually reviewed; NOT_READY for submission until venue formatting, public archive release, and human metadata are complete.
 - Author metadata: Lakshya Lalan and Shashwat Kansal, Vellore Institute of Technology; no venue, DOI, or submission record is present.
-- Final human checks: run an external LaTeX build, visually inspect the PDF, and adapt venue formatting if needed. The E2 wording, metric provenance, H8/H9 sample qualifier, current-channel assumption, and manifest hash were resolved in the 2026-10-01 cleanup.
+- Final human checks: decide the target, adapt its template, complete author metadata/declarations, publish the verified local artifact bundle, and review the final source/PDF. The E2 wording, metric provenance, H8/H9 sample qualifier, current-channel assumption, and manifest hash were resolved in the 2026-10-01 cleanup.
 
 Related: [RESULTS_AUTHORITY.md](RESULTS_AUTHORITY.md), [LIMITATIONS.md](LIMITATIONS.md), [REPRODUCIBILITY.md](REPRODUCIBILITY.md).

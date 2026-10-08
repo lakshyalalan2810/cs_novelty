@@ -14,6 +14,10 @@ The current saved evidence supports reconstruction of:
 - the bootstrap correction from saved data;
 - paper figure/table provenance.
 
+## Source and archive availability (2026-10-08)
+
+Source-only checks can build the saved manuscript assets and regenerate tracked-evidence tables. Full figure generation (Figure 6) and independent reconstruction from canonical rows require ignored scientific files. Original files were recovered from an existing local backup and restored/hash-checked without rerunning science; a local deterministic archive with exact baseline Git blobs is prepared. It is not a public deposit. See project/REPRODUCIBILITY.md for the operation/dependency map and project/paper/PUBLICATION_RELEASE_REPORT.md for remaining actions. Do not equate local presence with reader access.
+
 ## Recorded execution environment
 
 The V4 result manifest records:

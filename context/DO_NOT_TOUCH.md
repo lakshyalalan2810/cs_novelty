@@ -20,7 +20,7 @@ Preserve hypothesis_table_corrected.csv, final_summary_corrected.json, statistic
 
 ## PAPER FINAL NUMBERS
 
-Preserve paper/tables/tab_h1_h9.tex, FIGURE_MANIFEST.md, figure sources, and PAPER_FINAL_AUDIT.md. They connect manuscript claims to corrected results and reveal the unverified LaTeX build status.
+Preserve paper/tables/tab_h1_h9.tex, FIGURE_MANIFEST.md, figure sources, and PAPER_FINAL_AUDIT.md. They connect manuscript claims to corrected results and record the historical and current LaTeX build status.
 
 ## HASH MANIFESTS
 

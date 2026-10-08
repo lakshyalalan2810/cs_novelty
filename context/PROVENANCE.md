@@ -66,7 +66,7 @@ The final-cleanup baseline HEAD observed was `2a6933d8ddaa7d45d9175f7ce0558fbd52
 
 project/paper/FIGURE_MANIFEST.md binds six deterministic vector PDFs to their source artifacts and records that the generator runs no scientific simulation. Figure 5 uses the corrected H1–H9 table; Figure 6 uses the load-0.15 sweep rows with the clean-start aggregation rule. No favorable representative trajectory was selected because the frozen core lacks a manuscript-ready common-condition trace.
 
-project/PAPER_FINAL_AUDIT.md records the integrated manuscript audit, 87 tests / 13,746 subtests, figure/table/reference checks, and readiness for final human read-through. It also records that LaTeX compilation was not run because no latexmk, pdflatex, or xelatex executable was available.
+project/PAPER_FINAL_AUDIT.md records the integrated manuscript audit, 87 tests / 13,746 subtests, figure/table/reference checks, and readiness for final human read-through. That Oct-1 record is preserved as historical. The 2026-10-08 finalization audit supersedes its build status with real Tectonic/XeTeX + BibTeX compilation, complete visual QA, and local archive preparation; no scientific result was rerun or changed.
 
 The paper and test suite correctly cite `0591d54f…`, the committed LF-byte manifest hash. The former `58c2ece8…` filesystem hash was a CRLF checkout representation created by Windows `core.autocrlf=true`; `.gitattributes` now preserves the archival bytes. No scientific or metadata field differed.
 

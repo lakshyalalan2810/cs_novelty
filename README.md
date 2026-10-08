@@ -2,7 +2,7 @@
 
 ![Python](https://img.shields.io/badge/python-3.11-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
-![Status](https://img.shields.io/badge/status-paper%20ready-orange)
+![Status](https://img.shields.io/badge/status-release%20prepared-orange)
 > Simulation research on reliability-aware learned MPC, virtual sensing, observer-based witness gating, and preregistered evaluation of speed-sensor fault handling in a nonlinear permanent-magnet DC motor.
 
 > **For AI/research handoff, start with [`context/START_HERE.md`](context/START_HERE.md).**
@@ -29,8 +29,8 @@ The project is **simulation-only**. It does not claim universal fault tolerance,
 | Training-seed robustness | **TRAINING-SEED-SENSITIVE** |
 | Final V3 robustness/severity study | Complete / frozen |
 | V4 H1–H9 confirmatory core | **Complete and audited** |
-| Final paper integration | **Ready for final human read-through** |
-| Final PDF build | Not produced locally; LaTeX toolchain unavailable |
+| Final paper integration | **Reviewed; venue formatting and human metadata pending** |
+| Final PDF build | Built with Tectonic/XeTeX + BibTeX; all pages visually inspected |
 
 The final manuscript source is:
 
@@ -99,7 +99,7 @@ reduced false entry into sensor-fault handling relative to C3.
 
 This endpoint used **124 retained clean-start pairs**; **26 of 150 pairs were excluded** because either controller pre-latched, as specified by the preregistered exclusion rule.
 
-The result supports a specific mechanism: **witness gating can protect reliability-entry logic against this tested load-disturbance confound**.
+The result supports the **complete frozen V4 packages at this tested load-disturbance endpoint**. C3 and V4 use different model/calibration bundles and monitor logic, so the comparison does not isolate the witness component's causal effect.
 
 It does **not** establish:
 
@@ -375,7 +375,7 @@ python scripts/verify_final_robustness_study.py
 
 The confirmatory and paper-specific verification logic is also covered by the V4 test and audit suite.
 
-The final paper audit reports:
+The historical Oct-1 paper audit reported:
 
 - **87 V4 tests passed**
 - **13,746 subtests passed**
@@ -387,7 +387,7 @@ The final paper audit reports:
 - 0 unresolved manuscript references
 - 0 unresolved citation keys
 
-A final PDF was not built in the audited environment because `latexmk`, `pdflatex`, and `xelatex` were unavailable.
+On 2026-10-08, a real Tectonic/XeTeX + BibTeX build and page-by-page visual QA produced [`project/paper/main.pdf`](project/paper/main.pdf). Current checks, compiler diagnostics, and remaining actions are recorded in [`project/PAPER_FINAL_AUDIT.md`](project/PAPER_FINAL_AUDIT.md). The 87-test historical total above is not a claim that that entire suite was rerun during finalization.
 
 ---
 
@@ -433,15 +433,13 @@ For the shortest path through the final project:
 
 ## Publication status
 
-The manuscript source has completed the repository-level scientific, statistical, provenance, figure, and structural audits and is marked:
+The manuscript has a compiled, visually checked review PDF, verified bibliography, corrected layouts, and a locally prepared scientific archive. **Overall state: NOT_READY for submission.**
 
-> **PAPER READY FOR FINAL HUMAN READ-THROUGH**
+Remaining non-experimental actions are:
 
-The remaining publication tasks are external to the scientific experiment:
+1. choose the venue and apply its submission template (IEEE Access is the provisional recommendation);
+2. supply corresponding-author/contact/ORCID/biographies, accurate declarations, AI-assistance disclosure, and author approvals;
+3. confirm artifact licensing, deposit the verified local archive, and add its actual public identifier;
+4. approve the final diff and perform the human submission review.
 
-1. add final author/affiliation/contact metadata;
-2. compile and visually inspect the manuscript PDF with a LaTeX toolchain;
-3. adapt formatting to the selected journal/conference;
-4. perform the final human submission review.
-
-No additional experiment is required to support the current bounded conclusion.
+See the [venue comparison](project/paper/VENUE_READINESS.md), [release and metadata checklist](project/paper/PUBLICATION_RELEASE_REPORT.md), [visual QA](project/paper/VISUAL_QA_REPORT.md), and [change log](project/paper/FINALIZATION_CHANGELOG.md). No additional experiment is required to support the existing bounded conclusion. No commit or push was made.

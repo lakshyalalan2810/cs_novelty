@@ -41,8 +41,9 @@ V3 load disturbances could trigger false sensor-fault entries and worsen closed-
 
 ## Paper and tooling limits
 
-- LaTeX compilation was not run because latexmk, pdflatex, and xelatex were unavailable.
-- The paper audit reports structural checks, vector figure regeneration, references, labels, and 87 tests / 13,746 subtests passing; it is not a compiler proof.
+- The Oct-1 audit had no LaTeX engine. The 2026-10-08 finalization built a real Tectonic/XeTeX + BibTeX PDF and visually inspected every page; see project/PAPER_FINAL_AUDIT.md for current diagnostics.
+- The historical 87-test / 13,746-subtest record remains historical. Current focused checks do not imply rerunning the scientific protocols.
+- The verified archive is prepared locally, not publicly deposited. Source-only and artifact-assisted reproducibility differ; venue formatting and human metadata remain unresolved.
 - The result-manifest hash mismatch was a Windows CRLF checkout transformation; `.gitattributes` now preserves the archival LF bytes. This does not establish bitwise reproduction of the full execution environment.
 
 ## Operational limits

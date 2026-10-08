@@ -8,7 +8,7 @@ The recorded scope fields are intentionally not a simple subtraction: 11,650 cel
 
 ## Ignored evidence distribution
 
-The V4 raw CSVs, checkpoints, model weights, dataset NPZ, and histories are locally present but ignored by Git. `project/ARCHIVAL_ARTIFACTS.md` recommends an immutable Zenodo/OSF or institutional deposit with detached hashes. No upload or DOI exists yet.
+The original V4 raw CSVs, checkpoints, model weights, dataset NPZ, histories, and final status snapshot were located in an existing local backup and restored on 2026-10-08. A deterministic, hash-checked local deposit bundle is prepared; `project/ARCHIVAL_ARTIFACTS.md` identifies it. It is ignored by Git, and no public upload or DOI exists yet. Source-only clones still require the separate bundle for raw evidence and full figure regeneration.
 
 ## Plan byte comparison
 
@@ -33,7 +33,7 @@ No final C4 holdout exists. Robustness, timing, DET-wide, and other non-core V4 
 
 ## Publication important
 
-- Build and visually inspect the paper with an external LaTeX toolchain.
+- Real compilation and page-by-page visual inspection were completed on 2026-10-08; repeat them after any venue-template change.
 - Select a venue and apply its formatting/submission requirements.
 - Create an immutable large-artifact deposit before claiming source-to-result reproducibility from a public release.
 

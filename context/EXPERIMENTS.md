@@ -44,7 +44,7 @@ Status: FROZEN STRONGEST ARCHITECTURE WITH LIMITATIONS.
 
 Status: DEVELOPMENT NO_GO; FINAL HOLDOUT NOT RUN.
 
-C4 attempted three-way attribution using sensor–main, sensor–auxiliary, and main–auxiliary distances. It evaluated B, C3, and C4 over seven development scenarios and seeds 19026–19030, 105 paired runs. C4 was numerically identical to C3, suppressed zero intended load false entries, and failed its load, parameter, and reference transition gates. No reserved final holdout 39026–39030 exists for C4.
+C4 attempted three-way attribution using sensor–main, sensor–auxiliary, and main–auxiliary distances. It evaluated B, C3, and C4 over seven development scenarios and seeds 19026–19030, 105 development cells (35 per controller, including 35 C3/C4 scenario–seed pairs). C4 was numerically identical to C3, suppressed zero intended load false entries, and failed its load, parameter, and reference transition gates. No reserved final holdout 39026–39030 exists for C4.
 
 ## EKF comparator
 

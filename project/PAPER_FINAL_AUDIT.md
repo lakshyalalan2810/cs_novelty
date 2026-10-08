@@ -1,3 +1,192 @@
+> Packaging update, 2026-10-08: a separate ten-page official IEEE Access draft
+> and clean source bundle now exist. Current readiness is
+> READY_AFTER_HUMAN_METADATA_AND_ARCHIVE_DEPOSIT; see
+> [SUBMISSION_PACKAGE_REPORT.md](paper/SUBMISSION_PACKAGE_REPORT.md).
+> The audit below records the preceding conference-format review pass. Its
+> scientific findings and evidence remain unchanged.
+
+# Final paper audit — preceding 2026-10-08 finalization
+
+**Overall state: NOT_READY for submission.** The manuscript is compiled and
+visually reviewed, its saved evidence is independently checked, and the original
+ignored artifacts are packaged locally. A public archive deposit, selected
+venue's submission format, and human publication metadata remain required.
+
+Baseline: `main` and `origin/main` both remain `4b7c51dabff16a702d230f2b9f87c14f73ebf9fd`
+(`Cleanup`, intentionally restored Oct-1 research state). No commit or push was
+made. No controller, endpoint, seed, threshold, exclusion, statistic, result,
+scientific conclusion, or frozen scientific artifact was modified. No later
+replication/reconciliation work, training, simulation, or new inference was run.
+
+## Final verdicts
+
+| Category | Verdict | Evidence / remaining action |
+|---|---|---|
+| SCIENCE_INTEGRITY | PASS | Original saved rows, frozen bindings, nine endpoints/exclusion sets, and H8/H9-only Holm decisions independently checked |
+| MANUSCRIPT_CONTENT | PASS | Reviewer corrections integrated; full-package comparison, post-hoc populations, healthy-current assumption, and adverse/null findings explicit |
+| LATEX_BUILD | PASS | Real repeated XeTeX/BibTeX build; no undefined citation/reference, missing asset, font warning, or PDF-generation error |
+| VISUAL_LAYOUT | PASS | Every final page inspected; full hashes, single-column post-hoc table, wide frozen table, axis labels, legends, and float order repaired |
+| LITERATURE_COVERAGE | PASS_WITH_ACTIONS | 16 verified and cited entries cover the ten requested areas; authors should perform the venue's final reference/retraction review |
+| REPRODUCIBILITY_RELEASE | PASS_WITH_ACTIONS | Deterministic original-artifact bundle verified locally; public deposit, artifact licensing, and actual persistent identifier outstanding |
+| VENUE_READINESS | PASS_WITH_ACTIONS | Three official venue guides compared; provisional IEEE Access recommendation requires target/funding decision, template conversion, and author metadata |
+| REPOSITORY_CONSISTENCY | PASS | Current-facing status synchronized; Oct-1 audit and snapshots expressly historical; scientific-path diff empty |
+
+PASS for the scientific audit is a preservation/traceability verdict, not a claim
+of broad fault tolerance or submission acceptance. PASS_WITH_ACTIONS identifies
+remaining publication work; it does not mean those actions have been completed.
+
+## Science and manuscript content
+
+H8/H9 alone support reduced debounced false reliability entry under the tested
+0.15 N·m load condition. Among 124 retained clean-start pairs from 150 candidates,
+historical C3 recorded 27 entries and each V4 variant recorded zero; the 26
+pre-latched exclusions are the frozen rule. Per-training-seed C3 counts are
+8/43, 10/34, and 9/47. H1/H2 remain favorable but unsupported;
+H3/H4/H6/H7 remain unfavorable; H5 is null with zero recorded recoveries in both
+controllers among 264 retained pairs. C4 remains NO_GO, the historical EKF
+comparator BASELINE_ONLY, and historical robustness TRAINING-SEED-SENSITIVE.
+
+The comparison changes complete controller/model/calibration packages. It does
+not isolate witness-component causality. Debounced witness-gated entry is
+distinguished from instantaneous feedback substitution. Current-informed
+witnesses have no direct speed-sensor input, but share a closed loop and assume
+the frozen dataset's healthy, noiseless, unquantized current channel. No general
+detection, recovery, tracking, isolation, hardware, stability, or 20 Hz claim is
+made. All safety counters, including 3,053 slew-limit violations, remain visible.
+
+Methods now specify the selected-feedback main history, S2 speed-median exception,
+historical versus V4 EKF identities, correctly paired historical metrics, 105 C4
+development cells/35 C3-C4 pairs, three enabled V4 changes with recovery boost
+disabled, deferred component ablations, event durations/onsets/noise scales,
+censoring, and training/reference populations. The executed core comprises
+11,650 original-umbrella plus 550 supplemental H6 cells; 257,260 original-umbrella
+cells remain deferred. Prior re-freeze, EKF repair, and statistical correction
+are disclosed as history; none was repeated during this task.
+
+All four included numeric tables were checked against saved CSV/JSON. Only the
+post-hoc table header changed. All six figures retain their source and selection
+rules. Three assets changed for presentation/accuracy: architecture routing,
+conditional-detection legend, and tracking-penalty axis label. No numeric values,
+aggregation, or favorable trajectory selection changed.
+
+Related Work now distinguishes established MPC, recurrent prediction, residual
+diagnosis, analytical redundancy, CUSUM, motor-drive observer isolation, neural
+sensor reconstruction, and reliability-aware MPC from this narrow entry study.
+All 16 BibTeX entries are cited, with no missing/unused key or duplicate entry.
+Primary-source metadata corrections and access limits are documented separately.
+
+## Real build and every-page visual review
+
+Portable official Tectonic 0.17.0 ran real XeTeX, BibTeX 0.99d, repeated passes
+until auxiliary files converged, and xdvipdfmx. Final PDF: **9 letter-size
+pages**, **172,857 bytes**, SHA-256:
+
+`15b22cb06d2cffc77f04b1cc2eff2015b6ca3e65d7219780920dd55511512e24`
+
+Final-pass diagnostics: **0 overfull horizontal,
+0 overfull vertical,
+13 underfull horizontal,
+0 underfull vertical boxes; 0 font warnings;
+0 unresolved citations/references; 0 missing included assets; 0 BibTeX warnings
+or errors.** Every underfull paragraph was visually checked. Page 7 contains
+result floats by design, with no collision. All 19 PDF fonts
+are embedded and none is Type 3. Three complete 64-character provenance hashes
+remain present and unchanged in the rendered PDF.
+
+The independent layout reviewer inspected all eight baseline pages, then all
+nine final pages individually and figure-bearing pages in grayscale. The known
+hash and frozen-table collisions are repaired with double-column tables. The
+post-hoc table fits one column at readable size. Figure 5's clipped axis and
+Figure 4's undersized legend are repaired. Result floats precede the conclusion,
+and the final reference columns are balanced. The report binds this exact PDF
+hash; rendering success alone was not treated as a pass.
+
+Retained build evidence: [BUILD_REPORT.json](paper/BUILD_REPORT.json),
+[COMPILE_LOG.txt](paper/COMPILE_LOG.txt), [BIBTEX_LOG.txt](paper/BIBTEX_LOG.txt).
+Commands and diagnosed intermediate attempts are in
+[VALIDATION_COMMANDS.md](paper/VALIDATION_COMMANDS.md).
+
+## Original-artifact release
+
+55 original ignored files were located in an existing local backup and restored:
+54 scientific artifacts plus the hash-bound final runtime provenance snapshot.
+The dataset and all nine raw run/event/checkpoint files match frozen hashes;
+22 model weights and 22 histories have newly inventoried detached hashes and
+matching original/baseline model metadata. Those new hashes are not presented as
+previously frozen standalone model hashes.
+
+The deposit candidate contains 608 exact baseline Git blobs and the 55 originals,
+plus its internal README/inventory/checksums: **666 ZIP entries**, **50,309,924
+bytes**. SHA-256:
+
+`96f390e72a72b11b1c6ca106f18b6ff463ca894c49c3a05cc9202ab70b626743`
+
+Independent verification found that an initial `git archive` package applied
+Windows newline conversion to 503 source members. The builder now reads exact
+`git show` bytes. Two reviewers verified all 608 source members against fresh
+Git-blob reads, all 55 ignored files against originals/local copies, all 663
+listed payload hashes, ZIP membership/CRCs, and repeat-build determinism. This
+was a packaging correction; scientific rows and inference were untouched.
+
+The ZIP's source is the original scientific baseline. The approved final
+manuscript/PDF must accompany the deposit separately. No public upload, DOI,
+submission, or paid action occurred. A source-only clone can build saved paper
+assets and regenerate tables; full figure generation and independent raw-row
+inference require the separate bundle. Partial environment records do not prove
+byte-identical scientific re-execution. See the [release report and human
+metadata checklist](paper/PUBLICATION_RELEASE_REPORT.md),
+[archive policy](ARCHIVAL_ARTIFACTS.md), and [reproducibility map](REPRODUCIBILITY.md).
+
+## Validation and remaining submission actions
+
+The focused paper/context/statistics/freeze suite passed **13 tests and 22
+subtests**, including table and figure generation with the original sweep rows.
+The final repeat restored the saved figure bytes after generation and asserted
+their hashes. Independent read-only context/freeze/statistics verification passed
+another nine tests. Python compile checks for both edited paper generators and
+the archive builder passed. `git diff --check` passed; scientific-path diff is
+empty. The historical 87-test/13,746-subtest result below was not rerun here.
+
+The [venue comparison](paper/VENUE_READINESS.md) recommends IEEE Access
+provisionally as a Research Article, based on verified official requirements,
+and also evaluates JCAES and Transactions of the Institute of Measurement and
+Control. Acceptance and funding are not assumed. The current corrected
+IEEEtran conference PDF remains a review draft; it is not the Access template.
+
+Required next actions are: choose target and funding route; convert to its
+required format and repeat build/all-page QA; supply corresponding author,
+emails, ORCID, biographies, accurate declarations/contributions/acknowledgments,
+AI-assistance disclosure, and coauthor approval; confirm artifact licensing and
+deposit the original bundle; verify uploaded bytes and add only the actual
+persistent identifier; approve the final diff before any commit/push. No new
+experiment is required for the existing bounded conclusion. The overall state
+is NOT_READY because the remaining actions extend beyond human metadata alone.
+
+## Independent reports and complete review package
+
+- [Science/content audit](paper/SCIENCE_CONTENT_AUDIT.md)
+- [All-page visual QA](paper/VISUAL_QA_REPORT.md)
+- [Literature positioning and verified primary sources](paper/LITERATURE_POSITIONING_AUDIT.md)
+- [Release gap and metadata checklist](paper/PUBLICATION_RELEASE_REPORT.md)
+- [Venue recommendation](paper/VENUE_READINESS.md)
+- [Independent final verification](paper/FINAL_VERIFICATION_REPORT.md)
+- [Concise change log and exact changed-file list](paper/FINALIZATION_CHANGELOG.md)
+- [Exact commands/tests](paper/VALIDATION_COMMANDS.md)
+- [Binary-capable final Git review diff](paper/FINAL_REVIEW_DIFF.patch)
+
+The five requested independent agent roles were used. Their earlier baseline
+findings are retained with explicit scope; the final verifier checks resolution
+against this current audit and the final PDF fingerprint.
+
+---
+
+# HISTORICAL/SUPERSEDED — Oct-1 precompiler paper audit
+
+The following is the exact logical text of the baseline's previous audit.
+Its READY wording, absent-toolchain statement, citation count, anonymity
+statement, and historical test totals are superseded by the current audit above.
+They describe the earlier audit and are retained to preserve provenance.
+
 # Final Paper Audit
 
 ## Status

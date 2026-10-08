@@ -79,7 +79,7 @@ cs_novelty/
 | project/results/configs/ | calibration/configuration scripts | runtime and verifiers | frozen configs plus historical configs | small configs; preserve hashes |
 | project/results/metrics/ | evaluators and audits | paper and verifiers | V1–V3/C4/EKF/training-seed evidence | mixed size; some CSVs are large |
 | project/results/v4/ | V4 protocol writers and audits | analysis, verifiers, paper | current core plus historical/superseded outputs | CSVs, SQLite, NPZ/PT artifacts are local-only |
-| project/paper/ | table/figure generators and authors | reviewers | current manuscript and audit | PDFs are generated artifacts; LaTeX build unavailable |
+| project/paper/ | table/figure generators and authors | reviewers | current manuscript and audit | PDFs are generated artifacts; finalization build/visual QA recorded in PAPER_FINAL_AUDIT.md |
 | project/*.md | researchers and audits | humans and AIs | mixed; use authority hierarchy | old reports are preserved, not automatically current |
 | context/ | this orientation build | future AIs/humans | current additive package | documentation only; no scientific artifacts copied |
 

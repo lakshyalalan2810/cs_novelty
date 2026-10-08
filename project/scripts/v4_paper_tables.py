@@ -41,8 +41,8 @@ def table_posthoc_per_seed() -> None:
     pooled = pooled[pooled["family"].isna()]
     lines = ["\\begin{tabular}{lcccc}",
              "\\toprule",
-             "Training seed & runs & false-latch rate [95\\% CI] & "
-             "clean starts & cond. detection \\\\",
+             "Seed & runs & \\shortstack{false-latch rate\\\\{[95\\% CI]}} & "
+             "\\shortstack{clean\\\\starts} & \\shortstack{conditional\\\\post-event entry} \\\\",
              "\\midrule"]
     for _, row in pooled.sort_values("training_seed").iterrows():
         lines.append(

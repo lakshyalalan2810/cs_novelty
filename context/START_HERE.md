@@ -94,7 +94,11 @@ Do not infer:
 - that EKF replaces the auxiliary witness;
 - that a new run is needed merely to make the paper story stronger.
 
-## Current repository status
+## Publication finalization update (2026-10-08)
+
+Baseline HEAD and origin/main were both 4b7c51d. The manuscript now has a real compiled PDF, complete page-by-page visual QA, verified literature, and a deterministic local scientific archive. The complete-controller comparison does not isolate the witness component's causal effect. No new science was run, no frozen result changed, and no commit/push was made. Public archive deposit, target formatting and human metadata remain pending. See project/PAPER_FINAL_AUDIT.md and project/paper/FINALIZATION_CHANGELOG.md.
+
+## Historical cleanup status (Oct 1)
 
 The final cleanup was based on clean `main` at `2a6933d8ddaa7d45d9175f7ce0558fbd52a454e4`. `project/PROJECT_OVERVIEW_AND_PUBLISHABILITY.md` is tracked and explicitly labeled historical.
 

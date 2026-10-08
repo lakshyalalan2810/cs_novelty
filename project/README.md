@@ -105,6 +105,12 @@ Reliability thresholds were calibrated on the clean validation operating distrib
 
 Complete trajectories are split before overlapping windows are made, and normalization is fitted from training trajectories only. The LSTM is open-loop trained, recursive error grows with horizon, and all controller evidence is simulation-only.
 
+## Manuscript and release status (2026-10-08)
+
+The compiled review PDF is `paper/main.pdf`; current build/visual checks are in `PAPER_FINAL_AUDIT.md`. The IEEE conference review layout is retained while the authors decide on the provisional IEEE Access target. Venue formatting, human metadata/declarations, and a public archive deposit remain required; the package is not ready for submission.
+
+The original ignored V4 artifacts were recovered and hash-checked without rerunning science. `paper/release/v4-frozen-evidence.zip` is a local deposit candidate, not a published archive. A clean source clone can build saved figures/tables but cannot regenerate every figure or reconstruct raw inference without that bundle. See `REPRODUCIBILITY.md` and `paper/PUBLICATION_RELEASE_REPORT.md`.
+
 ## Reproduce
 
 Python 3.11 is recommended. `requirements.txt` is the supported reconstruction/development environment. `requirements-frozen-v4.txt` records the five versions captured by the frozen V4 result manifest; it is an archival record, not a guarantee of byte-identical re-execution.

@@ -89,7 +89,7 @@ Read priority:
 | project/TRAINING_SEED_ROBUSTNESS.md | training-seed sensitivity |
 | project/FINAL_ROBUSTNESS_AND_SEVERITY_STUDY.md | boundary/severity study |
 | project/FINAL_REPO_AUDIT_POSTFIX.md | V1 post-fix audit; not V4 authority |
-| project/PAPER_FINAL_AUDIT.md | manuscript audit and LaTeX limitation |
+| project/PAPER_FINAL_AUDIT.md | current manuscript/build audit and historical record |
 
 ## Paper
 

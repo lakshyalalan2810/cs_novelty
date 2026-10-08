@@ -1,3 +1,4 @@
+\RequirePackage[T1]{fontenc}
 \documentclass[conference]{IEEEtran}
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -13,11 +14,13 @@
 
 \begin{document}
 \maketitle
+\raggedbottom
+\setlength{\dblfloatsep}{2pt}
 
 \begin{abstract}
 Speed-sensor faults can corrupt both feedback and learned prediction in
-closed-loop LSTM model-predictive control of a nonlinear permanent-magnet
-DC motor. We study a reliability-aware architecture with a main
+closed-loop long short-term memory (LSTM) model-predictive control (MPC) of a nonlinear permanent-magnet
+direct-current (DC) motor. We study a reliability-aware architecture with a main
 speed-dependent LSTM, a current-informed auxiliary virtual sensor, and a
 classical augmented-state extended Kalman filter (EKF) comparator. Frozen V3
 evaluation identified a specific weakness: a pure load disturbance could
@@ -32,7 +35,7 @@ clean-start pairs; 26 of 150 pairs were excluded by the preregistered
 pre-latch rule. H8 and H9 were the only multiplicity-supported results.
 H1--H2 were directionally favorable but not
 supported, H3--H4 and H6--H7 had unfavorable observed contrasts, and H5 was
-null. Thus witness gating improved entry discrimination for the tested load
+null. Thus the complete V4 designs improved entry discrimination for the tested load
 confound, while broader improvements in detection, recovery, and tracking
 were not established.
 \end{abstract}
@@ -49,9 +52,10 @@ detection signal, but a residual is only useful if its detector separates
 true faults from transients.
 
 We evaluated a frozen V3 detector combining an instant residual gate with a
-CUSUM test~\cite{Page1954} over 275 closed-loop runs (5 controllers
+cumulative sum (CUSUM) test~\cite{Page1954} over 275 closed-loop runs (5 controllers
 $\times$ 11 scenarios $\times$ 5 seeds, 29026--29030). On abrupt faults
-the protected controller (C3) reduced fault-window RMSE relative to the
+the protected controller (C3) reduced fault-window root-mean-square error
+(RMSE) relative to the
 unprotected baseline (B) by 95.4\% (bias 15), 87.2\% (bias 5), 98.2\%
 (dropout), and 42.6\% (noise); drift showed zero benefit (5.305 vs.\ 5.305
 rad/s), combined fault-plus-load improved 8.75\%, parameter variation was
@@ -74,7 +78,7 @@ with a current-informed auxiliary LSTM.
 \item Identification of load-disturbance/sensor-fault confounding as a
 failure mode of the frozen V3 reliability detector.
 \item Disturbance-aware V4 entry gating instantiated separately with an
-auxiliary-LSTM witness and an augmented-state EKF witness.
+auxiliary-LSTM witness and an augmented-state extended Kalman filter (EKF) witness.
 \item A preregistered nine-hypothesis evaluation in which only H8/H9 were
 multiplicity-supported: both witnesses reduced false entries at the tested
 0.15~N$\cdot$m load condition on 124 retained clean-start pairs, with 26
@@ -90,9 +94,9 @@ does not support the other seven hypotheses after multiplicity correction.
 This paper does not claim general superiority; negative results (including
 small-bias detection and tracking contrasts) are retained verbatim.
 
-\begin{figure*}[t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=7.16in]{figures/fig_research_evolution.pdf}
+\includegraphics[width=\textwidth]{figures/fig_research_evolution.pdf}
 \caption{Failure-driven research logic. V1--V3 established the learned
 reliability architecture; load-induced false entries motivated attribution
 and witness mechanisms. C4 failed its frozen development gates, whereas V4
@@ -102,20 +106,68 @@ received narrow confirmatory support only for H8/H9.}
 
 \section{Related Work}
 \label{sec:related}
-Constrained MPC provides an optimization framework for multivariable control,
-but its formal guarantees depend on model and terminal-design assumptions
-that are not claimed here~\cite{Mayne2000}. LSTMs provide a learned
-stateful sequence model~\cite{Hochreiter1997}. The present work focuses on
-how corrupted feedback interacts with the learned model and its reliability
-logic.
+Constrained MPC and learned dynamical prediction are established building
+blocks~\cite{Mayne2000,Hochreiter1997}. Terzi et al. use LSTM plant models
+with a convergent observer and asymptotic closed-loop stability under
+derived network and controller conditions~\cite{Terzi2021}. Neural nonlinear
+autoregressive models with exogenous inputs (NARX) likewise admit sufficient
+stability conditions~\cite{Bonassi2021},
+and recent recurrent-model MPC relates a minimum prediction horizon to
+closed-loop stability~\cite{Bonassi2024}. Our frozen networks and switched
+feedback logic were not designed to satisfy those conditions; one-step
+prediction accuracy and simulation constraint counters do not establish
+such guarantees.
 
-CUSUM monitoring supplies a sequential residual test~\cite{Page1954}, while
-observer- and plausibility-based monitors provide nonlearned comparison
-paths. Here these mechanisms are evaluated as bounded engineering
-comparators, not as formal fault isolation. The central question is narrower:
-whether a current-informed witness can prevent a plant load transient from
-being mistaken for a speed-sensor fault without introducing unsupported
-claims about the physical fault source.
+Model-based fault diagnosis distinguishes residual generation, decision
+making, and fault accommodation~\cite{Chow1984,Venkatasubramanian2003}.
+Analytical redundancy uses modeled relations among available signals
+instead of requiring duplicate physical sensors; observers and virtual
+sensing are standard tools, including in DC-drive diagnosis~\cite{Isermann2006}.
+The main/auxiliary estimates and EKF comparator reuse this principle.
+Excluding measured speed from a witness prevents direct contamination by
+that input, but does not make its error independent of plant disturbances
+or current-channel corruption.
+
+CUSUM supplies sequential evidence for a change in a monitored
+signal~\cite{Page1954,Gustafsson2000}; it does not identify the physical
+cause of that change. A learned prediction residual can therefore respond
+to both a sensor fault and model error during a genuine load transient.
+The present question concerns entry into feedback substitution, whose
+consequences must be evaluated separately from the residual alarm itself.
+
+Disturbance-robust sensor diagnosis is already studied in electric drives.
+Aguilera et al. construct induction-motor observer subsystems decoupled
+from load torque to obtain current-sensor fault detectability and
+isolability~\cite{Aguilera2016}. Choi et al. combine full-state and
+disturbance observers with normalized residuals for current/position-sensor
+diagnosis in a permanent-magnet synchronous motor (PMSM) drive, including
+physical validation~\cite{Choi2021}.
+These works establish a stronger diagnosis setting than our empirical
+witness agreement. Their different plants, sensors, and protocols also
+preclude a numerical superiority comparison with this PMDC study.
+
+Deep learning is widely used for machine-health monitoring~\cite{Zhao2019}.
+Closer to sensor accommodation, Chu et al. combine convolutional neural
+networks (CNNs) and LSTMs for brushless DC (BLDC) Hall-sensor fault
+classification and signal recovery~\cite{Chu2023}.
+Thus neural sensor reconstruction is not itself the contribution here.
+Our evaluation instead addresses how a monitor's entry decision changes
+closed-loop behavior when a healthy speed sensor is exposed to a load
+disturbance.
+
+Reliability-aware MPC also has an established actuator-health meaning:
+Salazar et al. include actuator usage and system/component reliability in
+MPC to balance reliability with control performance~\cite{Salazar2017}.
+Here ``reliability'' denotes the monitor's operational confidence in a
+measurement channel; no component lifetime or failure probability is
+optimized. The contribution is a failure-driven witness-entry design and
+its preregistered, multiplicity-controlled evaluation within the frozen
+PMDC architecture. Only H8/H9 support reduced false entry at the tested
+0.15~N$\cdot$m load condition under clean-start pairing. The inactive C2
+recovery gate, C4 NO\_GO attribution branch, EKF tradeoffs, and unsupported
+detection/recovery/tracking hypotheses bound that result. Witness gating
+is therefore evaluated as entry discrimination, not formal fault
+isolation, general fault tolerance, or hardware readiness.
 
 \section{Method}
 \label{sec:method}
@@ -123,7 +175,7 @@ claims about the physical fault source.
 \subsection{Plant and control law}
 \label{sec:plant}
 
-The plant is a permanent-magnet DC motor with states armature current $i$
+The plant is a permanent-magnet DC (PMDC) motor with states armature current $i$
 and angular speed $\omega$:
 \begin{equation}
 \label{eq:current}
@@ -135,28 +187,30 @@ J\frac{d\omega}{dt} = K_t i - B\omega - T_f(\omega) - T_L,
 \end{equation}
 with $R=2~\Omega$, $L=0.5$~H, $K_b=K_t=0.1$,
 $J=0.01$~kg$\cdot$m$^2$, $B=0.002$, Coulomb torque $0.02$~N$\cdot$m
-smoothed as $0.02\tanh(\omega/0.1)$, and load torque $T_L$. Integration uses RK4 at a
+smoothed as $0.02\tanh(\omega/0.1)$, and load torque $T_L$. Integration uses fourth-order Runge--Kutta at a
 10~ms plant timestep; the controller issues a new voltage every 50~ms (5
 plant steps).
 
-The controller is an SLSQP-based MPC~\cite{Mayne2000} with horizon $H=20$,
+The controller uses sequential least-squares quadratic programming (SLSQP)
+for MPC~\cite{Mayne2000} with horizon $H=20$,
 move blocks $(5,15)$ giving $N_c=2$ free moves, voltage limits 0--12~V, a
 maximum step of 2~V per interval, tracking weight 1.0, move weight 0.5,
 \texttt{maxiter}=8, tolerance 0.05, and warm start enabled. Adaptation
 regions rescale the horizon and step limit: LOW
-($H=20$, 2~V), MEDIUM ($H=20$, 1.5~V), HIGH ($H=15$, 1~V). On the reference
-machine, measured solve times averaged 68~ms (median 60.6~ms, p95
+($H=20$, 2~V), MEDIUM ($H=20$, 1.5~V), HIGH ($H=15$, 1~V). In the
+historical solver/control benchmark (19{,}965 samples), times averaged 68~ms (median 60.6~ms, p95
 135.8~ms, max 666.9~ms); 41.6\% of solves met the 50~ms target.
 
-\begin{figure*}[t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=7.16in]{figures/fig_architecture.pdf}
+\includegraphics[width=\textwidth]{figures/fig_architecture.pdf}
 \caption{V4 reliability-gated loop. The main LSTM virtual sensor and one
-selected witness (auxiliary LSTM or EKF, neither consuming measured speed)
-feed the V4 monitor, which combines a CUSUM residual test with a
-witness-agreement AND rule. Residuals $e_m$ (main) and $e_w$ (witness)
-drive entry; the feedback selector substitutes the main estimate while
-suspect. No ground-truth signal enters the online path.}
+selected witness (auxiliary LSTM or EKF) feed separate residuals to the
+V4 monitor. The AND rule gates debounced entry, while an instantaneous
+main-residual flag can also request substitution after warmup. Residuals
+$e_m$ (main) and $e_w$ (witness) compare each estimate with measured speed;
+the selector supplies measured or main virtual feedback to the MPC and
+main-model history. No ground-truth signal enters the online path.}
 \label{fig:architecture}
 \end{figure*}
 
@@ -165,9 +219,10 @@ suspect. No ground-truth signal enters the online path.}
 
 The main predictor is a 2-layer residual LSTM~\cite{Hochreiter1997} with
 hidden size 64, dropout 0.2, and 50{,}753 parameters. Its input is a
-20-step window of $[\text{voltage}, \text{measured speed}]$. The historical
+20-step window of voltage and selected speed feedback (measured speed while
+trusted, virtual feedback during substitution). The historical
 V1/V3 seed-2026 model (not the V4 retraining) achieved held-out RMSE
-0.1409~rad/s, MAE 0.1131~rad/s, and $R^2 =
+0.1409~rad/s, mean absolute error (MAE) 0.1131~rad/s, and $R^2 =
 0.9999$. Recursive open-loop rollout error grew with horizon: RMSE
 0.211~rad/s at $H=5$, 0.336~rad/s at $H=10$, and 0.488~rad/s at $H=15$.
 The network supplies recursive multi-step speed predictions to the MPC.
@@ -176,10 +231,11 @@ normalized network output before target denormalization. This historical
 implementation characteristic was retained rather than altered after
 evaluation.
 
-The auxiliary predictor is a 1-layer LSTM with hidden size 32 and
+The historical auxiliary predictor is a 1-layer LSTM with hidden size 32 and
 4{,}641 parameters. Its input is a 20-step window of $[\text{voltage},
-\text{armature current}]$ with no speed-sensor input, so its estimates
-remain independent of speed-sensor corruption by construction. On clean
+\text{armature current}]$ with no direct speed-sensor input.
+Closed-loop voltage and current can still
+change in response to corrupted feedback. On historical clean
 test data it achieved RMSE 3.44~rad/s. Armature current provides an
 additional physical channel correlated with electromagnetic torque and
 load-induced motor dynamics; it does not directly measure load.
@@ -208,12 +264,12 @@ The historical C2 auxiliary recovery gate produced behavior identical to C1:
 its auxiliary condition was never the active recovery constraint. We retain
 C2 as an inactive ablation rather than evidence of improvement.
 
-\begin{figure}[t]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=3.5in]{figures/fig_latch_timeline.pdf}
+\includegraphics[width=\columnwidth]{figures/fig_latch_timeline.pdf}
 \caption{First reliability-entry times per Part~B C3 fault family
 (post-hoc). Crosses: pre-event latches on a healthy sensor (startup
-cluster below 1.2~s; one mid-run latch at 2.03~s); circles: post-event
+cluster below 1.2~s; mid-run latches at 2.03~s); circles: post-event
 entries. Dashed lines: fault onsets.}
 \label{fig:timeline}
 \end{figure}
@@ -221,18 +277,21 @@ entries. Dashed lines: fault onsets.}
 \subsection{V4 detector variants}
 \label{sec:v4}
 
-The V4 monitor (Fig.~\ref{fig:architecture}) implements four fixes to the
-frozen design: (i) a CUSUM anti-windup clamp with $k=2.0$ bounding score
+The executed full V4 monitor (Fig.~\ref{fig:architecture}) combines three
+changes: (i) a CUSUM anti-windup clamp with $k=2.0$ bounding score
 accumulation; (ii) startup warmup gating that suppresses entries during the
-first 150 samples; (iii) a witness AND-rule requiring both main-residual
-evidence and witness-agreement evidence before entry; and (iv) bounded
-recovery that confines the post-fault discharge transient to a configurable
-window. The ablation studies five configurations: full, clamp-only,
-gating-only, clamp-plus-gating, and witness-only. The two primary
+first 150 monitor updates (1.5~s after the initial 20-sample history); and (iii) a witness AND-rule requiring both
+main-residual and witness-residual evidence before reliability entry.
+The clamp also bounds CUSUM discharge; the optional recovery boost was
+disabled in every frozen configuration and its sweep was deferred.
+Clamp-only, gating-only, clamp-plus-gating, and witness-only configurations
+were defined but their wider ablation study was deferred. The two primary
 confirmatory controllers are V4\_full\_aux (auxiliary-LSTM witness) and
 V4\_full\_ekf (EKF witness). Their preregistered confirmatory evaluation is
 reported in Section~\ref{sec:results}; only the load false-entry hypotheses
-survived Holm correction.
+survived Holm correction. After warmup, an instantaneous main-residual flag
+can still request virtual substitution without a debounced reliability latch;
+the witness rule therefore does not veto every substitution request.
 
 For each model pair, witness thresholds were frozen from the 99.9th
 percentile of the absolute clean-validation residual
@@ -242,7 +301,7 @@ failure. Calibration excluded confirmatory trajectories and H1--H9 outcomes.
 
 A three-way consistency attributor (C4) was implemented and calibrated
 during development; it returned output numerically identical to C3 across
-all 105 paired development runs, produced zero
+35 C3/C4 scenario--seed pairs in 105 development cells (35 per controller), produced zero
 LIKELY\_PLANT\_OR\_MAIN\_MISMATCH states, and was gated NO\_GO with seeds
 39026--39030 untouched.
 
@@ -259,21 +318,25 @@ parameters. S1 applies a fixed plausibility gate to $|y_{\text{meas}} -
 \hat{\omega}_{\text{EKF}}|$. S2 is a model-free median/rate plausibility
 check substituting the median speed. S3 combines a back-EMF Luenberger
 observer with a CUSUM test and observer-estimate substitution. Each baseline carries its own independent detector
-and substitution source. None of E2/S1/S2/S3 reads measured speed during
-substitution; all use the same physical current and voltage inputs as the
-auxiliary LSTM.
+and substitution source. E2, S1, and S3 derive substitution estimates from
+voltage and current without measured speed, while their residual detectors
+continue comparing against measured speed. S2 instead filters the speed
+channel and substitutes its trailing trusted median.
 
 For nonzero $K_b$, the nominal augmented EKF model is analytically
 observable, but its practical observability is weaker over short horizons
 and near startup. It is used as a classical baseline and witness, not as a
 claimed overall winner.
 
-During development, E2 recorded fault-window RMSE 0.283~rad/s on bias-5 and
-dropout faults, versus 0.371~rad/s for C3 and 2.908~rad/s for B on bias-5,
+The historical EKF-substitution comparator, using the frozen V3 detector
+rather than E2's EKF-residual detector, recorded development fault-window
+RMSE 0.283~rad/s on bias-5 and dropout faults, versus 0.392~rad/s for C3
+and 2.871~rad/s for B on the same five bias-5 development seeds,
 but degraded to 2.971~rad/s under R+30\% parameter variation because the
 filter retains fixed nominal parameters (the parameter-transfer estimator
-reached 10.69~rad/s); E2 was assigned role gate BASELINE\_ONLY after it
-failed paired improvement on combined fault-plus-load in 0/5 seeds.
+reached 10.69~rad/s); this historical comparator was assigned role gate
+BASELINE\_ONLY after it
+showed paired improvement on combined fault-plus-load in 0/5 seeds.
 
 \section{Experimental Protocol}
 \label{sec:protocol}
@@ -289,6 +352,12 @@ Normalization statistics come from training windows only. The frozen V4
 dataset uses an uncorrupted, noiseless simulated armature-current measurement
 with no quantization. The main and
 auxiliary networks each train for at most 200 epochs.
+
+C3 uses the historical frozen model/calibration pairs; V4 and B use the
+V4-trained pairs. Equal training-seed labels do not imply equal learned
+weights or training data. Thus C3--V4 comparisons evaluate complete frozen
+controller packages, whereas H6 compares B and V4 with the same V4 model
+bundle.
 
 \subsection{Calibration}
 \label{sec:calibration}
@@ -307,8 +376,15 @@ govern the confirmatory study; the full protocol is in
 \texttt{V4\_PREREGISTRATION.md}. The original umbrella contained 268{,}910
 cells. We executed the exact deduplicated 12{,}200-cell dependency core
 needed by H1--H9; the remaining 257{,}260 cells are deferred and contribute
-to no confirmatory result. The core contains 9{,}600 fault-free, 2{,}000
+to no confirmatory result. The core includes 11{,}650 original-umbrella
+cells and 550 supplemental H6 B-anchor cells. It contains 9{,}600 fault-free, 2{,}000
 sweep, and 600 recovery cells.
+Speed-noise scale is $\sigma=0.25$~rad/s, so the tested $2\sigma$ and
+$8\sigma$ biases are 0.5 and 2.0~rad/s. Fault-free and sweep runs last
+6~s; sweep bias begins at 2~s, and the load step begins at 3~s.
+Recovery runs last 10~s with finite bias over $[2,4)$~s. Detection is a
+post-onset reliability entry conditional on no pre-latch; recovery is the
+first inactive state at or after fault end, right-censored if absent.
 \begin{enumerate}
 \item[H1.] V4\_full\_aux false-latch probability is lower than C3 on
 fault-free pairs.
@@ -329,7 +405,11 @@ C3 penalty versus B (intention-to-treat).
 \item[H9.] V4\_full\_ekf load false-entry probability is lower than C3 at
 0.15~N$\cdot$m.
 \end{enumerate}
-Paired comparisons share $(\text{training\_seed}, \text{sim\_seed})$ pairs.
+H1--H5 and H7--H9 use the three common training seeds 2026--2028;
+H6 uses all eleven V4 seeds 2026--2036. Fault-free endpoints retain four
+reference profiles per simulation seed: nominal, step, changing, and wide.
+Paired comparisons share training and simulation seeds, and reference
+profile where applicable.
 For conditional endpoints (H3--H5, H8--H9), pairs in which either controller
 pre-latched are excluded (clean-start pair-exclusion rule); H6--H7 use
 intention-to-treat with no exclusion.
@@ -379,16 +459,41 @@ hypothesis, multiplicity rule, or decision changed.
 
 The immutable core supports checkpoint/resume and binds controller, training
 seed, simulation seed, reference, scenario, model, calibration, and source
-provenance. The historical plan hash is
-\nolinkurl{7e409aef24c1472382b19964927c878f1daf44f1564d23b6ef1e10f07c35b75f};
-the administrative re-freeze is
-\nolinkurl{fb3e2e614b2b35dd3ae66be3c821d389b59573291140ab2a2f906a2912166ae5}.
-The original result manifest is preserved, while final paper values use the
-superseding manifest
-\nolinkurl{0591d54f1e5c45fbb7c5a1910b6cd01a045424848a81ae33d9b477f021ed522e}.
+provenance. Table~\ref{tab:provenance} preserves complete historical-plan,
+administrative re-freeze, and superseding result-manifest hashes.
+The original result manifest is preserved; final paper values use the
+superseding manifest.
 The deterministic EKF repair predicate and statistical correction are
 documented in \texttt{V4\_STATISTICAL\_AND\_REPAIR\_AUDIT.md}; figure
 provenance is recorded in \texttt{paper/FIGURE\_MANIFEST.md}.
+
+\begin{table*}[!t]
+\centering
+\footnotesize
+\caption{Complete SHA-256 provenance identifiers. The historical plan's
+original bytes are unavailable; its scientific content was independently
+reconstructed before the administrative re-freeze.}
+\label{tab:provenance}
+\begin{tabular}{@{}ll@{}}
+\toprule
+Artifact & SHA-256 \\
+\midrule
+Historical plan & \texttt{7e409aef24c1472382b19964927c878f1daf44f1564d23b6ef1e10f07c35b75f} \\
+Administrative re-freeze & \texttt{fb3e2e614b2b35dd3ae66be3c821d389b59573291140ab2a2f906a2912166ae5} \\
+Superseding result manifest & \texttt{0591d54f1e5c45fbb7c5a1910b6cd01a045424848a81ae33d9b477f021ed522e} \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The source repository includes corrected summaries, tables, and figures;
+full saved-row verification and regeneration of the load false-entry figure
+also require the ignored raw V4 sweep matrix. Dataset, weights, histories,
+raw matrices, events, and checkpoints are inventoried with detached hashes
+in the publication release manifest. The validated original artifacts were
+recovered locally, but no public archive deposit or DOI exists yet.
+A source-only clone therefore cannot reproduce every paper figure.
+The recorded execution environment is partial and does not establish
+byte-identical scientific re-execution.
 
 \section{Results}
 \label{sec:results}
@@ -396,26 +501,33 @@ provenance is recorded in \texttt{paper/FIGURE\_MANIFEST.md}.
 \subsection{Post-hoc decomposition (frozen data)}
 The frozen pooled detection endpoint conflates missed detection with
 pre-event false latching: conditional on a clean start, C3 detects
-11/11 bias faults at 0.02~s (Table~\ref{tab:posthoc}, Fig.~\ref{fig:cond}).
+11/11 bias faults per severity at 0.02~s (Table~\ref{tab:envelope},
+Fig.~\ref{fig:cond}).
 
-\begin{table}[t]
+\begin{table}[!t]
 \centering
-\caption{Post-hoc false-latch rate and conditional detection per
-training seed (Part~B pooled; exploratory).}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\caption{Post-hoc false-latch rate and conditional post-event entry per
+training seed (Part~B pooled; exploratory). Each seed pools 100 runs across
+bias, dropout, drift, combined bias/load, and load-only conditions; a
+load-only entry is a false sensor entry rather than fault detection.}
 \label{tab:posthoc}
 \input{tables/tab_posthoc_per_seed.tex}
 \end{table}
 
-\begin{figure}[t]
+\begin{figure}[!t]
 \centering
-\includegraphics[width=3.5in]{figures/fig_conditional_detection.pdf}
+\includegraphics[width=\columnwidth]{figures/fig_conditional_detection.pdf}
 \caption{Pooled preregistered detection vs.\ conditional-on-clean-start
-detection by family (post-hoc). Drift remains hard to detect under
-either definition.}
+detection by family (post-hoc): each bar averages four condition-level
+probabilities. Each condition has 15 runs; clean-start denominators are
+11 for bias, dropout, and drift, and 10 for combined bias/load. Drift
+remains hard to detect under either definition.}
 \label{fig:cond}
 \end{figure}
 
-\begin{table*}[t]
+\begin{table*}[!t]
 \centering
 \caption{Operating envelope: unchanged preregistered labels beside
 post-hoc conditional-on-clean-start labels (exploratory; 16 conditions).}
@@ -429,13 +541,14 @@ positive delta supports each hypothesis. H3--H5 and H8--H9 use the frozen
 clean-start pair exclusion; H6--H7 are intention-to-treat. Only H8 and H9
 survive Holm correction. Under the tested 0.15~N$\cdot$m load condition,
 both V4 witnesses reduce false-entry probability relative to C3 by 0.2177.
-The H8/H9 endpoint retained 124 of 150 clean-start pairs; 26 pairs were
+The H8/H9 endpoint retained 124 clean-start pairs from 150 candidate pairs; 26 pairs were
 excluded because either controller pre-latched, exactly as preregistered.
 H1 and H2 are directionally favorable but nonsignificant. H3, H4, H6, and
-H7 have unfavorable observed contrasts, and H5 is exactly null (hence its
-paired standardized effect is undefined).
+H7 have unfavorable observed contrasts. H5 is exactly null: neither
+controller recovered in any of its 264 retained pairs, so its paired
+standardized effect is undefined.
 
-\begin{table*}[t]
+\begin{table*}[!t]
 \centering
 \scriptsize
 \caption{Preregistered V4 confirmatory results. CI: two-sided 95\%
@@ -447,9 +560,9 @@ applicable.}
 \resizebox{\textwidth}{!}{\input{tables/tab_h1_h9.tex}}
 \end{table*}
 
-\begin{figure*}[t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=7.16in]{figures/fig_hypothesis_effects.pdf}
+\includegraphics[width=\textwidth]{figures/fig_hypothesis_effects.pdf}
 \caption{Observed paired deltas and corrected 95\% hierarchical percentile
 bootstrap intervals for H1--H9. Separate axes retain endpoint units; positive
 values favor each preregistered hypothesis. Filled circles and asterisks mark
@@ -463,28 +576,29 @@ H8 had zero empirical tail hits; its two-sided Monte Carlo resolution is
 $2/20000=0.0001$, so it is reported as a bound rather than exact zero. H9 had
 one tail hit and retains the implemented $p=0.0001$.
 
-\begin{figure}[t]
+\begin{figure*}[!t]
 \centering
-\includegraphics[width=3.5in]{figures/fig_load_false_entries.pdf}
+\includegraphics[width=\columnwidth]{figures/fig_load_false_entries.pdf}
 \caption{Descriptive false-entry probability by training seed among the same
 124 clean-start load-0.15 pairs underlying H8/H9 (43, 34, and 47 pairs for
 seeds 2026--2028). C3 false entries persisted across seeds; neither V4
 variant entered. Inferential decisions remain those in
 Table~\ref{tab:confirmatory}.}
 \label{fig:loadfalse}
-\end{figure}
+\end{figure*}
 
-The DET-wide study, other sweep severities, dropout, drift, combined-fault
-expansion, robustness OFAT, timing umbrella, and non-bias recovery studies
+The wider detection-threshold study, other sweep severities, dropout,
+drift, combined-fault expansion, one-factor-at-a-time robustness,
+timing umbrella, and non-bias recovery studies
 were not executed in the H1--H9 core. We do not extrapolate the confirmatory
 findings to those conditions.
 
-\begin{table}[t]
+\begin{table*}[!t]
 \centering
 \caption{Frozen Part~B pooled detection anchor (unchanged).}
 \label{tab:frozen}
 \input{tables/tab_frozen_detection.tex}
-\end{table}
+\end{table*}
 
 \subsection{Historical branch and robustness context}
 
@@ -509,13 +623,15 @@ assumed-healthy current channel degraded both C3 and EKF.
 The supported result addresses the failure that motivated V4. The V3
 residual detector sometimes conflated a plant load transient with
 speed-sensor corruption and entered substitution unnecessarily. At the
-preregistered 0.15~N$\cdot$m load condition, an agreement requirement based
-on either the auxiliary learned witness or the classical EKF witness removed
-those false entries in the 124 analyzed clean-start pairs; 26 of 150 pairs
+preregistered 0.15~N$\cdot$m load condition, both complete V4 variants,
+using either the auxiliary learned witness or the classical EKF witness,
+recorded zero debounced false entries in the 124 analyzed clean-start pairs;
+26 of 150 pairs
 were excluded under the preregistered pre-latch rule. Agreement across two
 different witness implementations strengthens the narrow interpretation that
-current-informed consistency can protect entry logic against this tested
-confound.
+current-informed consistency is worth studying for this tested confound.
+The comparison also changes startup/clamp logic and model/calibration
+bundles, so it does not isolate the causal effect of the witness component.
 
 That agreement is not proof of causal fault isolation. Both witnesses use the
 same physical current channel and both can fail under current corruption,
@@ -530,7 +646,7 @@ mechanism helped and where additional evidence is still required.
 The confirmatory evidence is limited to the executed fault-free,
 bias-$2\sigma$, bias-$8\sigma$, and load-0.15 conditions. Drift detection
 remains poor in frozen historical evidence; dropout, drift, other severities,
-combined-fault V4 expansions, robustness OFAT, timing, and non-bias recovery
+combined-fault V4 expansions, one-factor-at-a-time robustness, timing, and non-bias recovery
 were deferred. Direct historical C3 robustness comparisons include only three
 training seeds and show training-seed sensitivity. Parameter mismatch remains
 an established weakness for both current-informed learned estimation and the
@@ -543,18 +659,18 @@ The core retained 3{,}053
 slew-limit counters as observed safety outcomes rather than exclusions. MPC
 solve times exceed the control period on the reference machine, preventing a
 20~Hz real-time claim. All results are simulation-only on one motor model,
-with no HIL or hardware validation, formal stability proof, or formal
+with no hardware-in-the-loop (HIL) or physical-motor validation, formal stability proof, or formal
 fault-isolation proof. Bootstrap intervals and $p$-values have finite
 Monte Carlo resolution and only three top-level training-seed clusters for
-H1--H5 and H7--H9. Finally, the administrative re-freeze, 2{,}700-cell
-outcome-independent EKF repair, and H1/H2/H7 bootstrap correction are
-necessary provenance disclosures; they did not alter the core scientific
-design or the conclusion that only H8/H9 reject.
+H1--H5 and H7--H9. Administrative re-freeze, outcome-independent EKF repair,
+and H1/H2/H7 correction are disclosed above. They changed neither the
+scientific design nor the H8/H9-only Holm decision.
 
+\newpage
 \section{Conclusion}
 \label{sec:conclusion}
-Reliability-aware learned MPC benefited from explicit disturbance-aware
-witness gating, but the value was mechanism-specific rather than universal.
+The complete V4 reliability-aware learned MPC packages improved the tested
+entry endpoint, with a bounded result rather than universal superiority.
 Under preregistered confirmatory evaluation, both V4 witness designs reduced
 load-induced false sensor-fault entries at the tested 0.15~N$\cdot$m
 disturbance on 124 retained clean-start pairs (26 preregistered pre-latch
@@ -564,6 +680,7 @@ current-channel faults, HIL and hardware execution, and formal robustness and
 stability properties.
 
 \bibliographystyle{IEEEtran}
+\IEEEtriggeratref{6}
 \bibliography{references}
 
 \end{document}
